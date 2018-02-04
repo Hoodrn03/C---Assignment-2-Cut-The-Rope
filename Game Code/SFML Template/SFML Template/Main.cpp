@@ -16,9 +16,15 @@
 //! This will be used to gain access to all of the linked libraries which will be used everywhere in the program. 
 #include "defs.h" 
 
+//! This will allow for the game to be run. 
+#include "GameLoop.h"
 
 //! main : The entry point for the program.  
 int main()
 {
+	Gameloop clGameLoop;
+
+	clGameLoop.m_MainMenu();
+
 	return 0;
 }
