@@ -17,6 +17,8 @@
 //! THis will allow access to event handling functions. 
 #include "EventHandler.h"
 
+#include "TextureManager.h"
+
 class Gameloop
 {
 	// Constructor 
@@ -46,11 +48,17 @@ private:
 	*/
 	EventHandler clEventHandler;
 
+	//! This will create an instance of the texture manager. A class which will hold references to all of the game textures. 
+	TextureManager clTextureMananger;
+
 	// Member Functions 
 
 public:
 
 	//! This will be the main hub which the player will use to navigate between the different game states. 
 	int m_MainMenu();
+
+	// This will be used to assign all of the textures into the texture manager. 
+	int m_LoadTextures();
 
 };

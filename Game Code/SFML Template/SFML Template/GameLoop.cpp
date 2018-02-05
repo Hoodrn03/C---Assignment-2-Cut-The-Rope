@@ -7,7 +7,7 @@
 */
 Gameloop::Gameloop()
 {
-
+	m_LoadTextures();
 }
 
 
@@ -44,6 +44,20 @@ int Gameloop::m_MainMenu()
 
 
 	}
+
+	return 0;
+}
+
+
+//! Load Textures :- This will be used to load all of the textures into the game. 
+/*
+/
+*/
+int Gameloop::m_LoadTextures()
+{
+	clTextureMananger.m_AddTexture("Button", "Res/Sprites/Button.png");
+
+	clTextureMananger.m_GetTexture("Button");
 
 	return 0;
 }
