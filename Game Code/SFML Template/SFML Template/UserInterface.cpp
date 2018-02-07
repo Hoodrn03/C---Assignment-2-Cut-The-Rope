@@ -17,13 +17,55 @@ UserInterface::~UserInterface()
 }
 
 
-//! Main Menu Buttons :- This will be used to load the buttons for the main menu. 
+//! Create Exit Button :- This will be used to create the exit button for the main menu. 
 /*!
-/
+/Param One a font which will be used to give the button's text an appearance. 
+/Param Two a texture which will give the button a shape and colour. 
 */
-int UserInterface::m_MainMenuButtons()
+int UserInterface::m_CreateExitButton(sf::Font newFont, sf::Texture newTexture)
 {
+	exitButton.m_SetButtonName("Exit", newFont);
 
+	exitButton.m_SetButtonSprite(newTexture);
+	
+	listOfButtons.push_back(exitButton);
 
 	return 0;
 }
+
+//! Draw Buttons :- This will be used to draw all of the buttons. 
+/*!
+/Param One a render target, allowing for the buttons to be drwn. 
+*/
+int UserInterface::m_DrawButtons(sf::View currentDisplay)
+{
+	for (int i = 0; i < listOfButtons.size(); i++)
+	{
+		listOfButtons[i].m_DrawButton(currentDisplay);
+	}
+
+	return 0;
+}
+
+//! This will be used to empty the vector at the start of each game state. 
+/*!
+/
+*/
+int UserInterface::m_ResetButtons()
+{
+
+	if (listOfButtons.size() > 0)
+	{
+		for (int i = listOfButtons.size(); i > 0; i--)
+		{
+			
+		}
+	}
+
+	return 0;
+}
+
+
+
+
+

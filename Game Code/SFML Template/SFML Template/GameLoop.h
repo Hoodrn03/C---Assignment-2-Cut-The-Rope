@@ -19,6 +19,8 @@
 
 #include "TextureManager.h"
 
+#include "UserInterface.h"
+
 class Gameloop
 {
 	// Constructor 
@@ -51,6 +53,8 @@ private:
 	//! This will create an instance of the texture manager. A class which will hold references to all of the game textures. 
 	TextureManager clTextureMananger;
 
+	UserInterface clUserInterface;
+
 	// Member Functions 
 
 public:
@@ -58,7 +62,9 @@ public:
 	//! This will be the main hub which the player will use to navigate between the different game states. 
 	int m_MainMenu();
 
+	//! This will be used to create all of the buttons which will be used on gthe main menu. 
+	int m_MainMenuButtons();
+
 	// This will be used to assign all of the textures into the texture manager. 
 	int m_LoadTextures();
-
 };

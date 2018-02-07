@@ -10,6 +10,8 @@
 //! This will allow accessto vital includes which will be used throughout the project. 
 #include "defs.h"
 
+#include "Button.h"
+
 class UserInterface
 {
 	// Constructor
@@ -34,13 +36,24 @@ public:
 
 private:
 
+// Main Menu buttons:
 
+	//! This is the exit button for the main menu
+	Button<int> exitButton;
+
+	std::vector<Button<int>> listOfButtons;
 
 	// Member Functions
 
 public:
 
-	//! This will load the buttons for the Main Menu. 
-	int m_MainMenuButtons();
+	//! This will be used to create the exit button. 
+	int m_CreateExitButton(sf::Font newFont, sf::Texture newTexture);
+
+	//! This will be used to draw all of the current buttons. 
+	int m_DrawButtons(sf::View currentDisplay);
+
+	//! This will be used to empty the vector of buttons. 
+	int m_ResetButtons();
 
 };

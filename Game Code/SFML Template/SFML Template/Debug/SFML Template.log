@@ -1,3 +1,18 @@
-﻿  TextureManager.cpp
-  SFML Template.vcxproj -> C:\Users\Ryan\Documents\GitHub\C---Assignment-2-Cut-The-Rope\Game Code\SFML Template\Debug\SFML Template.exe
-  SFML Template.vcxproj -> C:\Users\Ryan\Documents\GitHub\C---Assignment-2-Cut-The-Rope\Game Code\SFML Template\Debug\SFML Template.pdb (Full PDB)
+﻿  UserInterface.cpp
+c:\users\ryan\documents\github\c---assignment-2-cut-the-rope\game code\sfml template\sfml template\userinterface.cpp(42): warning C4018: '<': signed/unsigned mismatch
+c:\users\ryan\documents\github\c---assignment-2-cut-the-rope\game code\sfml template\sfml template\button.h(64): error C2039: 'draw': is not a member of 'sf::View'
+  c:\users\ryan\documents\github\c---assignment-2-cut-the-rope\game code\external libraries\sfml\include\sfml\graphics\view.hpp(44): note: see declaration of 'sf::View'
+  c:\users\ryan\documents\github\c---assignment-2-cut-the-rope\game code\sfml template\sfml template\button.h(63): note: while compiling class template member function 'int Button<int>::m_DrawButton(sf::View)'
+  c:\users\ryan\documents\github\c---assignment-2-cut-the-rope\game code\sfml template\sfml template\userinterface.cpp(44): note: see reference to function template instantiation 'int Button<int>::m_DrawButton(sf::View)' being compiled
+  c:\users\ryan\documents\github\c---assignment-2-cut-the-rope\game code\sfml template\sfml template\userinterface.h(42): note: see reference to class template instantiation 'Button<int>' being compiled
+c:\users\ryan\documents\github\c---assignment-2-cut-the-rope\game code\sfml template\sfml template\button.h(65): error C2039: 'draw': is not a member of 'sf::View'
+  c:\users\ryan\documents\github\c---assignment-2-cut-the-rope\game code\external libraries\sfml\include\sfml\graphics\view.hpp(44): note: see declaration of 'sf::View'
+  Generating Code...
+  Compiling...
+  GameLoop.cpp
+c:\users\ryan\documents\github\c---assignment-2-cut-the-rope\game code\sfml template\sfml template\gameloop.cpp(47): error C2664: 'int UserInterface::m_DrawButtons(sf::View)': cannot convert argument 1 from 'sf::RenderWindow' to 'sf::View'
+  c:\users\ryan\documents\github\c---assignment-2-cut-the-rope\game code\sfml template\sfml template\gameloop.cpp(47): note: No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+  Generating Code...
+  Compiling...
+  Main.cpp
+  Generating Code...

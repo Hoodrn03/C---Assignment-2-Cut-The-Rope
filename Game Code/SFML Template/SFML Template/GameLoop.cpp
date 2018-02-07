@@ -29,6 +29,10 @@ int Gameloop::m_MainMenu()
 
 	// Pre-Game logic 
 
+	clUserInterface.m_ResetButtons();
+
+	m_MainMenuButtons();
+
 	while(clMainWindow.m_GetWindow()->isOpen())
 	{
 		// Update Game Logic
@@ -40,10 +44,23 @@ int Gameloop::m_MainMenu()
 
 		// Draw Objects
 
+		clUserInterface.m_DrawButtons();
+
 		clMainWindow.m_GetWindow()->display();
 
 
 	}
+
+	return 0;
+}
+
+//! Main Menu Buttons :- This will be used to create all of the buttons which will be on the main menu. 
+/*
+/
+*/
+int Gameloop::m_MainMenuButtons()
+{
+	clUserInterface.m_CreateExitButton(clTextureMananger.m_GetFont("Arial"), clTextureMananger.m_GetTexture("Button"));
 
 	return 0;
 }
@@ -57,7 +74,7 @@ int Gameloop::m_LoadTextures()
 {
 	clTextureMananger.m_AddTexture("Button", "Res/Sprites/Button.png");
 
-	clTextureMananger.m_GetTexture("Button");
+	clTextureMananger.m_AddFont("Arial", "Res/Fonts/arial.ttf");
 
 	return 0;
 }

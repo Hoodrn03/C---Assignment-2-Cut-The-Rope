@@ -16,3 +16,6 @@
 
 //! This will allow me to access useful functions like cout and cin. 
 #include <iostream>
+
+//! This will allow me to pass functions as parameters. 
+#include <functional>
