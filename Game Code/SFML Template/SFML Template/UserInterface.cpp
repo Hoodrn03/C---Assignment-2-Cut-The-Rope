@@ -37,12 +37,9 @@ int UserInterface::m_CreateExitButton(sf::Font newFont, sf::Texture newTexture)
 /*!
 /Param One a render target, allowing for the buttons to be drwn. 
 */
-int UserInterface::m_DrawButtons(sf::View currentDisplay)
+int UserInterface::m_DrawButtons(sf::RenderWindow *currentDisplay)
 {
-	for (int i = 0; i < listOfButtons.size(); i++)
-	{
-		listOfButtons[i].m_DrawButton(currentDisplay);
-	}
+	exitButton.m_DrawButton(currentDisplay);
 
 	return 0;
 }
@@ -58,7 +55,7 @@ int UserInterface::m_ResetButtons()
 	{
 		for (int i = listOfButtons.size(); i > 0; i--)
 		{
-			
+			listOfButtons.pop_back();
 		}
 	}
 

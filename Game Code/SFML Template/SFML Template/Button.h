@@ -34,13 +34,17 @@ public:
 	/Param One is a string which will be the name of the button as well as the writing displayed on it. 
 	/Param Two is a font which will dictate the style of the writing on the button. 
 	*/
-	int m_SetButtonName(std::string newName, sf::Font newFont)
+	int m_SetButtonName(std::string newName, sf::Font font)
 	{
+		buttonText.setFont(font);
+
+		buttonText.setCharacterSize(10);
+
 		sButtonName = newName;
 
-		buttonText.setFont(newFont);
-
 		buttonText.setString(sButtonName);
+
+		buttonText.setFillColor(sf::Color::Blue);
 
 		return 0;
 	}
@@ -52,6 +56,8 @@ public:
 	{
 		buttonSprite.setTexture(newTexture);
 
+		buttonSprite.setScale(5, 3);
+
 		return 0;
 	}
 	
@@ -59,11 +65,16 @@ public:
 	/*!
 	/Param One a render target which the button and text will be drawn onto. 
 	*/
-	int m_DrawButton(sf::View currentDisplay)
+	int m_DrawButton(sf::RenderWindow * currentDisplay)
 	{
-		currentDisplay.draw(buttonSprite);
-		currentDisplay.draw(buttonText);
-		
+
+		if (buttonSprite.getTexture() != NULL && buttonText.getFont() != NULL)
+		{
+
+			currentDisplay->draw(buttonSprite);
+			currentDisplay->draw(buttonText);
+		}
+
 		return 0;
 	}
 

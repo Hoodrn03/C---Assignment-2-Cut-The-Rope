@@ -8,8 +8,11 @@
 */
 
 
-//! This will allow access to SFML's graphics features
+//! This will allow access to SFML's graphics features.
 #include <SFML\Graphics.hpp>
+
+//! This will allow access to SFML's window features.
+#include <SFML\Window.hpp>
 
 //! This will allow access to the physics system which i plan to use within my game.
 #include <Box2D\Box2D.h>

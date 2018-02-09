@@ -44,7 +44,9 @@ int Gameloop::m_MainMenu()
 
 		// Draw Objects
 
-		clUserInterface.m_DrawButtons();
+
+
+		clUserInterface.m_DrawButtons(clMainWindow.m_GetWindow());
 
 		clMainWindow.m_GetWindow()->display();
 
@@ -60,7 +62,8 @@ int Gameloop::m_MainMenu()
 */
 int Gameloop::m_MainMenuButtons()
 {
-	clUserInterface.m_CreateExitButton(clTextureMananger.m_GetFont("Arial"), clTextureMananger.m_GetTexture("Button"));
+
+	clUserInterface.m_CreateExitButton(clFontManager.m_GetFont("Arial"), clTextureMananger.m_GetTexture("Button"));
 
 	return 0;
 }
@@ -74,7 +77,7 @@ int Gameloop::m_LoadTextures()
 {
 	clTextureMananger.m_AddTexture("Button", "Res/Sprites/Button.png");
 
-	clTextureMananger.m_AddFont("Arial", "Res/Fonts/arial.ttf");
+	clFontManager.m_AddFont("Arial", "Res/Fonts/arial.ttf");
 
 	return 0;
 }

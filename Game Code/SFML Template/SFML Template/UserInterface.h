@@ -51,7 +51,7 @@ public:
 	int m_CreateExitButton(sf::Font newFont, sf::Texture newTexture);
 
 	//! This will be used to draw all of the current buttons. 
-	int m_DrawButtons(sf::View currentDisplay);
+	int m_DrawButtons(sf::RenderWindow *currentDisplay);
 
 	//! This will be used to empty the vector of buttons. 
 	int m_ResetButtons();
