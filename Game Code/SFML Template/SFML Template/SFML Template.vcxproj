@@ -149,7 +149,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="EventHandler.cpp" />
-    <ClCompile Include="FontManager.cpp" />
     <ClCompile Include="GameLoop.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MainWindow.cpp" />
@@ -160,7 +159,6 @@
     <ClInclude Include="Button.h" />
     <ClInclude Include="defs.h" />
     <ClInclude Include="EventHandler.h" />
-    <ClInclude Include="FontManager.h" />
     <ClInclude Include="GameLoop.h" />
     <ClInclude Include="MainWindow.h" />
     <ClInclude Include="TextureManager.h" />

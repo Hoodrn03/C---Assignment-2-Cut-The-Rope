@@ -19,8 +19,6 @@
 
 #include "TextureManager.h"
 
-#include "FontManager.h"
-
 #include "UserInterface.h"
 
 
@@ -57,9 +55,6 @@ private:
 	//! This will create an instance of the texture manager. A class which will hold references to all of the game textures. 
 	TextureManager clTextureMananger;
 
-	sf::Font font;
-
-	FontManager clFontManager;
 
 	UserInterface clUserInterface;
 

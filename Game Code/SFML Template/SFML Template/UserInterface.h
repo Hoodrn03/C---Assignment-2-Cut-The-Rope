@@ -48,7 +48,7 @@ private:
 public:
 
 	//! This will be used to create the exit button. 
-	int m_CreateExitButton(sf::Font newFont, sf::Texture newTexture);
+	int m_CreateExitButton(sf::Texture newTexture, sf::RenderWindow &thisWindow);
 
 	//! This will be used to draw all of the current buttons. 
 	int m_DrawButtons(sf::RenderWindow *currentDisplay);

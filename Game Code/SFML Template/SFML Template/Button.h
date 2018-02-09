@@ -26,6 +26,17 @@ private:
 	//! This will be the visual representation of the button.
 	sf::Sprite buttonSprite;
 
+	//! This will be used to hold the font for the text. 
+	sf::Font font;
+
+	//! This will be used to hold the constant size of the text. 
+	const unsigned int textSize = 30;
+
+	//! This will hold the buttons current possition. 
+	sf::Vector2f buttonPos; 
+
+	std::function<void()> func;
+
 	// Member Functions 
 
 public:
@@ -34,17 +45,28 @@ public:
 	/Param One is a string which will be the name of the button as well as the writing displayed on it. 
 	/Param Two is a font which will dictate the style of the writing on the button. 
 	*/
-	int m_SetButtonName(std::string newName, sf::Font font)
+	int m_SetButtonName(std::string newName, std::string filePath)
 	{
-		buttonText.setFont(font);
 
-		buttonText.setCharacterSize(10);
+		if (!font.loadFromFile(filePath))
+		{
+			std::cout << "Error code 0001 :- Unable to find file" << std::endl;
+		}
 
-		sButtonName = newName;
+		else
+		{
+			std::cout << "Found and assigned Font at : " << filePath << "." << std::endl;
 
-		buttonText.setString(sButtonName);
+			buttonText.setFont(font);
 
-		buttonText.setFillColor(sf::Color::Blue);
+			buttonText.setCharacterSize(textSize);
+
+			sButtonName = newName;
+
+			buttonText.setString(sButtonName);
+
+			buttonText.setFillColor(sf::Color::Blue);
+		}
 
 		return 0;
 	}
@@ -60,7 +82,26 @@ public:
 
 		return 0;
 	}
+
+	//! Set Button Pos :- This will be used to specify a location in the game world to be placed.
+	/*!
+	/Param One an unsinged float for the new X possition.
+	/Param Two an unsinged float for the new Y possition.
+	*/
+	int m_SetButtonPos(float newXPos, float newYPos)
+	{
+		buttonPos.x = newXPos;
+		buttonPos.y = newYPos;
+
+		buttonSprite.setPosition(buttonPos);
+
+		buttonText.setPosition(buttonPos.x + (buttonSprite.getGlobalBounds().width * 0.33f), buttonPos.y + (buttonSprite.getGlobalBounds().height * 0.1f));
+
+
+		return 0;
+	}
 	
+
 	//! Draw Button :- This will be used to draw the button on the current game window. 
 	/*!
 	/Param One a render target which the button and text will be drawn onto. 
@@ -70,9 +111,10 @@ public:
 
 		if (buttonSprite.getTexture() != NULL && buttonText.getFont() != NULL)
 		{
-
 			currentDisplay->draw(buttonSprite);
+
 			currentDisplay->draw(buttonText);
+
 		}
 
 		return 0;
