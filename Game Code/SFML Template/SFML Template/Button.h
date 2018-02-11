@@ -35,7 +35,8 @@ private:
 	//! This will hold the buttons current possition. 
 	sf::Vector2f buttonPos; 
 
-	std::function<void()> func;
+	//! This will hold the button's function, It will be called when the button is pressed. 
+	std::function<int()> funcToCall;
 
 	// Member Functions 
 
@@ -67,6 +68,16 @@ public:
 
 			buttonText.setFillColor(sf::Color::Blue);
 		}
+
+		return 0;
+	}
+
+	/*! Set Function :- This will be used to set the button's function.
+	/Param One is a function which will be saved locally.
+	*/
+	int m_SetFunction(std::function<int()> func)
+	{
+		funcToCall = func;
 
 		return 0;
 	}
@@ -106,7 +117,7 @@ public:
 	/*!
 	/Param One a render target which the button and text will be drawn onto. 
 	*/
-	int m_DrawButton(sf::RenderWindow * currentDisplay)
+	int m_DrawButton(sf::RenderWindow *currentDisplay)
 	{
 
 		if (buttonSprite.getTexture() != NULL && buttonText.getFont() != NULL)
@@ -115,6 +126,29 @@ public:
 
 			currentDisplay->draw(buttonText);
 
+		}
+
+		return 0;
+	}
+
+
+	//! Check For Press :- This will be used to check if the button has been pressed. 
+	/*!
+	/Param One a render widnow to constrain the mouse's possition to inside the window. 
+	*/
+	int m_CheckForPress(sf::RenderWindow * window)
+	{
+		if (sf::Mouse().getPosition(*window).x > buttonSprite.getPosition().x && sf::Mouse().getPosition(*window).x < (buttonSprite.getPosition().x + buttonSprite.getGlobalBounds().width))
+		{
+			if (sf::Mouse().getPosition(*window).y > buttonSprite.getPosition().y && sf::Mouse().getPosition(*window).y < (buttonSprite.getPosition().y + buttonSprite.getGlobalBounds().height))
+			{
+				if (sf::Mouse().isButtonPressed(sf::Mouse().Left))
+				{
+					std::cout << "Button Pressed" << std::endl;
+
+					funcToCall();
+				}
+			}
 		}
 
 		return 0;

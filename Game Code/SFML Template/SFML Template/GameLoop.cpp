@@ -37,6 +37,8 @@ int Gameloop::m_MainMenu()
 	{
 		// Update Game Logic
 
+		clUserInterface.m_CheckButtons(clMainWindow.m_GetWindow());
+
 		// Handles Events
 		clEventHandler.m_checkEvents(*clMainWindow.m_GetWindow());
 
@@ -56,6 +58,19 @@ int Gameloop::m_MainMenu()
 	return 0;
 }
 
+//! Exit :- This will be used to close the game when called. 
+/*
+/
+*/
+int Gameloop::m_Exit()
+{
+	clMainWindow.m_GetWindow()->close();
+
+	return 0;
+}
+
+
+
 //! Main Menu Buttons :- This will be used to create all of the buttons which will be on the main menu. 
 /*
 /
@@ -63,7 +78,9 @@ int Gameloop::m_MainMenu()
 int Gameloop::m_MainMenuButtons()
 {
 
-	clUserInterface.m_CreateExitButton(clTextureMananger.m_GetTexture("Button"), *clMainWindow.m_GetWindow());
+	auto func = std::bind(&Gameloop::m_Exit, this);
+
+	clUserInterface.m_CreateExitButton(clTextureMananger.m_GetTexture("Button"), *clMainWindow.m_GetWindow(), func);
 
 	return 0;
 }

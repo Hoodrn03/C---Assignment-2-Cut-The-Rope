@@ -22,7 +22,7 @@ UserInterface::~UserInterface()
 /Param One a texture which will give the button a shape and colour.
 /Param Two is the game window which will be used to move the buttons and resize them. 
 */
-int UserInterface::m_CreateExitButton(sf::Texture newTexture, sf::RenderWindow &thisWindow)
+int UserInterface::m_CreateExitButton(sf::Texture newTexture, sf::RenderWindow &thisWindow, std::function<int()> func)
 {
 	exitButton.m_SetButtonName("Exit", "Res/Fonts/Arial.ttf");
 
@@ -30,7 +30,7 @@ int UserInterface::m_CreateExitButton(sf::Texture newTexture, sf::RenderWindow &
 	
 	exitButton.m_SetButtonPos(thisWindow.getSize().x * 0.33f, thisWindow.getSize().y * 0.33f);
 
-	auto func = std::bind(&thisWindow.close);
+	exitButton.m_SetFunction(func);
 
 	listOfButtons.push_back(exitButton);
 
@@ -43,10 +43,35 @@ int UserInterface::m_CreateExitButton(sf::Texture newTexture, sf::RenderWindow &
 */
 int UserInterface::m_DrawButtons(sf::RenderWindow *currentDisplay)
 {
-	exitButton.m_DrawButton(currentDisplay);
+	if (listOfButtons.size() > 0)
+	{
+		for (unsigned int i = 0; i < listOfButtons.size(); i++)
+		{
+			listOfButtons[i].m_DrawButton(currentDisplay);
+		}
+	}
 
 	return 0;
 }
+
+//! Check Buttons :- This will be used to check if the button has been pressed. 
+/*!
+/Param One a render window to ensure that the button is getting checked within the game window.
+*/
+int UserInterface::m_CheckButtons(sf::RenderWindow *currentDisplay)
+{
+	if (listOfButtons.size() > 0)
+	{
+		for (unsigned int i = 0; i < listOfButtons.size(); i++)
+		{
+			listOfButtons[i].m_CheckForPress(currentDisplay);
+		}
+	}
+
+	return 0;
+}
+
+
 
 //! This will be used to empty the vector at the start of each game state. 
 /*!

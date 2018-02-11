@@ -48,10 +48,13 @@ private:
 public:
 
 	//! This will be used to create the exit button. 
-	int m_CreateExitButton(sf::Texture newTexture, sf::RenderWindow &thisWindow);
+	int m_CreateExitButton(sf::Texture newTexture, sf::RenderWindow &thisWindow, std::function<int()> func);
 
 	//! This will be used to draw all of the current buttons. 
 	int m_DrawButtons(sf::RenderWindow *currentDisplay);
+
+	//! This will be used to check if the button has been pressed. 
+	int m_CheckButtons(sf::RenderWindow *currentDisplay);
 
 	//! This will be used to empty the vector of buttons. 
 	int m_ResetButtons();

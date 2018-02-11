@@ -1,6 +1,7 @@
-﻿  UserInterface.cpp
-c:\users\ryan\documents\github\c---assignment-2-cut-the-rope\game code\sfml template\sfml template\userinterface.cpp(33): error C2276: '&': illegal operation on bound member function expression
-c:\users\ryan\documents\github\c---assignment-2-cut-the-rope\game code\sfml template\sfml template\userinterface.cpp(33): error C2672: 'std::bind': no matching overloaded function found
-c:\users\ryan\documents\github\c---assignment-2-cut-the-rope\game code\sfml template\sfml template\userinterface.cpp(35): error C3536: 'func': cannot be used before it is initialized
-c:\users\ryan\documents\github\c---assignment-2-cut-the-rope\game code\sfml template\sfml template\userinterface.cpp(35): error C2664: 'int Button<int>::m_SetFunction(std::function<void (void)>)': cannot convert argument 1 from 'int' to 'std::function<void (void)>'
-  c:\users\ryan\documents\github\c---assignment-2-cut-the-rope\game code\sfml template\sfml template\userinterface.cpp(35): note: No constructor could take the source type, or constructor overload resolution was ambiguous
+﻿  MainWindow.cpp
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  Main.cpp
+  GameLoop.cpp
+  SFML Template.vcxproj -> C:\Users\Ryan\Documents\GitHub\C---Assignment-2-Cut-The-Rope\Game Code\SFML Template\Debug\SFML Template.exe
+  SFML Template.vcxproj -> C:\Users\Ryan\Documents\GitHub\C---Assignment-2-Cut-The-Rope\Game Code\SFML Template\Debug\SFML Template.pdb (Full PDB)

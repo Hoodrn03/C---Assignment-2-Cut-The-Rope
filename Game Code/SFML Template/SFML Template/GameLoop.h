@@ -17,8 +17,10 @@
 //! THis will allow access to event handling functions. 
 #include "EventHandler.h"
 
+//! This will give access to all of the textures which will be used in the game.
 #include "TextureManager.h"
 
+//! This will be used to get access to all of the buttons in the game. 
 #include "UserInterface.h"
 
 
@@ -55,7 +57,7 @@ private:
 	//! This will create an instance of the texture manager. A class which will hold references to all of the game textures. 
 	TextureManager clTextureMananger;
 
-
+	//! This will be used to hold and maintain all of the buttons within the game. 
 	UserInterface clUserInterface;
 
 	// Member Functions 
@@ -64,6 +66,9 @@ public:
 
 	//! This will be the main hub which the player will use to navigate between the different game states. 
 	int m_MainMenu();
+
+	//! This will be used to Exit the game. 
+	int m_Exit();
 
 	//! This will be used to create all of the buttons which will be used on gthe main menu. 
 	int m_MainMenuButtons();

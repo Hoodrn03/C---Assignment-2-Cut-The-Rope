@@ -41,10 +41,10 @@ private:
 	sf::RenderWindow * gameWindow = nullptr; 
 
 	//! This will be the predefined width for the window.
-	unsigned int uiWindowWidth = 500; 
+	unsigned int uiWindowWidth = 750; 
 
 	//! This will be the predefined height for the window. 
-	unsigned int uiWindowHeight = 500; 
+	unsigned int uiWindowHeight = 750; 
 
 	// Data members 
 
