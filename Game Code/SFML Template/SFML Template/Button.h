@@ -38,6 +38,11 @@ private:
 	//! This will hold the button's function, It will be called when the button is pressed. 
 	std::function<int()> funcToCall;
 
+	//! This will hold the button's function, It will be called when the button is pressed (Overloaded Version). 
+	std::function<int(int)> funcToCallInt;
+
+	int funcParam; 
+
 	// Member Functions 
 
 public:
@@ -82,14 +87,28 @@ public:
 		return 0;
 	}
 
+	/*! Set Function (Overload) :- This will be used to set the button's function with an aditional parameter inside the function.
+	/Param One is a function which will be saved locally.
+	*/
+	int m_SetFunction(std::function<int(int)> func, int whatParam)
+	{
+		funcToCallInt = func;
+
+		funcParam = whatParam;
+
+		return 0;
+	}
+
 	/*! Set Button Sprite :- This will be used to set the button's sprite. 
 	/Param One is a texture which will be used to assign the appearance of the button. 
+	/Param Two a float for the new width of the button.
+	/Param three a float for the new height of the button.
 	*/
-	int m_SetButtonSprite(sf::Texture newTexture)
+	int m_SetButtonSprite(sf::Texture newTexture, float fNewWidth, float fNewHeight) 
 	{
 		buttonSprite.setTexture(newTexture);
 
-		buttonSprite.setScale(5, 3);
+		buttonSprite.setScale(fNewWidth, fNewHeight);
 
 		return 0;
 	}
@@ -146,7 +165,14 @@ public:
 				{
 					std::cout << "Button Pressed" << std::endl;
 
-					funcToCall();
+					if (funcToCall != nullptr)
+					{
+						funcToCall();
+					}
+					else
+					{
+						funcToCallInt(funcParam);
+					}
 				}
 			}
 		}

@@ -38,17 +38,35 @@ private:
 
 // Main Menu buttons:
 
-	//! This is the exit button for the main menu
+	//! This is the exit button for the main menu.
 	Button<int> exitButton;
 
+	//! This is the level select button for the main menu.
+	Button<int> levelSelectButton;
+
+	Button<int> optionsButton;
+
+	//! This will hold all of the current buttons in the game.
 	std::vector<Button<int>> listOfButtons;
 
 	// Member Functions
 
 public:
 
+	// Create Buttons 
+
+	// Main Menu :- 
+
 	//! This will be used to create the exit button. 
 	int m_CreateExitButton(sf::Texture newTexture, sf::RenderWindow &thisWindow, std::function<int()> func);
+
+	//! This will be used to create the level select menu. 
+	int m_CreateLevelSelectButton(sf::Texture newTexture, sf::RenderWindow &thisWindow, std::function<int()> func);
+
+	//! This will be used to cretae the options button. 
+	int m_CreateOptionsButton(sf::Texture newTexture, sf::RenderWindow &thisWindow, std::function<int()> func);
+
+	// Manage Buttons 
 
 	//! This will be used to draw all of the current buttons. 
 	int m_DrawButtons(sf::RenderWindow *currentDisplay);

@@ -58,6 +58,70 @@ int Gameloop::m_MainMenu()
 	return 0;
 }
 
+//! Level Select :- Will be used to allow for the player to navigate between the different game states. 
+/*!
+/returns an integer to allow for the game to close.
+*/
+int Gameloop::m_LevelSelect()
+{
+	// Pre-Game logic 
+
+	clUserInterface.m_ResetButtons();
+
+	while (clMainWindow.m_GetWindow()->isOpen())
+	{
+		// Update Game Logic
+
+
+
+		// Handles Events
+		clEventHandler.m_checkEvents(*clMainWindow.m_GetWindow());
+
+		clMainWindow.m_GetWindow()->clear();
+
+		// Draw Objects
+
+
+		clMainWindow.m_GetWindow()->display();
+
+
+	}
+
+	return 0;
+}
+
+//! Options Menu :- Will be used to allow for the player to edit their game options. 
+/*!
+/returns an integer to allow for the game to close.
+*/
+int Gameloop::m_OptionsMenu()
+{
+	// Pre-Game logic 
+
+	clUserInterface.m_ResetButtons();
+
+	while (clMainWindow.m_GetWindow()->isOpen())
+	{
+		// Update Game Logic
+
+
+
+		// Handles Events
+		clEventHandler.m_checkEvents(*clMainWindow.m_GetWindow());
+
+		clMainWindow.m_GetWindow()->clear();
+
+		// Draw Objects
+
+
+		clMainWindow.m_GetWindow()->display();
+
+
+	}
+
+	return 0;
+}
+
 //! Exit :- This will be used to close the game when called. 
 /*
 /
@@ -81,6 +145,14 @@ int Gameloop::m_MainMenuButtons()
 	auto func = std::bind(&Gameloop::m_Exit, this);
 
 	clUserInterface.m_CreateExitButton(clTextureMananger.m_GetTexture("Button"), *clMainWindow.m_GetWindow(), func);
+
+	func = std::bind(&Gameloop::m_LevelSelect, this);
+
+	clUserInterface.m_CreateLevelSelectButton(clTextureMananger.m_GetTexture("Button"), *clMainWindow.m_GetWindow(), func);
+
+	func = std::bind(&Gameloop::m_OptionsMenu, this);
+
+	clUserInterface.m_CreateOptionsButton(clTextureMananger.m_GetTexture("Button"), *clMainWindow.m_GetWindow(), func);
 
 	return 0;
 }

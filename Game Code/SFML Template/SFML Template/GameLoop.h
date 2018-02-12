@@ -64,8 +64,18 @@ private:
 
 public:
 
+	// Game States :-
+
 	//! This will be the main hub which the player will use to navigate between the different game states. 
 	int m_MainMenu();
+
+	//! This will be used to allow for the player to select a level. 
+	int m_LevelSelect();
+
+	//! This will be used to allow for the player to change game options. 
+	int m_OptionsMenu();
+
+	// Aditional Functionality :- 
 
 	//! This will be used to Exit the game. 
 	int m_Exit();
