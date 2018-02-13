@@ -58,13 +58,13 @@ public:
 	// Main Menu :- 
 
 	//! This will be used to create the exit button. 
-	int m_CreateExitButton(sf::Texture newTexture, sf::RenderWindow &thisWindow, std::function<int()> func);
+	int m_CreateExitButton(sf::Texture newTexture, sf::RenderWindow &thisWindow, std::function<int()> func, float fWidth, float fHeight, sf::Vector2f buttonPos);
 
 	//! This will be used to create the level select menu. 
-	int m_CreateLevelSelectButton(sf::Texture newTexture, sf::RenderWindow &thisWindow, std::function<int()> func);
+	int m_CreateLevelSelectButton(sf::Texture newTexture, sf::RenderWindow &thisWindow, std::function<int()> func, float fWidth, float fHeight, sf::Vector2f buttonPos);
 
 	//! This will be used to cretae the options button. 
-	int m_CreateOptionsButton(sf::Texture newTexture, sf::RenderWindow &thisWindow, std::function<int()> func);
+	int m_CreateOptionsButton(sf::Texture newTexture, sf::RenderWindow &thisWindow, std::function<int()> func, float fWidth, float fHeight, sf::Vector2f buttonPos);
 
 	// Manage Buttons 
 

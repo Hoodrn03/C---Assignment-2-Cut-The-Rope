@@ -75,13 +75,21 @@ public:
 	//! This will be used to allow for the player to change game options. 
 	int m_OptionsMenu();
 
+	// Game State's Buttons :- 
+
+	//! This will be used to create all of the buttons which will be used on gthe main menu. 
+	int m_MainMenuButtons();
+
+	//! This will be used to load the buttons for the options menu.
+	int m_OptionsMenuButtons();
+
+	//! This will be used to load the buttons for the level select menu.
+	int m_LevelSelectButtons();
+
 	// Aditional Functionality :- 
 
 	//! This will be used to Exit the game. 
 	int m_Exit();
-
-	//! This will be used to create all of the buttons which will be used on gthe main menu. 
-	int m_MainMenuButtons();
 
 	// This will be used to assign all of the textures into the texture manager. 
 	int m_LoadTextures();

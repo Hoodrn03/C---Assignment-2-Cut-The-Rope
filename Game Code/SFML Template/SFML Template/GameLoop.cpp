@@ -68,11 +68,13 @@ int Gameloop::m_LevelSelect()
 
 	clUserInterface.m_ResetButtons();
 
+	m_LevelSelectButtons();
+
 	while (clMainWindow.m_GetWindow()->isOpen())
 	{
 		// Update Game Logic
 
-
+		clUserInterface.m_CheckButtons(clMainWindow.m_GetWindow());
 
 		// Handles Events
 		clEventHandler.m_checkEvents(*clMainWindow.m_GetWindow());
@@ -81,6 +83,8 @@ int Gameloop::m_LevelSelect()
 
 		// Draw Objects
 
+
+		clUserInterface.m_DrawButtons(clMainWindow.m_GetWindow());
 
 		clMainWindow.m_GetWindow()->display();
 
@@ -100,11 +104,13 @@ int Gameloop::m_OptionsMenu()
 
 	clUserInterface.m_ResetButtons();
 
+	m_OptionsMenuButtons();
+
 	while (clMainWindow.m_GetWindow()->isOpen())
 	{
 		// Update Game Logic
 
-
+		clUserInterface.m_CheckButtons(clMainWindow.m_GetWindow());
 
 		// Handles Events
 		clEventHandler.m_checkEvents(*clMainWindow.m_GetWindow());
@@ -113,6 +119,7 @@ int Gameloop::m_OptionsMenu()
 
 		// Draw Objects
 
+		clUserInterface.m_DrawButtons(clMainWindow.m_GetWindow());
 
 		clMainWindow.m_GetWindow()->display();
 
@@ -144,15 +151,42 @@ int Gameloop::m_MainMenuButtons()
 
 	auto func = std::bind(&Gameloop::m_Exit, this);
 
-	clUserInterface.m_CreateExitButton(clTextureMananger.m_GetTexture("Button"), *clMainWindow.m_GetWindow(), func);
+	clUserInterface.m_CreateExitButton(clTextureMananger.m_GetTexture("Button"), *clMainWindow.m_GetWindow(), func, 10, 4, sf::Vector2f(clMainWindow.m_GetWindow()->getSize().x * 0.33f, clMainWindow.m_GetWindow()->getSize().y * 0.23f));
 
 	func = std::bind(&Gameloop::m_LevelSelect, this);
 
-	clUserInterface.m_CreateLevelSelectButton(clTextureMananger.m_GetTexture("Button"), *clMainWindow.m_GetWindow(), func);
+	clUserInterface.m_CreateLevelSelectButton(clTextureMananger.m_GetTexture("Button"), *clMainWindow.m_GetWindow(), func, 10, 4, sf::Vector2f(clMainWindow.m_GetWindow()->getSize().x * 0.33f, clMainWindow.m_GetWindow()->getSize().y * 0.43f));
 
 	func = std::bind(&Gameloop::m_OptionsMenu, this);
 
-	clUserInterface.m_CreateOptionsButton(clTextureMananger.m_GetTexture("Button"), *clMainWindow.m_GetWindow(), func);
+	clUserInterface.m_CreateOptionsButton(clTextureMananger.m_GetTexture("Button"), *clMainWindow.m_GetWindow(), func, 10, 4, sf::Vector2f(clMainWindow.m_GetWindow()->getSize().x * 0.33f, clMainWindow.m_GetWindow()->getSize().y * 0.63f));
+
+	return 0;
+}
+
+//! Options Menu Buttons :- This will be used to create all of the buttons which will be on the Options menu. 
+/*
+/
+*/
+int Gameloop::m_OptionsMenuButtons()
+{
+	auto func = std::bind(&Gameloop::m_MainMenu, this);
+
+	clUserInterface.m_CreateExitButton(clTextureMananger.m_GetTexture("Button"), *clMainWindow.m_GetWindow(), func, 5, 2, sf::Vector2f(clMainWindow.m_GetWindow()->getSize().x * 0.05f, clMainWindow.m_GetWindow()->getSize().y * 0.05f));
+
+	return 0;
+}
+
+//! Level Select Buttons :- This will be used to create all of the buttons which will be on the Level Select menu. 
+/*
+/
+*/
+int Gameloop::m_LevelSelectButtons()
+{
+	auto func = std::bind(&Gameloop::m_MainMenu, this);
+
+	clUserInterface.m_CreateExitButton(clTextureMananger.m_GetTexture("Button"), *clMainWindow.m_GetWindow(), func, 5, 2, sf::Vector2f(clMainWindow.m_GetWindow()->getSize().x * 0.05f, clMainWindow.m_GetWindow()->getSize().y * 0.05f));
+
 
 	return 0;
 }
