@@ -60,7 +60,7 @@ sf::Texture TextureManager::m_GetTexture(std::string sTextureName)
 	}
 	else
 	{
-		std::cout << "Trying to use a file which has not yet been assigned." << std::endl;
+		std::cout << "Error Code 0003 :- Trying to use a file which has not yet been assigned." << std::endl;
 
 		return sf::Texture();
 	}

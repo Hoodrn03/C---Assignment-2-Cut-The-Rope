@@ -36,7 +36,7 @@ int UserInterface::m_CreateExitButton(sf::Texture newTexture, sf::RenderWindow &
 
 	exitButton.m_SetFunction(func);
 
-	listOfButtons.push_back(exitButton);
+	a_listOfButtons.push_back(exitButton);
 
 	return 0;
 }
@@ -59,7 +59,7 @@ int UserInterface::m_CreateLevelSelectButton(sf::Texture newTexture, sf::RenderW
 
 	levelSelectButton.m_SetFunction(func);
 
-	listOfButtons.push_back(levelSelectButton);
+	a_listOfButtons.push_back(levelSelectButton);
 
 	return 0;
 }
@@ -82,7 +82,26 @@ int UserInterface::m_CreateOptionsButton(sf::Texture newTexture, sf::RenderWindo
 
 	optionsButton.m_SetFunction(func);
 
-	listOfButtons.push_back(optionsButton);
+	a_listOfButtons.push_back(optionsButton);
+
+	return 0;
+}
+
+
+//! Create Fullscreen Toggle :- This will be used to create the fullscreen toggle for the options menu. 
+/*!
+/Param One a texture which will give the Toggle the on state of the button.
+/Param Two a texture which will give the Toggle the off state of the button.
+/Param Three is the width of the button.
+/Param Four is the height of the button.
+*/
+int UserInterface::m_CreateFullScreenToggle(sf::Texture newTextureOn, sf::Texture newTextureOff, float fWidth, float fHeight)
+{
+	fullScreenToggle.m_SetButtonSprits(newTextureOn, newTextureOff, fWidth, fHeight);
+
+	fullScreenToggle.m_SetButtonName("FullScreen", "Res/Fonts/Arial.ttf");
+
+	a_listOfToggles.push_back(fullScreenToggle);
 
 	return 0;
 }
@@ -93,11 +112,19 @@ int UserInterface::m_CreateOptionsButton(sf::Texture newTexture, sf::RenderWindo
 */
 int UserInterface::m_DrawButtons(sf::RenderWindow *currentDisplay)
 {
-	if (listOfButtons.size() > 0)
+	if (a_listOfButtons.size() > 0)
 	{
-		for (unsigned int i = 0; i < listOfButtons.size(); i++)
+		for (unsigned int i = 0; i < a_listOfButtons.size(); i++)
 		{
-			listOfButtons[i].m_DrawButton(currentDisplay);
+			a_listOfButtons[i].m_DrawButton(currentDisplay);
+		}
+	}
+
+	if (a_listOfToggles.size() > 0)
+	{
+		for (unsigned int i = 0; i < a_listOfToggles.size(); i++)
+		{
+			a_listOfToggles[i].m_DrawButton(currentDisplay);
 		}
 	}
 
@@ -110,11 +137,11 @@ int UserInterface::m_DrawButtons(sf::RenderWindow *currentDisplay)
 */
 int UserInterface::m_CheckButtons(sf::RenderWindow *currentDisplay)
 {
-	if (listOfButtons.size() > 0)
+	if (a_listOfButtons.size() > 0)
 	{
-		for (unsigned int i = 0; i < listOfButtons.size(); i++)
+		for (unsigned int i = 0; i < a_listOfButtons.size(); i++)
 		{
-			listOfButtons[i].m_CheckForPress(currentDisplay);
+			a_listOfButtons[i].m_CheckForPress(currentDisplay);
 		}
 	}
 
@@ -130,11 +157,19 @@ int UserInterface::m_CheckButtons(sf::RenderWindow *currentDisplay)
 int UserInterface::m_ResetButtons()
 {
 
-	if (listOfButtons.size() > 0)
+	if (a_listOfButtons.size() > 0)
 	{
-		for (int i = listOfButtons.size(); i > 0; i--)
+		for (int i = a_listOfButtons.size(); i > 0; i--)
 		{
-			listOfButtons.pop_back();
+			a_listOfButtons.pop_back();
+		}
+	}
+
+	if (a_listOfToggles.size() > 0)
+	{
+		for (unsigned int i = a_listOfToggles.size(); i > 0 ; i--)
+		{
+			a_listOfToggles.pop_back();
 		}
 	}
 

@@ -11,7 +11,8 @@
 #include "defs.h"
 
 template <class G>
-class Button{
+class Button
+{
 
 	// Data Members 
 
@@ -56,13 +57,13 @@ public:
 
 		if (!font.loadFromFile(filePath))
 		{
-			std::cout << "Error code 0001 :- Unable to find file" << std::endl;
+			std::cout << "Error Code 0001 :- Unable to find file" << std::endl;
+
+			return 1;
 		}
 
 		else
 		{
-			std::cout << "Found and assigned Font at : " << filePath << "." << std::endl;
-
 			buttonText.setFont(font);
 
 			buttonText.setCharacterSize(textSize);
@@ -163,15 +164,19 @@ public:
 			{
 				if (sf::Mouse().isButtonPressed(sf::Mouse().Left))
 				{
-					std::cout << "Button Pressed" << std::endl;
-
 					if (funcToCall != nullptr)
 					{
 						funcToCall();
 					}
-					else
+					else if (funcToCallInt != nullptr)
 					{
 						funcToCallInt(funcParam);
+					}
+					else
+					{
+						std::cout << "Error Code 0002 :-No Function Assigned" << std::endl;
+
+						return 1;
 					}
 				}
 			}

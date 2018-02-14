@@ -174,6 +174,8 @@ int Gameloop::m_OptionsMenuButtons()
 
 	clUserInterface.m_CreateExitButton(clTextureMananger.m_GetTexture("Button"), *clMainWindow.m_GetWindow(), func, 5, 2, sf::Vector2f(clMainWindow.m_GetWindow()->getSize().x * 0.05f, clMainWindow.m_GetWindow()->getSize().y * 0.05f));
 
+	clUserInterface.m_CreateFullScreenToggle(clTextureMananger.m_GetTexture("ToggleOn"), clTextureMananger.m_GetTexture("ToggleOff"), 5, 2);
+
 	return 0;
 }
 
@@ -199,6 +201,10 @@ int Gameloop::m_LevelSelectButtons()
 int Gameloop::m_LoadTextures()
 {
 	clTextureMananger.m_AddTexture("Button", "Res/Sprites/Button.png");
+
+	clTextureMananger.m_AddTexture("ToggleOff", "Res/Sprites/ToggleOff.png");
+
+	clTextureMananger.m_AddTexture("ToggleOn", "Res/Sprites/ToggleOn.png");
 
 	return 0;
 }
