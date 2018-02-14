@@ -71,18 +71,18 @@ public:
 	// Main Menu :- 
 
 	//! This will be used to create the exit button. 
-	int m_CreateExitButton(sf::Texture newTexture, sf::RenderWindow &thisWindow, std::function<int()> func, float fWidth, float fHeight, sf::Vector2f buttonPos);
+	int m_CreateExitButton(std::string filePath, sf::RenderWindow &thisWindow, std::function<int()> func, float fWidth, float fHeight, sf::Vector2f buttonPos);
 
 	//! This will be used to create the level select menu. 
-	int m_CreateLevelSelectButton(sf::Texture newTexture, sf::RenderWindow &thisWindow, std::function<int()> func, float fWidth, float fHeight, sf::Vector2f buttonPos);
+	int m_CreateLevelSelectButton(std::string filePath, sf::RenderWindow &thisWindow, std::function<int()> func, float fWidth, float fHeight, sf::Vector2f buttonPos);
 
 	//! This will be used to create the options button. 
-	int m_CreateOptionsButton(sf::Texture newTexture, sf::RenderWindow &thisWindow, std::function<int()> func, float fWidth, float fHeight, sf::Vector2f buttonPos);
+	int m_CreateOptionsButton(std::string filePath, sf::RenderWindow &thisWindow, std::function<int()> func, float fWidth, float fHeight, sf::Vector2f buttonPos);
 
 	// Options Menu :- 
 
 	//! This will create the fullscreen toggle button for the options menu. 
-	int m_CreateFullScreenToggle(sf::Texture newTextureOn, sf::Texture newTextureOff, float fWidth, float fHeight);
+	int m_CreateFullScreenToggle(std::string filePathOn, std::string filePathOff, float fWidth, float fHeight, sf::Vector2f togglePos);
 
 	// Manage Buttons 
 

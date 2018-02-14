@@ -46,11 +46,16 @@ private:
 	//! This will be the predefined height for the window. 
 	unsigned int uiWindowHeight = 750; 
 
+	const std::string sWindowName  = "Game Window";
+
 	// Data members 
 
 public:
 
 	//! This will be used to get access to the current window. 
 	sf::RenderWindow * m_GetWindow();
+
+	//! This will be used to either set the window to fullscreen or turn it off. 
+	int m_SetWindowToFullscreen(bool isTriggered);
 
 };

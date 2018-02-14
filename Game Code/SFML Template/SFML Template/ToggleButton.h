@@ -18,8 +18,14 @@ class ToggleButton
 
 private:
 
+	//! This will load the texture of the button for displaying.
+	sf::Texture toggleOnTexture;
+
 	//! This will hold the button's appearance when the button is on.
 	sf::Sprite toggleSpriteOn;
+
+	//! This will load the texture of the button for displaying.
+	sf::Texture toggleOffTexture;
 
 	//! This will hold the button's appearance when the button is off.
 	sf::Sprite toggleSpriteOff;
@@ -34,7 +40,7 @@ private:
 	std::string sButtonWriting;
 
 	//! This will determine whether the button has been toggled or not? 
-	bool bButtonToggle = true; 
+	bool bButtonToggle = false; 
 
 	//! This will be the possition of the button in the game window. 
 	sf::Vector2f buttonPos;
@@ -53,19 +59,58 @@ public:
 	/Param Three a float for the button's width.
 	/Param Four a float for the button's height.
 	*/
-	int m_SetButtonSprits(sf::Texture buttonOn, sf::Texture buttonOff, float fNewWidth, float fNewHeight)
+	int m_SetButtonSprits(std::string buttonOnFilePath, std::string buttonOffFilePath, float fNewWidth, float fNewHeight)
 	{
-		toggleSpriteOn.setTexture(buttonOn);
+		if (!toggleOnTexture.loadFromFile(buttonOnFilePath))
+		{
+			std::cout << "Error Code 0001 :- Unable to find file" << std::endl;
+		}
+		else
+		{
 
-		toggleSpriteOff.setTexture(buttonOff);
+			if (!toggleOffTexture.loadFromFile(buttonOffFilePath))
+			{
+				std::cout << "Error Code 0001 :- Unable to find file" << std::endl;
+			}
+			else
+			{
+				toggleSpriteOn.setTexture(toggleOnTexture);
 
-		toggleSpriteOn.setScale(fNewWidth, fNewHeight);
+				toggleSpriteOff.setTexture(toggleOffTexture);
 
-		toggleSpriteOff.setScale(fNewWidth, fNewHeight);
+				toggleSpriteOn.setScale(fNewWidth, fNewHeight);
 
-		toggleSpriteOn.setPosition(250, 250);
+				toggleSpriteOff.setScale(fNewWidth, fNewHeight);
+			}
+		}
 
-		toggleSpriteOff.setPosition(250, 250);
+		return 0;
+	}
+
+	//! Set Toggle Pos :- This will be used to set the current possition of the toggle.
+	/*!
+	/Param One a vector2f repersenting the possition within the game world. 
+	*/
+	int m_SetTogglePos(sf::Vector2f newPos)
+	{
+
+		toggleSpriteOn.setPosition(newPos.x, newPos.y);
+
+		toggleSpriteOff.setPosition(newPos.x, newPos.y);
+
+		buttonText.setPosition(newPos.x, newPos.y);
+
+		return 0;
+
+	}
+
+	//! Set Toggle State :- This will be used to set the current state of the of the toggle.
+	/*!
+	/Param One a bool for whether the button is true or false. 
+	*/
+	int m_SetToggleState(bool bCurrentState)
+	{
+		bButtonToggle = bCurrentState;
 
 		return 0;
 	}
@@ -94,7 +139,6 @@ public:
 
 			buttonText.setFillColor(sf::Color::Blue);
 
-			buttonText.setPosition(250, 250);
 		}
 
 		return 0;
@@ -124,12 +168,12 @@ public:
 			{		
 				currentDisplay->draw(toggleSpriteOn);	
 			}
-			else
+			else if (bButtonToggle == false)
 			{
 				currentDisplay->draw(toggleSpriteOff);
 			}
 
-			// currentDisplay->draw(buttonText);
+			currentDisplay->draw(buttonText);
 		}
 
 		return 0;
@@ -165,10 +209,6 @@ public:
 					else
 					{
 						std::cout << "Error Code 0002 :- No Function Assigned" << std::endl;
-
-						bButtonToggle = !bButtonToggle;
-
-						std::cout << std::boolalpha << bButtonToggle << std::endl;
 
 						return 1;
 					}

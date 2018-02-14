@@ -34,7 +34,7 @@ public:
 private:
 
 	//! This will be used to hold references to all of the textures which will be used in the game. 
-	std::map<std::string, sf::Texture> textureMap;
+	std::map<std::string, std::string> textureMap;
 
 	// Member Functions
 
@@ -44,6 +44,6 @@ public:
 	int m_AddTexture(std::string sTextureName, std::string filePath);
 
 	//! This will be used to get access to a texture from within the map. 
-	sf::Texture *m_GetTexture(std::string sTextureName);
+	std::string *m_GetTexture(std::string sTextureName);
 
 };

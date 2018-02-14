@@ -7,7 +7,7 @@
 */
 MainWindow::MainWindow()
 {
-	gameWindow = new sf::RenderWindow(sf::VideoMode(uiWindowWidth, uiWindowHeight), "Game Window");
+	gameWindow = new sf::RenderWindow(sf::VideoMode(uiWindowWidth, uiWindowHeight), sWindowName);
 }
 
 
@@ -28,3 +28,22 @@ sf::RenderWindow * MainWindow::m_GetWindow()
 {
 	return gameWindow;
 }
+
+//! Set Window To FullScreen
+/*!
+/Param One is a bool to either turn fullscreen on or off. 
+*/
+int MainWindow::m_SetWindowToFullscreen(bool isTriggered)
+{
+	if (isTriggered == true)
+	{
+		gameWindow->create(sf::VideoMode(uiWindowWidth, uiWindowHeight), sWindowName, sf::Style::Fullscreen);
+	}
+	else
+	{
+		gameWindow->create(sf::VideoMode(uiWindowWidth, uiWindowHeight), sWindowName);
+	}
+
+	return 0;
+}
+

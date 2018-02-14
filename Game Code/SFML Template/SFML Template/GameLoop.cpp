@@ -42,7 +42,7 @@ int Gameloop::m_MainMenu()
 		// Handles Events
 		clEventHandler.m_checkEvents(*clMainWindow.m_GetWindow());
 
-		clMainWindow.m_GetWindow()->clear(sf::Color::Green);
+		clMainWindow.m_GetWindow()->clear();
 
 		// Draw Objects
 
@@ -79,7 +79,7 @@ int Gameloop::m_LevelSelect()
 		// Handles Events
 		clEventHandler.m_checkEvents(*clMainWindow.m_GetWindow());
 
-		clMainWindow.m_GetWindow()->clear(sf::Color::Green);
+		clMainWindow.m_GetWindow()->clear();
 
 		// Draw Objects
 
@@ -115,7 +115,7 @@ int Gameloop::m_OptionsMenu()
 		// Handles Events
 		clEventHandler.m_checkEvents(*clMainWindow.m_GetWindow());
 
-		clMainWindow.m_GetWindow()->clear(sf::Color::Green);
+		clMainWindow.m_GetWindow()->clear();
 
 		// Draw Objects
 
@@ -174,7 +174,7 @@ int Gameloop::m_OptionsMenuButtons()
 
 	clUserInterface.m_CreateExitButton(*clTextureMananger.m_GetTexture("Button"), *clMainWindow.m_GetWindow(), func, 5, 2, sf::Vector2f(clMainWindow.m_GetWindow()->getSize().x * 0.05f, clMainWindow.m_GetWindow()->getSize().y * 0.05f));
 
-	clUserInterface.m_CreateFullScreenToggle(*clTextureMananger.m_GetTexture("ToggleOn"), *clTextureMananger.m_GetTexture("ToggleOff"), 5, 2);
+	clUserInterface.m_CreateFullScreenToggle(*clTextureMananger.m_GetTexture("ToggleOn"), *clTextureMananger.m_GetTexture("ToggleOff"), 5, 2, sf::Vector2f(clMainWindow.m_GetWindow()->getSize().x * 0.05f, clMainWindow.m_GetWindow()->getSize().y * 0.15f));
 
 	return 0;
 }

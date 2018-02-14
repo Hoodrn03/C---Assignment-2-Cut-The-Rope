@@ -21,14 +21,16 @@ private:
 	//! This will be used for the writing on the button. 
 	std::string sButtonName;
 
+	//! This will be used to hold the font for the text. 
+	sf::Font font;
+
 	//! This will be used to display the writing on the button.
 	sf::Text buttonText;
 
+	sf::Texture ButtonTexture;
+
 	//! This will be the visual representation of the button.
 	sf::Sprite buttonSprite;
-
-	//! This will be used to hold the font for the text. 
-	sf::Font font;
 
 	//! This will be used to hold the constant size of the text. 
 	const unsigned int textSize = 30;
@@ -105,11 +107,21 @@ public:
 	/Param Two a float for the new width of the button.
 	/Param three a float for the new height of the button.
 	*/
-	int m_SetButtonSprite(sf::Texture newTexture, float fNewWidth, float fNewHeight) 
+	int m_SetButtonSprite(std::string filePath, float fNewWidth, float fNewHeight) 
 	{
-		buttonSprite.setTexture(newTexture);
 
-		buttonSprite.setScale(fNewWidth, fNewHeight);
+		if (!ButtonTexture.loadFromFile(filePath))
+		{
+			std::cout << "Error code 0001 :- Unable to find file" << std::endl;
+		}
+		else
+		{
+
+			buttonSprite.setTexture(ButtonTexture);
+
+			buttonSprite.setScale(fNewWidth, fNewHeight);
+
+		}
 
 		return 0;
 	}

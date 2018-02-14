@@ -26,11 +26,11 @@ UserInterface::~UserInterface()
 /Param Five is the height of the button.
 /Param Six is the is the possition for the button.
 */
-int UserInterface::m_CreateExitButton(sf::Texture newTexture, sf::RenderWindow &thisWindow, std::function<int()> func, float fWidth, float fHeight, sf::Vector2f buttonPos)
+int UserInterface::m_CreateExitButton(std::string filePath, sf::RenderWindow &thisWindow, std::function<int()> func, float fWidth, float fHeight, sf::Vector2f buttonPos)
 {
 	exitButton.m_SetButtonName("Exit", "Res/Fonts/Arial.ttf");
 
-	exitButton.m_SetButtonSprite(newTexture, fWidth, fHeight);
+	exitButton.m_SetButtonSprite(filePath, fWidth, fHeight);
 	
 	exitButton.m_SetButtonPos(buttonPos.x, buttonPos.y);
 
@@ -49,11 +49,11 @@ int UserInterface::m_CreateExitButton(sf::Texture newTexture, sf::RenderWindow &
 /Param Four is the width of the button.
 /Param Five is the height of the button.
 */
-int UserInterface::m_CreateLevelSelectButton(sf::Texture newTexture, sf::RenderWindow & thisWindow, std::function<int()> func, float fWidth, float fHeight, sf::Vector2f buttonPos)
+int UserInterface::m_CreateLevelSelectButton(std::string filePath, sf::RenderWindow & thisWindow, std::function<int()> func, float fWidth, float fHeight, sf::Vector2f buttonPos)
 {
 	levelSelectButton.m_SetButtonName("Level Select", "Res/Fonts/Arial.ttf");
 
-	levelSelectButton.m_SetButtonSprite(newTexture, fWidth, fHeight);
+	levelSelectButton.m_SetButtonSprite(filePath, fWidth, fHeight);
 
 	levelSelectButton.m_SetButtonPos(buttonPos.x, buttonPos.y);
 
@@ -72,11 +72,11 @@ int UserInterface::m_CreateLevelSelectButton(sf::Texture newTexture, sf::RenderW
 /Param Four is the width of the button.
 /Param Five is the height of the button.
 */
-int UserInterface::m_CreateOptionsButton(sf::Texture newTexture, sf::RenderWindow & thisWindow, std::function<int()> func, float fWidth, float fHeight, sf::Vector2f buttonPos)
+int UserInterface::m_CreateOptionsButton(std::string filePath, sf::RenderWindow & thisWindow, std::function<int()> func, float fWidth, float fHeight, sf::Vector2f buttonPos)
 {
 	optionsButton.m_SetButtonName("Options", "Res/Fonts/Arial.ttf");
 
-	optionsButton.m_SetButtonSprite(newTexture, fWidth, fHeight);
+	optionsButton.m_SetButtonSprite(filePath, fWidth, fHeight);
 
 	optionsButton.m_SetButtonPos(buttonPos.x, buttonPos.y);
 
@@ -95,11 +95,13 @@ int UserInterface::m_CreateOptionsButton(sf::Texture newTexture, sf::RenderWindo
 /Param Three is the width of the button.
 /Param Four is the height of the button.
 */
-int UserInterface::m_CreateFullScreenToggle(sf::Texture newTextureOn, sf::Texture newTextureOff, float fWidth, float fHeight)
+int UserInterface::m_CreateFullScreenToggle(std::string filePathOn, std::string filePathOff, float fWidth, float fHeight, sf::Vector2f togglePos)
 {
-	fullScreenToggle.m_SetButtonSprits(newTextureOn, newTextureOff, fWidth, fHeight);
+	fullScreenToggle.m_SetButtonSprits(filePathOn, filePathOff, fWidth, fHeight);
 
 	fullScreenToggle.m_SetButtonName("FullScreen", "Res/Fonts/Arial.ttf");
+
+	fullScreenToggle.m_SetTogglePos(togglePos);
 
 	a_listOfToggles.push_back(fullScreenToggle);
 
