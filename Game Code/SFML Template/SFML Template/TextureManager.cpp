@@ -46,7 +46,7 @@ int TextureManager::m_AddTexture(std::string sTextureName, std::string filePath)
 /Param one a string which will be used to find the corrosponding texture. 
 */
 
-sf::Texture TextureManager::m_GetTexture(std::string sTextureName)
+sf::Texture *TextureManager::m_GetTexture(std::string sTextureName)
 {
 	std::map<std::string, sf::Texture>::iterator it; 
 
@@ -56,13 +56,13 @@ sf::Texture TextureManager::m_GetTexture(std::string sTextureName)
 	{
 		std::cout << "Texture : " << sTextureName << " Found." << std::endl;
 
-		return textureMap[sTextureName];
+		return &textureMap.at(sTextureName);
 	}
 	else
 	{
 		std::cout << "Error Code 0003 :- Trying to use a file which has not yet been assigned." << std::endl;
 
-		return sf::Texture();
+		return &sf::Texture();
 	}
 }
 

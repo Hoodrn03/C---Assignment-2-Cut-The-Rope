@@ -174,7 +174,7 @@ public:
 					}
 					else
 					{
-						std::cout << "Error Code 0002 :-No Function Assigned" << std::endl;
+						std::cout << "Error Code 0002 :- No Function Assigned" << std::endl;
 
 						return 1;
 					}

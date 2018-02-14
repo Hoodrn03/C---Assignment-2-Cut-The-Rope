@@ -44,6 +44,6 @@ public:
 	int m_AddTexture(std::string sTextureName, std::string filePath);
 
 	//! This will be used to get access to a texture from within the map. 
-	sf::Texture m_GetTexture(std::string sTextureName);
+	sf::Texture *m_GetTexture(std::string sTextureName);
 
 };

@@ -1,8 +1,8 @@
-﻿  UserInterface.cpp
-  Generating Code...
-  Compiling...
-  Main.cpp
+﻿  TextureManager.cpp
   GameLoop.cpp
   Generating Code...
+c:\users\ryan\documents\github\c---assignment-2-cut-the-rope\game code\sfml template\sfml template\texturemanager.cpp(65): warning C4172: returning address of local variable or temporary
+  Skipping... (no relevant changes detected)
+  Main.cpp
   SFML Template.vcxproj -> C:\Users\Ryan\Documents\GitHub\C---Assignment-2-Cut-The-Rope\Game Code\SFML Template\Debug\SFML Template.exe
   SFML Template.vcxproj -> C:\Users\Ryan\Documents\GitHub\C---Assignment-2-Cut-The-Rope\Game Code\SFML Template\Debug\SFML Template.pdb (Full PDB)

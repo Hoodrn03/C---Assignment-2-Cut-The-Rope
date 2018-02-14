@@ -42,7 +42,7 @@ int Gameloop::m_MainMenu()
 		// Handles Events
 		clEventHandler.m_checkEvents(*clMainWindow.m_GetWindow());
 
-		clMainWindow.m_GetWindow()->clear();
+		clMainWindow.m_GetWindow()->clear(sf::Color::Green);
 
 		// Draw Objects
 
@@ -79,7 +79,7 @@ int Gameloop::m_LevelSelect()
 		// Handles Events
 		clEventHandler.m_checkEvents(*clMainWindow.m_GetWindow());
 
-		clMainWindow.m_GetWindow()->clear();
+		clMainWindow.m_GetWindow()->clear(sf::Color::Green);
 
 		// Draw Objects
 
@@ -115,7 +115,7 @@ int Gameloop::m_OptionsMenu()
 		// Handles Events
 		clEventHandler.m_checkEvents(*clMainWindow.m_GetWindow());
 
-		clMainWindow.m_GetWindow()->clear();
+		clMainWindow.m_GetWindow()->clear(sf::Color::Green);
 
 		// Draw Objects
 
@@ -151,15 +151,15 @@ int Gameloop::m_MainMenuButtons()
 
 	auto func = std::bind(&Gameloop::m_Exit, this);
 
-	clUserInterface.m_CreateExitButton(clTextureMananger.m_GetTexture("Button"), *clMainWindow.m_GetWindow(), func, 10, 4, sf::Vector2f(clMainWindow.m_GetWindow()->getSize().x * 0.33f, clMainWindow.m_GetWindow()->getSize().y * 0.23f));
+	clUserInterface.m_CreateExitButton(*clTextureMananger.m_GetTexture("Button"), *clMainWindow.m_GetWindow(), func, 10, 4, sf::Vector2f(clMainWindow.m_GetWindow()->getSize().x * 0.33f, clMainWindow.m_GetWindow()->getSize().y * 0.23f));
 
 	func = std::bind(&Gameloop::m_LevelSelect, this);
 
-	clUserInterface.m_CreateLevelSelectButton(clTextureMananger.m_GetTexture("Button"), *clMainWindow.m_GetWindow(), func, 10, 4, sf::Vector2f(clMainWindow.m_GetWindow()->getSize().x * 0.33f, clMainWindow.m_GetWindow()->getSize().y * 0.43f));
+	clUserInterface.m_CreateLevelSelectButton(*clTextureMananger.m_GetTexture("Button"), *clMainWindow.m_GetWindow(), func, 10, 4, sf::Vector2f(clMainWindow.m_GetWindow()->getSize().x * 0.33f, clMainWindow.m_GetWindow()->getSize().y * 0.43f));
 
 	func = std::bind(&Gameloop::m_OptionsMenu, this);
 
-	clUserInterface.m_CreateOptionsButton(clTextureMananger.m_GetTexture("Button"), *clMainWindow.m_GetWindow(), func, 10, 4, sf::Vector2f(clMainWindow.m_GetWindow()->getSize().x * 0.33f, clMainWindow.m_GetWindow()->getSize().y * 0.63f));
+	clUserInterface.m_CreateOptionsButton(*clTextureMananger.m_GetTexture("Button"), *clMainWindow.m_GetWindow(), func, 10, 4, sf::Vector2f(clMainWindow.m_GetWindow()->getSize().x * 0.33f, clMainWindow.m_GetWindow()->getSize().y * 0.63f));
 
 	return 0;
 }
@@ -172,9 +172,9 @@ int Gameloop::m_OptionsMenuButtons()
 {
 	auto func = std::bind(&Gameloop::m_MainMenu, this);
 
-	clUserInterface.m_CreateExitButton(clTextureMananger.m_GetTexture("Button"), *clMainWindow.m_GetWindow(), func, 5, 2, sf::Vector2f(clMainWindow.m_GetWindow()->getSize().x * 0.05f, clMainWindow.m_GetWindow()->getSize().y * 0.05f));
+	clUserInterface.m_CreateExitButton(*clTextureMananger.m_GetTexture("Button"), *clMainWindow.m_GetWindow(), func, 5, 2, sf::Vector2f(clMainWindow.m_GetWindow()->getSize().x * 0.05f, clMainWindow.m_GetWindow()->getSize().y * 0.05f));
 
-	clUserInterface.m_CreateFullScreenToggle(clTextureMananger.m_GetTexture("ToggleOn"), clTextureMananger.m_GetTexture("ToggleOff"), 5, 2);
+	clUserInterface.m_CreateFullScreenToggle(*clTextureMananger.m_GetTexture("ToggleOn"), *clTextureMananger.m_GetTexture("ToggleOff"), 5, 2);
 
 	return 0;
 }
@@ -187,7 +187,7 @@ int Gameloop::m_LevelSelectButtons()
 {
 	auto func = std::bind(&Gameloop::m_MainMenu, this);
 
-	clUserInterface.m_CreateExitButton(clTextureMananger.m_GetTexture("Button"), *clMainWindow.m_GetWindow(), func, 5, 2, sf::Vector2f(clMainWindow.m_GetWindow()->getSize().x * 0.05f, clMainWindow.m_GetWindow()->getSize().y * 0.05f));
+	clUserInterface.m_CreateExitButton(*clTextureMananger.m_GetTexture("Button"), *clMainWindow.m_GetWindow(), func, 5, 2, sf::Vector2f(clMainWindow.m_GetWindow()->getSize().x * 0.05f, clMainWindow.m_GetWindow()->getSize().y * 0.05f));
 
 
 	return 0;

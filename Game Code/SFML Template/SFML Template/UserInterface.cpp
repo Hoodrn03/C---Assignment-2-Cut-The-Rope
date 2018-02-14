@@ -143,6 +143,14 @@ int UserInterface::m_CheckButtons(sf::RenderWindow *currentDisplay)
 		{
 			a_listOfButtons[i].m_CheckForPress(currentDisplay);
 		}
+
+		if (a_listOfToggles.size() > 0)
+		{
+			for (unsigned int i = 0; i < a_listOfToggles.size(); i++)
+			{
+				a_listOfToggles[i].m_CheckForPress(currentDisplay);
+			}
+		}
 	}
 
 	return 0;

@@ -34,13 +34,13 @@ private:
 	std::string sButtonWriting;
 
 	//! This will determine whether the button has been toggled or not? 
-	bool bButtonToggle = false; 
+	bool bButtonToggle = true; 
 
 	//! This will be the possition of the button in the game window. 
 	sf::Vector2f buttonPos;
 
 	//! This will hold the function which will be called when the button is pressed. 
-	std::function<int()> func;
+	std::function<int(bool)> func;
 
 	// Member Functions
 
@@ -62,6 +62,10 @@ public:
 		toggleSpriteOn.setScale(fNewWidth, fNewHeight);
 
 		toggleSpriteOff.setScale(fNewWidth, fNewHeight);
+
+		toggleSpriteOn.setPosition(250, 250);
+
+		toggleSpriteOff.setPosition(250, 250);
 
 		return 0;
 	}
@@ -89,7 +93,20 @@ public:
 			buttonText.setString(sButtonWriting);
 
 			buttonText.setFillColor(sf::Color::Blue);
+
+			buttonText.setPosition(250, 250);
 		}
+
+		return 0;
+	}
+
+	//! Set Toggle Function :- This will be used to assign a function to the toggle. 
+	/*!
+	/Param One a function which will be activated when the toggle is pressed. 
+	*/
+	int m_SetToggleFunction(std::function<int(bool)> newFunc)
+	{
+		func = newFunc;
 
 		return 0;
 	}
@@ -104,15 +121,59 @@ public:
 		if (toggleSpriteOn.getTexture() != NULL && toggleSpriteOff.getTexture() != NULL  && buttonText.getFont() != NULL)
 		{
 			if (bButtonToggle == true)
-			{
-				currentDisplay->draw(toggleSpriteOn);
+			{		
+				currentDisplay->draw(toggleSpriteOn);	
 			}
 			else
 			{
 				currentDisplay->draw(toggleSpriteOff);
 			}
 
-			currentDisplay->draw(buttonText);
+			// currentDisplay->draw(buttonText);
+		}
+
+		return 0;
+	}
+
+	//! Check For Press :- This will be used to check if the button has been pressed. 
+	/*!
+	/Param One a render widnow to constrain the mouse's possition to inside the window.
+	*/
+	int m_CheckForPress(sf::RenderWindow * window)
+	{
+		if (sf::Mouse().getPosition(*window).x > toggleSpriteOn.getPosition().x && sf::Mouse().getPosition(*window).x < (toggleSpriteOn.getPosition().x + toggleSpriteOn.getGlobalBounds().width))
+		{
+			if (sf::Mouse().getPosition(*window).y > toggleSpriteOn.getPosition().y && sf::Mouse().getPosition(*window).y < (toggleSpriteOn.getPosition().y + toggleSpriteOn.getGlobalBounds().height))
+			{
+				if (sf::Mouse().isButtonPressed(sf::Mouse().Left))
+				{
+					if (func != nullptr)
+					{
+						if (bButtonToggle == true)
+						{
+							func(true);
+
+							bButtonToggle = !bButtonToggle;
+						}
+						else
+						{
+							func(false);
+
+							bButtonToggle = !bButtonToggle;
+						}
+					}
+					else
+					{
+						std::cout << "Error Code 0002 :- No Function Assigned" << std::endl;
+
+						bButtonToggle = !bButtonToggle;
+
+						std::cout << std::boolalpha << bButtonToggle << std::endl;
+
+						return 1;
+					}
+				}
+			}
 		}
 
 		return 0;
