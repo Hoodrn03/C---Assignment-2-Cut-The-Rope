@@ -30,3 +30,7 @@
 *.exe
 *.out
 *.app
+
+# File Paths
+
+*/External_Libraries/
