@@ -36,11 +36,15 @@ GameLoop::~GameLoop()
 */
 int GameLoop::m_MainGameLoop()
 {
-	// Pregame Logic
+	// Pregame Logic.
+
+	m_Level.m_SetLevelBounds(m_Window.m_GetView().getSize().x, m_Window.m_GetView().getSize().y);
+
+	// Start Game Loop. 
 
 	while (m_Window.m_GetWindow().isOpen())
 	{
-		// Update Logic
+		// Update Logic. 
 
 		sf::Event event; 
 
@@ -60,7 +64,16 @@ int GameLoop::m_MainGameLoop()
 
 		// Draw Items : Backgound items first. 
 
+		m_Level.m_DrawLevelBounds(m_Window.m_GetWindow());
+
+		m_Ball.m_DrawBall(m_Window.m_GetWindow());
+
 		m_Window.m_GetWindow().display();
+
+
+		// Delete Objects at End of Frame. 
+
+
 
 	}
 

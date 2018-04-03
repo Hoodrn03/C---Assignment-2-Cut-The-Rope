@@ -10,6 +10,8 @@
 #include "defs.h"
 
 #include "Window.h"
+#include "Ball.h"
+#include "Level.h"
 
 class GameLoop
 {
@@ -33,6 +35,10 @@ private:
 
 	// Class containing all of the render window functionality. 
 	Window m_Window; 
+
+	Ball m_Ball;
+
+	Level m_Level;
 
 	// Member Functions 
 

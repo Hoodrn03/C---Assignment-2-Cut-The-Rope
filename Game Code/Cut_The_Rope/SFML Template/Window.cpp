@@ -15,7 +15,11 @@ Window::Window()
 {
 	// Create a window with a size of 500 width by 500 height. With the name Cut the Rope. 
 
-	window.create(sf::VideoMode(500, 500), "Cut the Rope");
+	m_Window.create(sf::VideoMode(720, 800), "Cut the Rope");
+
+	m_View.reset(sf::FloatRect(0.0f, 0.0f, 100.0f, 100.0f)); 
+
+	m_Window.setView(m_View);
 }
 
 //-------------------------------------------------------------
@@ -35,7 +39,17 @@ Window::~Window()
 */
 sf::RenderWindow &Window::m_GetWindow()
 {
-	return window;
+	return m_Window;
+}
+
+//-------------------------------------------------------------
+
+/*! Get View : This will allow access to the game's View.
+\
+*/
+sf::View Window::m_GetView()
+{
+	return m_View;
 }
 
 
