@@ -1,2 +1,2 @@
-﻿  SFML Template.vcxproj -> C:\Users\Ryan\Documents\Programming\GitHub\C---Assignment-2-Cut-The-Rope\Game Code\Cut_The_Rope\Debug\SFML Template.exe
-  SFML Template.vcxproj -> C:\Users\Ryan\Documents\Programming\GitHub\C---Assignment-2-Cut-The-Rope\Game Code\Cut_The_Rope\Debug\SFML Template.pdb (Full PDB)
+﻿  GameLoop.cpp
+c:\users\ryan\documents\programming\github\c---assignment-2-cut-the-rope\game code\cut_the_rope\sfml template\gameloop.cpp : fatal error C1041: cannot open program database 'C:\Users\Ryan\Documents\Programming\GitHub\C---Assignment-2-Cut-The-Rope\Game Code\Cut_The_Rope\SFML Template\Debug\vc140.pdb'; if multiple CL.EXE write to the same .PDB file, please use /FS

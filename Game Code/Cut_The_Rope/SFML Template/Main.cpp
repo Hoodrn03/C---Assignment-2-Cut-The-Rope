@@ -17,8 +17,7 @@ int main()
 {
 	GameLoop m_GameLoop;
 
-
-	// Begin game loop. 
+	// Begin the game. 
 	m_GameLoop.m_MainGameLoop();
 
 	return 0;

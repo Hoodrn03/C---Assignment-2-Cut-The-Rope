@@ -149,6 +149,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Ball.cpp" />
+    <ClCompile Include="EventHandler.cpp" />
     <ClCompile Include="GameLoop.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -158,6 +159,7 @@
   <ItemGroup>
     <ClInclude Include="Ball.h" />
     <ClInclude Include="defs.h" />
+    <ClInclude Include="EventHandler.h" />
     <ClInclude Include="GameLoop.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="Platform.h" />

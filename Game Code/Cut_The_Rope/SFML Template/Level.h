@@ -41,7 +41,7 @@ private:
 
 public:
 
-	void m_SetLevelBounds(float viewSizeX, float viewSizeY);
+	void m_SetLevelBounds(float viewSizeX, float viewSizeYz);
 
 	void m_DrawLevelBounds(sf::RenderWindow &window);
 

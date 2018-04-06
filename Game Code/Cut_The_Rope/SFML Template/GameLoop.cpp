@@ -46,19 +46,16 @@ int GameLoop::m_MainGameLoop()
 	{
 		// Update Logic. 
 
-		sf::Event event; 
+
+
+		// Update Physics. 
+
+
 
 		// Handle Events. 
 
-		while (m_Window.m_GetWindow().pollEvent(event))
-		{
-			// If window closed close window. 
+		m_EventHandler.m_HandleEvents(m_Window.m_GetWindow());
 
-			if (event.type == sf::Event::Closed)
-			{
-				m_Window.m_GetWindow().close();
-			}
-		}
 
 		m_Window.m_GetWindow().clear();
 
