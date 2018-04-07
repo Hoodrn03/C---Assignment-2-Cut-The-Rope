@@ -26,8 +26,12 @@ public:
 
 private:
 
+	/* 
+	* This is the game window, it will be used to display the game and register events within the game.
+	*/ 
 	sf::RenderWindow m_Window; 
 
+	// This is the game's view, it acts like a movable camera allowing for objects to be scaled easily. 
 	sf::View m_View; 
 
 	// Member Functions 
@@ -37,6 +41,7 @@ public:
 	// Allows access to the render window outside the class. 
 	sf::RenderWindow &m_GetWindow();
 
+	// This will allow access to the game's view (camera). 
 	sf::View m_GetView();
 
 };

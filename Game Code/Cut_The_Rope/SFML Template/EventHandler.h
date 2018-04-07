@@ -26,12 +26,14 @@ public:
 
 private:
 
+	// This will be used to check the current event against a list of possible events. 
 	sf::Event m_Event;
 
 	// Member Functions 
 
 public:
 
+	// This will be used to handle all of the events within the game.
 	void m_HandleEvents(sf::RenderWindow &window); 
 
 };

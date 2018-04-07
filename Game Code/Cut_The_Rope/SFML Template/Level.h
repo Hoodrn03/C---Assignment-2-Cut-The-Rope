@@ -31,18 +31,20 @@ public:
 
 private:
 
-	std::vector<sf::RectangleShape> v_LevelBounds;
 
 	// Classes 
 	
+	// This will be used to hold all of the platfoms in this current level. 
 	std::vector<Platform> v_Platforms;
 
 	// Member Functions
 
 public:
 
+	// This will be used to set all of the level bounds based on the size of the display window. 
 	void m_SetLevelBounds(float viewSizeX, float viewSizeYz);
 
+	// This will be used to draw all elements of the level. 
 	void m_DrawLevelBounds(sf::RenderWindow &window);
 
 };

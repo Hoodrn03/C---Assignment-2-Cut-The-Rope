@@ -38,7 +38,11 @@ int GameLoop::m_MainGameLoop()
 {
 	// Pregame Logic.
 
+	
+	m_World = new b2World(b2Vec2(m_Gravity));
+
 	m_Level.m_SetLevelBounds(m_Window.m_GetView().getSize().x, m_Window.m_GetView().getSize().y);
+
 
 	// Start Game Loop. 
 
@@ -47,9 +51,7 @@ int GameLoop::m_MainGameLoop()
 		// Update Logic. 
 
 
-
 		// Update Physics. 
-
 
 
 		// Handle Events. 

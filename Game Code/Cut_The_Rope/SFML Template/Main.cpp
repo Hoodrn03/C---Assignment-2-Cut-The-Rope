@@ -15,10 +15,12 @@
 
 int main()
 {
+	
 	GameLoop m_GameLoop;
 
 	// Begin the game. 
 	m_GameLoop.m_MainGameLoop();
+
 
 	return 0;
 }

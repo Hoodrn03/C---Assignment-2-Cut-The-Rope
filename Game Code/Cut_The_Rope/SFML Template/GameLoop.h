@@ -33,12 +33,9 @@ public:
 private:
 
 	// This will be the constant value for gravity in the game world. 
-	const b2Vec2 m_Gravity = { 0.0f, -10.0f };
+	const b2Vec2 m_Gravity{ 0.0f, -10.0f };
 
-	int32 velocityIterations = 6;
-	int32 positionIterations = 2;
-
-	float32 timeStep = 1.0f / 60.0f;
+	b2World *m_World = nullptr;
 
 	// Classes 
 

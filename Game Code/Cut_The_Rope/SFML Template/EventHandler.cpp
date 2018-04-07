@@ -35,8 +35,10 @@ void EventHandler::m_HandleEvents(sf::RenderWindow &window)
 {
 	while (window.pollEvent(m_Event))
 	{
+		// If the game window is closed:
 		if (m_Event.type == sf::Event::Closed)
 		{
+			// Exit and close the game.
 			window.close();
 		}
 	}

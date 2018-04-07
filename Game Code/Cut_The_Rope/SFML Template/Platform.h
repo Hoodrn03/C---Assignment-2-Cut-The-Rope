@@ -26,16 +26,20 @@ public:
 
 private:
 
+	// This is a temparary platform, later a texture and a sprite will be added into the game. 
 	sf::RectangleShape m_TempPlatform;
 
 	// Member Functions 
 
 public:
 
+	// This will be used to draw the platform. 
 	void m_DrawPlatform(sf::RenderWindow &window);
 
+	// This will be used to set the platfom's size. 
 	void m_SetPlatformSize(float width, float height);
 
+	// This will be used to set the platform's position. 
 	void m_SetPlatformPos(float newX, float newY);
 
 };
