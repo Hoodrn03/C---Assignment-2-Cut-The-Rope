@@ -42,7 +42,7 @@ private:
 public:
 
 	// This will be used to set all of the level bounds based on the size of the display window. 
-	void m_SetLevelBounds(float viewSizeX, float viewSizeYz);
+	void m_SetLevelBounds(float viewSizeX, float viewSizeY, b2World *world);
 
 	// This will be used to draw all elements of the level. 
 	void m_DrawLevelBounds(sf::RenderWindow &window);

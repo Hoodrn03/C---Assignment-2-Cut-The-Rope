@@ -25,7 +25,7 @@ GameLoop::GameLoop()
 */
 GameLoop::~GameLoop()
 {
-
+	delete m_World;
 }
 
 
@@ -39,19 +39,37 @@ int GameLoop::m_MainGameLoop()
 	// Pregame Logic.
 
 	
-	m_World = new b2World(b2Vec2(m_Gravity));
+	m_World = new b2World(m_Gravity);
 
-	m_Level.m_SetLevelBounds(m_Window.m_GetView().getSize().x, m_Window.m_GetView().getSize().y);
+	m_Ball.m_AddToPhysicsWorld(m_World);
+
+	m_Level.m_SetLevelBounds(m_Window.m_GetView().getSize().x, m_Window.m_GetView().getSize().y, m_World);
 
 
 	// Start Game Loop. 
 
 	while (m_Window.m_GetWindow().isOpen())
 	{
-		// Update Logic. 
-
 
 		// Update Physics. 
+
+		m_fElapsedTime = m_Clock.getElapsedTime().asSeconds();
+
+		if (m_fElapsedTime > m_fTimeStep)
+		{
+			m_World->Step(m_fTimeStep, m_iVelocityIterations, m_iPositionIterations);
+		
+			// Update Positions.
+
+			m_Ball.m_UpdatePosition();
+
+			// Restart the clock. 
+
+			m_Clock.restart();
+		}
+
+		// Update Logic.
+
 
 
 		// Handle Events. 

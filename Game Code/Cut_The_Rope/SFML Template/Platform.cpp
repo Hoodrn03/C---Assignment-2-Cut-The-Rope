@@ -16,7 +16,6 @@ Platform::Platform()
 
 	m_TempPlatform.setFillColor(sf::Color::White);
 	m_TempPlatform.setOutlineColor(sf::Color::Blue);
-	m_TempPlatform.setOutlineThickness(0.5f);
 
 }
 
@@ -49,6 +48,10 @@ void Platform::m_DrawPlatform(sf::RenderWindow &window)
 void Platform::m_SetPlatformSize(float width, float height)
 {
 	m_TempPlatform.setSize(sf::Vector2f(width, height));
+
+	m_PlatformBox.SetAsBox(width, height);
+
+	std::cout << "Platform Created" << std::endl;
 }
 
 //-------------------------------------------------------------
@@ -59,5 +62,39 @@ void Platform::m_SetPlatformSize(float width, float height)
 */
 void Platform::m_SetPlatformPos(float newX, float newY)
 {
-	m_TempPlatform.setPosition(newX, newY);
+
+	m_PlatformBodyDef.position.Set(newX, newY);
+
+	m_TempPlatform.setPosition(m_PlatformBodyDef.position.x, m_PlatformBodyDef.position.y);
+	
+	std::cout << "Platform Placed" << std::endl;
+
+}
+
+//-------------------------------------------------------------
+
+/*! SetPlatform Rotation : This will be used to angle the platform. 
+\Param One - float : The new angle for the platform. 
+*/
+void Platform::m_SetPlatformRotation(float newAngle)
+{
+	m_PlatformBodyDef.angle = (float)(newAngle * 3.14f / 180.f); 
+
+	m_TempPlatform.setRotation(newAngle);
+}
+
+//-------------------------------------------------------------
+
+/*! Add To Physics World : This will allow for the platform to interact with objects within the physics world. 
+\Param One - b2World : This function requires reference to the current physics world. 
+*/
+void Platform::m_AddToPhysicsWorld(b2World *world)
+{
+	m_PlatformFixtureDef.shape = &m_PlatformBox; 
+
+	m_PlatformBody = world->CreateBody(&m_PlatformBodyDef);
+
+	m_PlatformBody->CreateFixture(&m_PlatformFixtureDef);
+
+	std::cout << "Platform Added to Physics World" << std::endl;
 }

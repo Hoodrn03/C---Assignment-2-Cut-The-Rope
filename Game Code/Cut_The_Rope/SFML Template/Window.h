@@ -34,6 +34,9 @@ private:
 	// This is the game's view, it acts like a movable camera allowing for objects to be scaled easily. 
 	sf::View m_View; 
 
+	// The Scale for the game will be 8 meters by 6. 
+	float m_fScaleX = 8, m_fScaleY = 6; 
+
 	// Member Functions 
 
 public: 

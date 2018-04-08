@@ -33,9 +33,19 @@ public:
 private:
 
 	// This will be the constant value for gravity in the game world. 
-	const b2Vec2 m_Gravity{ 0.0f, -10.0f };
+	const b2Vec2 m_Gravity{ 0.0f, 10.0f };
 
-	b2World *m_World = nullptr;
+	// This will be used to control all of the physics within the game. 
+	b2World * m_World;
+
+	float32 m_fTimeStep = 1.0f / 60.0f;
+
+	int32 m_iVelocityIterations = 7;
+	int32 m_iPositionIterations = 5;
+
+	float m_fElapsedTime; 
+
+	sf::Clock m_Clock; 
 
 	// Classes 
 

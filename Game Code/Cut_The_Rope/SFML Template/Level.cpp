@@ -32,51 +32,88 @@ Level::~Level()
 \Param One - Float : This is the width of the view I am using to display the game, to ensure the bounds are only within the current display.
 \Param Two - Float : This is the height of the view I am using to display the game, to ensure the bounds are only within the current display.
 */
-void Level::m_SetLevelBounds(float viewSizeX, float viewSizeY)
+void Level::m_SetLevelBounds(float viewSizeX, float viewSizeY, b2World *world)
 {
-	std::unique_ptr<Platform> tempPlatform; 
+	// Locals : 
 
-	float fBaseWidth = 3, fBaseHeight = 3; 
+	Platform * tempPlatform; 
+
+	// Set the base height and width for the platfoms. Get the correct size then multiply by 0.5f to get the half extents.
+	float fBaseWidth = ((viewSizeX * 0.05f) * 0.5f), fBaseHeight = ((viewSizeY * 0.05f) * 0.5f); 
 
 	// Top Bounds 
 
-	tempPlatform.reset(new Platform());
+	tempPlatform = new Platform();
 
 	tempPlatform->m_SetPlatformSize(viewSizeX, fBaseHeight);
 
+	tempPlatform->m_SetPlatformRotation(0.f);
+
 	tempPlatform->m_SetPlatformPos(0.0f, 0.0f);
+
+	tempPlatform->m_AddToPhysicsWorld(world);
 
 	v_Platforms.push_back(*tempPlatform);
 
 	// Bottom Bounds 
 
-	tempPlatform.reset(new Platform());
+	tempPlatform = new Platform();
 
 	tempPlatform->m_SetPlatformSize(viewSizeX, fBaseHeight);
 
+	tempPlatform->m_SetPlatformRotation(0.f);
+
 	tempPlatform->m_SetPlatformPos(0.0f, (viewSizeY - fBaseHeight));
+
+	tempPlatform->m_AddToPhysicsWorld(world);
 
 	v_Platforms.push_back(*tempPlatform);
 
 	// Left Bounds
 
-	tempPlatform.reset(new Platform());
+	tempPlatform = new Platform();
 
 	tempPlatform->m_SetPlatformSize(fBaseWidth, viewSizeY);
 
+	tempPlatform->m_SetPlatformRotation(0.f);
+
 	tempPlatform->m_SetPlatformPos(0.0f, 0.0f);
+
+	tempPlatform->m_AddToPhysicsWorld(world);
 
 	v_Platforms.push_back(*tempPlatform);
 
 	// Right Bounds 
 
-	tempPlatform.reset(new Platform());
+	tempPlatform = new Platform();
 
 	tempPlatform->m_SetPlatformSize(fBaseWidth, viewSizeY);
 
+	tempPlatform->m_SetPlatformRotation(0.f);
+
 	tempPlatform->m_SetPlatformPos((viewSizeX - fBaseWidth), 0.0f);
 
+	tempPlatform->m_AddToPhysicsWorld(world);
+
 	v_Platforms.push_back(*tempPlatform);
+
+	// Angled platform.  
+
+	tempPlatform = new Platform();
+
+	tempPlatform->m_SetPlatformSize(2.0f, (fBaseHeight * 0.5f));
+
+	tempPlatform->m_SetPlatformRotation(15.0f); 
+
+	tempPlatform->m_SetPlatformPos((viewSizeX * 0.1f), (viewSizeY * 0.6f));
+
+	tempPlatform->m_AddToPhysicsWorld(world);
+
+	v_Platforms.push_back(*tempPlatform);
+
+	// Delete temp Pointer
+
+	delete tempPlatform;
 
 }
 

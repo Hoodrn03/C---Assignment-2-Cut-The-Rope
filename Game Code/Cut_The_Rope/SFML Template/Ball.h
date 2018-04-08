@@ -23,9 +23,9 @@ public:
 
 	// Deconstructor 
 
-	~Ball();
-
 public:
+
+	~Ball();
 
 	// Data Members 
 
@@ -33,11 +33,25 @@ private:
 
 	sf::CircleShape m_TempBall;
 
+	b2BodyDef m_BallBodyDef;
+	b2CircleShape m_DynamicBall;
+	b2FixtureDef m_FixtureDef; 
+	b2Body *m_BallBody; 
+
+	float m_fDensity = 1.0f; 
+	float m_fFriction = 0.3f;
+	float m_fBouncyness = 0.5f;
+
+	float m_fBallSize = {0.15f};
 
 	// Member functions 
 
 public:
 
 	void m_DrawBall(sf::RenderWindow &window); 
+
+	void m_AddToPhysicsWorld(b2World *world);
+
+	void m_UpdatePosition();
 
 };

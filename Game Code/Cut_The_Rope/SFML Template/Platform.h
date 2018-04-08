@@ -29,6 +29,14 @@ private:
 	// This is a temparary platform, later a texture and a sprite will be added into the game. 
 	sf::RectangleShape m_TempPlatform;
 
+	b2BodyDef m_PlatformBodyDef; 
+
+	b2FixtureDef m_PlatformFixtureDef; 
+
+	b2PolygonShape m_PlatformBox;
+
+	b2Body *m_PlatformBody;
+
 	// Member Functions 
 
 public:
@@ -42,4 +50,8 @@ public:
 	// This will be used to set the platform's position. 
 	void m_SetPlatformPos(float newX, float newY);
 
+	void m_SetPlatformRotation(float angle);
+
+	// This will be used to add this platform into the physics world.
+	void m_AddToPhysicsWorld(b2World *world);
 };

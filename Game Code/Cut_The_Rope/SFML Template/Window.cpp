@@ -17,7 +17,7 @@ Window::Window()
 
 	m_Window.create(sf::VideoMode(720, 800), "Cut the Rope");
 
-	m_View.reset(sf::FloatRect(0.0f, 0.0f, 100.0f, 100.0f)); 
+	m_View.reset(sf::FloatRect(0.0f, 0.0f, m_fScaleX, m_fScaleY)); 
 
 	m_Window.setView(m_View);
 }
