@@ -12,8 +12,9 @@
 #pragma once
 
 #include "defs.h"
+#include "PhysicsObject.h"
 
-class Ball
+class Ball : public PhysicsObject
 {
 	// Constructor 
 
@@ -33,11 +34,6 @@ private:
 
 	sf::CircleShape m_TempBall;
 
-	b2BodyDef m_BallBodyDef;
-	b2CircleShape m_DynamicBall;
-	b2FixtureDef m_FixtureDef; 
-	b2Body *m_BallBody; 
-
 	float m_fDensity = 1.0f; 
 	float m_fFriction = 0.3f;
 	float m_fBouncyness = 0.5f;
@@ -49,8 +45,6 @@ private:
 public:
 
 	void m_DrawBall(sf::RenderWindow &window); 
-
-	void m_AddToPhysicsWorld(b2World *world);
 
 	void m_UpdatePosition();
 

@@ -156,7 +156,9 @@
     <ClCompile Include="GameLoop.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="PhysicsObject.cpp" />
     <ClCompile Include="Platform.cpp" />
+    <ClCompile Include="Rope.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -165,7 +167,9 @@
     <ClInclude Include="EventHandler.h" />
     <ClInclude Include="GameLoop.h" />
     <ClInclude Include="Level.h" />
+    <ClInclude Include="PhysicsObject.h" />
     <ClInclude Include="Platform.h" />
+    <ClInclude Include="Rope.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

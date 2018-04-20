@@ -38,13 +38,13 @@ int GameLoop::m_MainGameLoop()
 {
 	// Pregame Logic.
 
-	
 	m_World = new b2World(m_Gravity);
 
 	m_Ball.m_AddToPhysicsWorld(m_World);
 
 	m_Level.m_SetLevelBounds(m_Window.m_GetView().getSize().x, m_Window.m_GetView().getSize().y, m_World);
 
+	m_Level.m_SetRopes(m_World);
 
 	// Start Game Loop. 
 
@@ -62,6 +62,8 @@ int GameLoop::m_MainGameLoop()
 			// Update Positions.
 
 			m_Ball.m_UpdatePosition();
+
+			m_Level.m_UpdateLevelItems();
 
 			// Restart the clock. 
 

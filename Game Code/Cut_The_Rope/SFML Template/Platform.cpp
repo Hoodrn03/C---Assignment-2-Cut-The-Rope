@@ -1,6 +1,6 @@
-/*!\file Physics.cpp
+/*!\file Platform.cpp
 *
-* This will house all of the function declarations for the class Physics.
+* This will house all of the function declarations for the class Rope.
 *
 */
 
@@ -45,13 +45,11 @@ void Platform::m_DrawPlatform(sf::RenderWindow &window)
 \Param One - Float : The width of the platform.
 \Param Two - Float : The height of the platform. 
 */
-void Platform::m_SetPlatformSize(float width, float height)
+void Platform::m_SetPlatformSize(float width, float height, bool dynamicPlatform)
 {
 	m_TempPlatform.setSize(sf::Vector2f(width, height));
 
-	m_PlatformBox.SetAsBox(width, height);
-
-	std::cout << "Platform Created" << std::endl;
+	m_CreateBoxObject(width, height, dynamicPlatform);
 }
 
 //-------------------------------------------------------------
@@ -59,42 +57,48 @@ void Platform::m_SetPlatformSize(float width, float height)
 /*! Set Platform Pos : This will be used to easily set the platfoms possition in the game world.
 \Param One - Float : The X coordinate for the platform.
 \Param Two - Float : The Y coordinate for the platform.
+\Param Three - Float : The new angle for the platform.
 */
-void Platform::m_SetPlatformPos(float newX, float newY)
+void Platform::m_SetPlatformPos(float newX, float newY, float newAngle)
 {
 
-	m_PlatformBodyDef.position.Set(newX, newY);
+	m_SetStartPos(newX, newY, newAngle);
 
-	m_TempPlatform.setPosition(m_PlatformBodyDef.position.x, m_PlatformBodyDef.position.y);
+	m_TempPlatform.setPosition(newX, newY);
 	
-	std::cout << "Platform Placed" << std::endl;
-
-}
-
-//-------------------------------------------------------------
-
-/*! SetPlatform Rotation : This will be used to angle the platform. 
-\Param One - float : The new angle for the platform. 
-*/
-void Platform::m_SetPlatformRotation(float newAngle)
-{
-	m_PlatformBodyDef.angle = (float)(newAngle * 3.14f / 180.f); 
-
 	m_TempPlatform.setRotation(newAngle);
 }
 
 //-------------------------------------------------------------
 
-/*! Add To Physics World : This will allow for the platform to interact with objects within the physics world. 
-\Param One - b2World : This function requires reference to the current physics world. 
+/*! Update Platform : This will be used to update the current possition of the platform. 
+\
 */
-void Platform::m_AddToPhysicsWorld(b2World *world)
+void Platform::m_UpdatePlatform()
 {
-	m_PlatformFixtureDef.shape = &m_PlatformBox; 
 
-	m_PlatformBody = world->CreateBody(&m_PlatformBodyDef);
+	// Update Position.
 
-	m_PlatformBody->CreateFixture(&m_PlatformFixtureDef);
+	m_TempPlatform.setPosition(m_Body->GetPosition().x, m_Body->GetPosition().y);
 
-	std::cout << "Platform Added to Physics World" << std::endl;
+	// Update Rotation.
+
+	float angle = m_Body->GetAngle();
+
+	if (angle <= 0)
+	{
+		angle += 360;
+	}
+	else if (angle > 360)
+	{
+		angle -= 360; 
+	}
+
+	m_TempPlatform.setRotation(angle);
+	
 }
+
+
+
+
+

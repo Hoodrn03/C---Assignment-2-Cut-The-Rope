@@ -31,6 +31,7 @@ Level::~Level()
 /*! Set Level Bounds : This will be used to set the bounds for the game window, constraining all of the game objects to the widndow. 
 \Param One - Float : This is the width of the view I am using to display the game, to ensure the bounds are only within the current display.
 \Param Two - Float : This is the height of the view I am using to display the game, to ensure the bounds are only within the current display.
+\Param Three - b2World : This will allow for the objects to be added into the physics world. 
 */
 void Level::m_SetLevelBounds(float viewSizeX, float viewSizeY, b2World *world)
 {
@@ -45,11 +46,9 @@ void Level::m_SetLevelBounds(float viewSizeX, float viewSizeY, b2World *world)
 
 	tempPlatform = new Platform();
 
-	tempPlatform->m_SetPlatformSize(viewSizeX, fBaseHeight);
+	tempPlatform->m_SetPlatformSize(viewSizeX, fBaseHeight, false);
 
-	tempPlatform->m_SetPlatformRotation(0.f);
-
-	tempPlatform->m_SetPlatformPos(0.0f, 0.0f);
+	tempPlatform->m_SetPlatformPos(0.0f, 0.0f, 0.f);
 
 	tempPlatform->m_AddToPhysicsWorld(world);
 
@@ -59,11 +58,9 @@ void Level::m_SetLevelBounds(float viewSizeX, float viewSizeY, b2World *world)
 
 	tempPlatform = new Platform();
 
-	tempPlatform->m_SetPlatformSize(viewSizeX, fBaseHeight);
+	tempPlatform->m_SetPlatformSize(viewSizeX, fBaseHeight, false);
 
-	tempPlatform->m_SetPlatformRotation(0.f);
-
-	tempPlatform->m_SetPlatformPos(0.0f, (viewSizeY - fBaseHeight));
+	tempPlatform->m_SetPlatformPos(0.0f, (viewSizeY - fBaseHeight), 0.f);
 
 	tempPlatform->m_AddToPhysicsWorld(world);
 
@@ -73,11 +70,9 @@ void Level::m_SetLevelBounds(float viewSizeX, float viewSizeY, b2World *world)
 
 	tempPlatform = new Platform();
 
-	tempPlatform->m_SetPlatformSize(fBaseWidth, viewSizeY);
+	tempPlatform->m_SetPlatformSize(fBaseWidth, viewSizeY, false);
 
-	tempPlatform->m_SetPlatformRotation(0.f);
-
-	tempPlatform->m_SetPlatformPos(0.0f, 0.0f);
+	tempPlatform->m_SetPlatformPos(0.0f, 0.0f, 0.f);
 
 	tempPlatform->m_AddToPhysicsWorld(world);
 
@@ -87,11 +82,9 @@ void Level::m_SetLevelBounds(float viewSizeX, float viewSizeY, b2World *world)
 
 	tempPlatform = new Platform();
 
-	tempPlatform->m_SetPlatformSize(fBaseWidth, viewSizeY);
+	tempPlatform->m_SetPlatformSize(fBaseWidth, viewSizeY, false);
 
-	tempPlatform->m_SetPlatformRotation(0.f);
-
-	tempPlatform->m_SetPlatformPos((viewSizeX - fBaseWidth), 0.0f);
+	tempPlatform->m_SetPlatformPos((viewSizeX - fBaseWidth), 0.0f, 0.f);
 
 	tempPlatform->m_AddToPhysicsWorld(world);
 
@@ -101,11 +94,11 @@ void Level::m_SetLevelBounds(float viewSizeX, float viewSizeY, b2World *world)
 
 	tempPlatform = new Platform();
 
-	tempPlatform->m_SetPlatformSize(2.0f, (fBaseHeight * 0.5f));
+	tempPlatform->m_SetProperties(1.f, 0.3f, 0.1f);
 
-	tempPlatform->m_SetPlatformRotation(15.0f); 
+	tempPlatform->m_SetPlatformPos((viewSizeX * 0.1f), (viewSizeY * 0.6f), 15.f);
 
-	tempPlatform->m_SetPlatformPos((viewSizeX * 0.1f), (viewSizeY * 0.6f));
+	tempPlatform->m_SetPlatformSize(2.0f, (fBaseHeight * 0.5f), true);
 
 	tempPlatform->m_AddToPhysicsWorld(world);
 
@@ -122,7 +115,7 @@ void Level::m_SetLevelBounds(float viewSizeX, float viewSizeY, b2World *world)
 /*! Draw Level Bounds : This will draw all of the level bounds into the game. 
 \Param One - Render Window : This will be the main game window for the game, allowing for the sprite to be drawn.
 */
-void Level::m_DrawLevelBounds(sf::RenderWindow &window)
+void Level::m_DrawLevel(sf::RenderWindow &window)
 {
 	if (v_Platforms.size() > 0)
 	{
@@ -131,4 +124,22 @@ void Level::m_DrawLevelBounds(sf::RenderWindow &window)
 			v_Platforms.at(i).m_DrawPlatform(window);
 		}
 	}
+	
+}
+
+//-------------------------------------------------------------
+
+/*! Update Level Items : This will be used to update all of the level items in the current level. 
+\
+*/
+void Level::m_UpdateLevelItems()
+{
+	if (v_Platforms.size() > 0)
+	{
+		for (unsigned int i = 0; i < v_Platforms.size(); i++)
+		{
+			v_Platforms.at(i).m_UpdatePlatform();
+		}
+	}
+	
 }

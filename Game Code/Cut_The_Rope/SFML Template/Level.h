@@ -12,6 +12,7 @@
 #include "defs.h"
 
 #include "Platform.h"
+#include "Rope.h"
 
 class Level
 {
@@ -45,6 +46,9 @@ public:
 	void m_SetLevelBounds(float viewSizeX, float viewSizeY, b2World *world);
 
 	// This will be used to draw all elements of the level. 
-	void m_DrawLevelBounds(sf::RenderWindow &window);
+	void m_DrawLevel(sf::RenderWindow &window);
+
+	// This will be used to update all items in the level. 
+	void m_UpdateLevelItems();
 
 };

@@ -15,3 +15,7 @@
 
 // Game Physics.
 #include <Box2D\Box2D.h>
+
+#ifndef PI
+#define PI 3.14f
+#endif
