@@ -15,7 +15,7 @@ Ball::Ball()
 {
 
 	// Ball Size
-	m_TempBall.setRadius(m_fBallSize); 
+	m_TempBall.setRadius(m_fBallSize);
 
 	// Ball Possition
 	m_TempBall.setPosition(1.f, 1.f);

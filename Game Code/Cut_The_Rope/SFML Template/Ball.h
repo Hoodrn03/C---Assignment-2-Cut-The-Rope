@@ -38,7 +38,7 @@ private:
 	float m_fFriction = 0.3f;
 	float m_fBouncyness = 0.5f;
 
-	float m_fBallSize = {0.15f};
+	float m_fBallSize = {0.25f};
 
 	// Member functions 
 

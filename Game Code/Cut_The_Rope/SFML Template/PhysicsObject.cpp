@@ -95,7 +95,7 @@ void PhysicsObject::m_CreateBoxObject(float width, float height, bool dynamic)
 	m_fRadius = 0.f;
 
 	// Set Box Radius
-	m_DynamicBox.m_radius = m_fRadius;
+	m_DynamicBox.m_radius = 0.f;
 
 	// Assign the shape to the fixture. 
 	m_FixtureDef.shape = &m_DynamicBox;

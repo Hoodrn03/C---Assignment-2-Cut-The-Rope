@@ -16,6 +16,23 @@
 // Game Physics.
 #include <Box2D\Box2D.h>
 
+
 #ifndef PI
+// This will create a definition for PI.
 #define PI 3.14f
 #endif
+
+#ifndef RADTODEG
+// This will allow for the easy conversion between radians to degrees; (Multiply origional value by this).
+#define RADTODEG 180 / PI
+#endif 
+
+#ifndef DEGTORAD
+// This will allow for the easy conversion between degrees to radians; (Multiply origional value by this). 
+#define DEGTORAD PI / 180
+#endif 
+
+#ifndef HALF
+// This will enable something to easily halfed (multiplyed by 0.5).
+#define HALF 0.5f
+#endif 
