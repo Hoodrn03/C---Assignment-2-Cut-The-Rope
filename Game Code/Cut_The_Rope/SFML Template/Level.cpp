@@ -110,6 +110,16 @@ void Level::m_SetLevelBounds(float viewSizeX, float viewSizeY, b2World *world)
 
 }
 
+void Level::m_SetRopes(b2World * world)
+{
+	Rope clRope; 
+
+	clRope.m_CreateRope(v_Platforms.at(0).m_GetBody(), 4, v_Platforms.at(4).m_GetBody(), world);
+
+	v_Ropes.push_back(clRope);
+}
+
+
 //-------------------------------------------------------------
 
 /*! Draw Level Bounds : This will draw all of the level bounds into the game. 
@@ -124,7 +134,14 @@ void Level::m_DrawLevel(sf::RenderWindow &window)
 			v_Platforms.at(i).m_DrawPlatform(window);
 		}
 	}
-	
+
+	if (v_Ropes.size() > 0)
+	{
+		for (unsigned int i = 0; i < v_Ropes.size(); i++)
+		{
+			v_Ropes.at(i).m_DrawRope(window);
+		}
+	}
 }
 
 //-------------------------------------------------------------
@@ -132,13 +149,21 @@ void Level::m_DrawLevel(sf::RenderWindow &window)
 /*! Update Level Items : This will be used to update all of the level items in the current level. 
 \
 */
-void Level::m_UpdateLevelItems()
+void Level::m_UpdateLevel()
 {
 	if (v_Platforms.size() > 0)
 	{
 		for (unsigned int i = 0; i < v_Platforms.size(); i++)
 		{
 			v_Platforms.at(i).m_UpdatePlatform();
+		}
+	}
+
+	if (v_Ropes.size() > 0)
+	{
+		for (unsigned int i = 0; i < v_Ropes.size(); i++)
+		{
+			v_Ropes.at(i).m_UpdateRope();
 		}
 	}
 	

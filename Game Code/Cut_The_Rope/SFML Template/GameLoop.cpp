@@ -63,7 +63,7 @@ int GameLoop::m_MainGameLoop()
 
 			m_Ball.m_UpdatePosition();
 
-			m_Level.m_UpdateLevelItems();
+			m_Level.m_UpdateLevel();
 
 			// Restart the clock. 
 
@@ -83,7 +83,7 @@ int GameLoop::m_MainGameLoop()
 
 		// Draw Items : Backgound items first. 
 
-		m_Level.m_DrawLevelBounds(m_Window.m_GetWindow());
+		m_Level.m_DrawLevel(m_Window.m_GetWindow());
 
 		m_Ball.m_DrawBall(m_Window.m_GetWindow());
 

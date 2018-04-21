@@ -1,6 +1,6 @@
 /*!\file Platform.cpp
 *
-* This will house all of the function declarations for the class Rope.
+* This will house all of the function declarations for the class Platfom.
 *
 */
 
