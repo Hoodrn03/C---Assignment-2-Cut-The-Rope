@@ -17,20 +17,12 @@ Ball::Ball()
 	// Ball Size
 	m_TempBall.setRadius(m_fBallSize);
 
-	// Ball Possition
-	m_TempBall.setPosition(1.f, 1.f);
-
 	// Ball Appearance 
 	m_TempBall.setFillColor(sf::Color::Blue);
 	m_TempBall.setOutlineColor(sf::Color::Magenta);
 
-	// Set Physics items. 
-	m_SetStartPos(2.f, 1.f, 0.f);
-
 	// Set the values of friction, density and bouncyness. 
 	m_SetProperties(1.f, 0.3f, 0.5f);
-
-	m_CreateBallObject(m_fBallSize, true);
 }
 
 //-------------------------------------------------------------

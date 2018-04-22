@@ -1,6 +1,6 @@
-/*!\file Ball.cpp
+/*!\file PhysicsObject.cpp
 *
-* This will house all of the function declarations for the class Ball.
+* This will house all of the function declarations for the class PhysicsObject.
 *
 */
 
@@ -13,6 +13,7 @@
 */
 PhysicsObject::PhysicsObject()
 {
+
 }
 
 //-------------------------------------------------------------
@@ -27,27 +28,15 @@ PhysicsObject::~PhysicsObject()
 
 //-------------------------------------------------------------
 
-/*! Add To Physics World : This will allow for the object to interact with objects within the physics world.
-\Param One - b2World : This function requires reference to the current physics world.
-*/
-void PhysicsObject::m_AddToPhysicsWorld(b2World *world)
-{
-	m_Body = world->CreateBody(&m_BodyDef);
-
-	m_Body->CreateFixture(&m_FixtureDef);
-}
-
-//-------------------------------------------------------------
-
 /*! Set Start Pos : This will set the starting position for the physics object. 
 \Param One - float : the new x coordinate.
 \Param Two - float : the new y coordinate.
 \Param Three - float : the angle for the object. 
 */
-void PhysicsObject::m_SetStartPos(float newX, float newY, float angle)
+void PhysicsObject::m_SetStartAngle(float angle)
 {
-	m_BodyDef.position.Set(newX, newY);
-	m_BodyDef.angle = (float)(angle * 3.14f / 180.f);
+
+	m_BodyDef.angle = (float)(angle * DEGTORAD);
 }
 
 //-------------------------------------------------------------
@@ -56,11 +45,13 @@ void PhysicsObject::m_SetStartPos(float newX, float newY, float angle)
 \Param One - float : The radius for the circle. 
 \Param Two - bool : Whether the object is dynamic or static.
 */
-void PhysicsObject::m_CreateBallObject(float radius, bool dynamic)
+void PhysicsObject::m_CreateBallObject(float radius, bool dynamic, b2World *world, float fXPos, float fYPos)
 {
 	m_DynamicBall.m_radius = radius;
 
 	m_fRadius = radius;
+
+	m_BodyDef.position.Set(fXPos, fYPos);
 
 	m_FixtureDef.shape = &m_DynamicBall;
 
@@ -74,6 +65,9 @@ void PhysicsObject::m_CreateBallObject(float radius, bool dynamic)
 	}
 
 
+	m_Body = world->CreateBody(&m_BodyDef);
+	m_Body->CreateFixture(&m_FixtureDef);
+
 }
 
 //-------------------------------------------------------------
@@ -83,14 +77,17 @@ void PhysicsObject::m_CreateBallObject(float radius, bool dynamic)
 \Param Two - float : The height of the physics object.
 \Param Three - bool : Whether the object is dynamic or static.
 */
-void PhysicsObject::m_CreateBoxObject(float width, float height, bool dynamic)
+void PhysicsObject::m_CreateBoxObject(float width, float height, bool dynamic, b2World *world, float fXPos, float fYPos)
 {
 
-	// Set Box Height and Width. 
-	m_DynamicBox.SetAsBox(width, height);
+	// Scale Height and width values. 
+	m_fWidth = width;
+	m_fHeight = height;
 
-	m_fHeight = height; 
-	m_fWidth = width; 
+	// Set Box Height and Width. 
+	m_DynamicBox.SetAsBox(width * HALF, height * HALF);
+
+	m_BodyDef.position.Set(fXPos, fYPos);
 
 	m_fRadius = 0.f;
 
@@ -111,6 +108,9 @@ void PhysicsObject::m_CreateBoxObject(float width, float height, bool dynamic)
 		m_FixtureDef.friction = m_fFriction;
 		m_FixtureDef.restitution = m_fBouncyness;
 	}
+
+	m_Body = world->CreateBody(&m_BodyDef);
+	m_Body->CreateFixture(&m_FixtureDef);
 
 }
 
@@ -146,14 +146,31 @@ b2Body * PhysicsObject::m_GetBody()
 */
 values PhysicsObject::m_Get()
 {
-	// Set the values to return. 
-	values v = {
-		{ m_fHeight }, // Height 
-		{ m_fWidth }, // Width 
-		{ m_fRadius }, // Radius
-		{ m_Body->GetPosition().x }, // X 
-		{ m_Body->GetPosition().y }	// Y
-	};
+
+	values v; 
+
+	if (m_Body != nullptr)
+	{
+		// Set the values to return. 
+		v = {
+			{ m_fHeight },					// Height 
+			{ m_fWidth },					// Width 
+			{ m_fRadius },					// Radius
+			{ m_Body->GetPosition().x },	// X 
+			{ m_Body->GetPosition().y }		// Y
+		};
+	}
+	else
+	{
+		// Unable to get values to return. 
+		v = {
+			{ NULL },	// Height 
+			{ NULL },	// Width 
+			{ NULL },	// Radius
+			{ NULL },	// X 
+			{ NULL }	// Y
+		};
+	}
 
 	// Return the set of values. 
 	return v;

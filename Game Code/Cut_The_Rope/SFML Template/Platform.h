@@ -1,6 +1,8 @@
 /*!\file Platform.h
 *
-* This will be used to build a simple platform for the game. 
+* This class will allow for the simple creation of either a static or dynamic platform in the game. 
+* This will hold methods for creating the new platform and thus the integration between the SFML shape 
+* and the box2D body held within the inherited PhysicsObject class. 
 *
 */
 
@@ -12,7 +14,7 @@
 
 class Platform : public PhysicsObject
 {
-	// Constructor 
+	// Constructor
 
 public:
 
@@ -24,31 +26,20 @@ public:
 
 	~Platform();
 
-	// Data members 
+	// Data Members 
 
 private:
 
-	// This is a temparary platform, later a texture and a sprite will be added into the game. 
-	sf::RectangleShape m_TempPlatform;
+	sf::RectangleShape m_TempPlatform; 
 
-
-
-	// Member Functions 
+	// Member Functions
 
 public:
 
-	// This will be used to draw the platform. 
 	void m_DrawPlatform(sf::RenderWindow &window);
 
-	// This will be used to set the platfom's size. 
-	void m_SetPlatformSize(float width, float height, bool dynamicPlatform);
+	void m_CreatePlatform(float width, float height);
 
-	// This will be used to set the platform's position. 
-	void m_SetPlatformPos(float newX, float newY, float newAngle);
-
-	// This will update this platform.
 	void m_UpdatePlatform(); 
 
 };
-
-

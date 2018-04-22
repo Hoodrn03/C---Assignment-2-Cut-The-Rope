@@ -35,7 +35,7 @@ private:
 	sf::View m_View; 
 
 	// The Scale for the game will be 8 meters by 6. 
-	float m_fScaleX = 8, m_fScaleY = 6; 
+	float m_fScaleX = 9, m_fScaleY = 7; 
 
 	// Member Functions 
 

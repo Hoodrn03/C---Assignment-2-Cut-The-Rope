@@ -82,21 +82,21 @@ protected:
 	// The radius for the object.
 	float m_fRadius; 
 
+	// Initial Coordinates for the object. 
+	float m_fX, m_fY; 
+
 	// Member Functions 
 
 public: 
 
-	// This will add the current definition of the body to the physics world. 
-	void m_AddToPhysicsWorld(b2World *world);
-
 	// This will be used to set the start pos for the object. 
-	void m_SetStartPos(float newX, float newY, float angle);
+	void m_SetStartAngle(float angle);
 
 	// This will be used to create a circular object. 
-	void m_CreateBallObject(float radius, bool dynamic);
+	void m_CreateBallObject(float radius, bool dynamic, b2World *world, float fXPos, float fYPos);
 
 	// This will  be used to create a rectangular object.
-	void m_CreateBoxObject(float width, float height, bool dynamic);
+	void m_CreateBoxObject(float width, float height, bool dynamic, b2World *world, float fXPos, float fYPos);
 
 	// This will be used to set the objects properties. 
 	void m_SetProperties(float density, float friction, float bouncyness);
@@ -104,6 +104,6 @@ public:
 	// This will allow access to the body of the physics object. 
 	b2Body *m_GetBody();
 
-	// THis will allow for easy access to the objects values, (Height, Width, Radius, X and Y). 
+	// This will allow for easy access to the objects values, (Height, Width, Radius, X and Y). 
 	values m_Get();
 };

@@ -16,6 +16,15 @@
 // Game Physics.
 #include <Box2D\Box2D.h>
 
+#ifndef SCALE_FACTOR
+// This will allow for items to be scaled easily. 
+#define SCALE_FACTOR 20.0f
+#endif
+
+#ifndef HALF
+// This will enable something to easily halfed (multiplyed by 0.5).
+#define HALF 0.5f
+#endif 
 
 #ifndef PI
 // This will create a definition for PI.
@@ -32,7 +41,3 @@
 #define DEGTORAD PI / 180
 #endif 
 
-#ifndef HALF
-// This will enable something to easily halfed (multiplyed by 0.5).
-#define HALF 0.5f
-#endif 

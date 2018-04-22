@@ -35,90 +35,66 @@ Level::~Level()
 */
 void Level::m_SetLevelBounds(float viewSizeX, float viewSizeY, b2World *world)
 {
-	// Locals : 
+	// Base Values 
 
-	Platform * tempPlatform; 
+	// Get Base Values 
+	float fBaseWidth = 0.5f, fBaseHeight = 0.5f;
 
-	// Set the base height and width for the platfoms. Get the correct size then multiply by 0.5f to get the half extents.
-	float fBaseWidth = ((viewSizeX * 0.05f) * 0.5f), fBaseHeight = ((viewSizeY * 0.05f) * 0.5f); 
+	Platform temp; 
 
-	// Top Bounds 
+	// Bottom Platform
 
-	tempPlatform = new Platform();
+	temp.m_SetStartAngle(0);
 
-	tempPlatform->m_SetPlatformSize(viewSizeX, fBaseHeight, false);
+	temp.m_CreateBoxObject(viewSizeX, fBaseHeight, false, world, (viewSizeX * HALF), viewSizeY - (fBaseHeight * HALF));
 
-	tempPlatform->m_SetPlatformPos(0.0f, 0.0f, 0.f);
+	temp.m_CreatePlatform(viewSizeX, fBaseHeight); 
 
-	tempPlatform->m_AddToPhysicsWorld(world);
+	v_Platforms.push_back(temp);
 
-	v_Platforms.push_back(*tempPlatform);
+	// Top Platform
 
-	// Bottom Bounds 
+	temp.m_SetStartAngle(0);
 
-	tempPlatform = new Platform();
+	temp.m_CreateBoxObject(viewSizeX, fBaseHeight, false, world, (viewSizeX * HALF), 0 - (fBaseHeight * HALF));
 
-	tempPlatform->m_SetPlatformSize(viewSizeX, fBaseHeight, false);
+	temp.m_CreatePlatform(viewSizeX, fBaseHeight);
 
-	tempPlatform->m_SetPlatformPos(0.0f, (viewSizeY - fBaseHeight), 0.f);
+	v_Platforms.push_back(temp);
 
-	tempPlatform->m_AddToPhysicsWorld(world);
+	// Left Platform
 
-	v_Platforms.push_back(*tempPlatform);
+	temp.m_SetStartAngle(90);
 
-	// Left Bounds
+	temp.m_CreateBoxObject(viewSizeY, fBaseWidth, false, world, (fBaseWidth * HALF), (viewSizeY * HALF));
 
-	tempPlatform = new Platform();
+	temp.m_CreatePlatform(viewSizeY, fBaseWidth);
 
-	tempPlatform->m_SetPlatformSize(fBaseWidth, viewSizeY, false);
+	v_Platforms.push_back(temp);
 
-	tempPlatform->m_SetPlatformPos(0.0f, 0.0f, 0.f);
+	// Right Platform
 
-	tempPlatform->m_AddToPhysicsWorld(world);
+	temp.m_SetStartAngle(90);
 
-	v_Platforms.push_back(*tempPlatform);
+	temp.m_CreateBoxObject(viewSizeY, fBaseWidth, false, world, viewSizeX - (fBaseWidth * HALF), 0 + (viewSizeY * HALF));
 
-	// Right Bounds 
+	temp.m_CreatePlatform(viewSizeY, fBaseWidth);
 
-	tempPlatform = new Platform();
+	v_Platforms.push_back(temp);
 
-	tempPlatform->m_SetPlatformSize(fBaseWidth, viewSizeY, false);
-
-	tempPlatform->m_SetPlatformPos((viewSizeX - fBaseWidth), 0.0f, 0.f);
-
-	tempPlatform->m_AddToPhysicsWorld(world);
-
-	v_Platforms.push_back(*tempPlatform);
-
-	// Angled platform.  
-
-	tempPlatform = new Platform();
-
-	tempPlatform->m_SetProperties(1.f, 0.3f, 0.1f);
-
-	tempPlatform->m_SetPlatformPos((viewSizeX * 0.1f), (viewSizeY * 0.6f), 15.f);
-
-	tempPlatform->m_SetPlatformSize(2.0f, (fBaseHeight * 0.5f), true);
-
-	tempPlatform->m_AddToPhysicsWorld(world);
-
-	v_Platforms.push_back(*tempPlatform);
-
-	// Delete temp Pointer
-
-	delete tempPlatform;
 
 }
 
-void Level::m_SetRopes(b2World * world)
+//-------------------------------------------------------------
+
+/*! Level One : This will hold the creation of the very first level, the test level (Codename Level 0). 
+\Param One - b2World : This will allow for the objects to be added into the physics world.
+*/
+void Level::m_LevelOne(b2World * world)
 {
-	Rope clRope; 
 
-	clRope.m_CreateRope(v_Platforms.at(0).m_GetBody(), 4, v_Platforms.at(4).m_GetBody(), world);
 
-	v_Ropes.push_back(clRope);
 }
-
 
 //-------------------------------------------------------------
 
@@ -127,19 +103,23 @@ void Level::m_SetRopes(b2World * world)
 */
 void Level::m_DrawLevel(sf::RenderWindow &window)
 {
-	if (v_Platforms.size() > 0)
-	{
-		for (unsigned int i = 0; i < v_Platforms.size(); i++)
-		{
-			v_Platforms.at(i).m_DrawPlatform(window);
-		}
-	}
+	// Draw Ropes.
 
 	if (v_Ropes.size() > 0)
 	{
 		for (unsigned int i = 0; i < v_Ropes.size(); i++)
 		{
 			v_Ropes.at(i).m_DrawRope(window);
+		}
+	}
+
+	// Draw Level Platforms. 
+
+	if (v_Platforms.size() > 0)
+	{
+		for (unsigned int i = 0; i < v_Platforms.size(); i++)
+		{
+			v_Platforms.at(i).m_DrawPlatform(window);
 		}
 	}
 }
@@ -151,6 +131,9 @@ void Level::m_DrawLevel(sf::RenderWindow &window)
 */
 void Level::m_UpdateLevel()
 {
+
+	// Update Platforms. 
+
 	if (v_Platforms.size() > 0)
 	{
 		for (unsigned int i = 0; i < v_Platforms.size(); i++)
@@ -158,6 +141,8 @@ void Level::m_UpdateLevel()
 			v_Platforms.at(i).m_UpdatePlatform();
 		}
 	}
+
+	// Update Ropes.
 
 	if (v_Ropes.size() > 0)
 	{

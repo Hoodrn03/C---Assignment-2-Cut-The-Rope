@@ -50,9 +50,12 @@ private:
 
 public:
 
-	void m_CreateRope(b2Body * firstBody, int iNumberOfSegments, b2Body * finalBody, b2World * world);
+	// This will be used to create a rope between two bodies. 
+	void m_CreateRope(b2Body * firstBody, int iNumberOfSegments, b2Body * finalBody, b2World * world, b2Vec2 initialAnchor, b2Vec2 finalAnchor);
 
+	// This will be used to draw the rope. 
 	void m_DrawRope(sf::RenderWindow & window);
 
+	// This will be used to update the position of the rope segments.
 	void m_UpdateRope(); 
 };
