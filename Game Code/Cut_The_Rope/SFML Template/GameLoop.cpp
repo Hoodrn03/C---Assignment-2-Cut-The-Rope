@@ -44,7 +44,7 @@ int GameLoop::m_MainGameLoop()
 
 	m_Level.m_SetLevelBounds(8, 6, m_World);
 
-	// m_Level.m_LevelOne(m_World); 
+	m_Level.m_LevelOne(m_World); 
 
 
 	// Start Game Loop. 

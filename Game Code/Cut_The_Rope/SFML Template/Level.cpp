@@ -92,7 +92,56 @@ void Level::m_SetLevelBounds(float viewSizeX, float viewSizeY, b2World *world)
 */
 void Level::m_LevelOne(b2World * world)
 {
+	//-------------------------------------------------------------\\
 
+	// Locals
+
+	Platform *temp; 
+
+	Rope *tempRope; 
+
+	//-------------------------------------------------------------\\
+	//							Platforms 
+	//-------------------------------------------------------------\\
+
+	// Suspended Platform
+
+	temp = new Platform();
+
+	temp->m_SetStartAngle(0);
+
+	temp->m_CreateBoxObject(3.f, 0.5f, true, world, 1.f, 2.f);
+
+	temp->m_CreatePlatform(3.f, 0.5f);
+
+	v_Platforms.push_back(*temp);
+
+	//-------------------------------------------------------------\\
+	//							Ropes 
+	//-------------------------------------------------------------\\
+
+	// First Rope.
+
+	tempRope = new Rope(); 
+
+	tempRope->m_CreateRope(v_Platforms.at(1).m_GetBody(), 3, v_Platforms.at(4).m_GetBody(), world, b2Vec2(-1.5f, 0.25f), b2Vec2(-1.f, 0));
+
+	v_Ropes.push_back(*tempRope);
+
+	// Second Rope.
+
+	tempRope = new Rope();
+
+	tempRope->m_CreateRope(v_Platforms.at(1).m_GetBody(), 3, v_Platforms.at(4).m_GetBody(), world, b2Vec2(1.5f, 0.25f), b2Vec2(1.f, 0));
+
+	v_Ropes.push_back(*tempRope);
+
+	//-------------------------------------------------------------\\
+
+	// Delete Pointers
+
+	delete temp;
+	delete tempRope;
 
 }
 

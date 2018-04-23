@@ -119,10 +119,10 @@ void Rope::m_CreateRope(b2Body * firstBody, int iNumberOfSegments, b2Body * fina
 			revoluteJointDef.localAnchorB.Set(-0.375f, 0);
 		}
 
-		// Create Final Joint
+		// Create Final Joint. 
 
-		revoluteJointDef.localAnchorA.Set(0.375f, 0);
-		revoluteJointDef.localAnchorB.Set(0, 0);
+		revoluteJointDef.localAnchorA.Set(0, 0);
+		revoluteJointDef.localAnchorB.Set(finalAnchor.x, finalAnchor.y);
 
 		revoluteJointDef.bodyA = v_RopeSegments.back();
 		revoluteJointDef.bodyB = finalBody;
