@@ -38,13 +38,12 @@ private:
 	// This will be used to hold all of the joints connecting all of the bodies. 
 	std::vector<b2RevoluteJoint*> v_RopeConnections;
 	
+	// This 
 	std::vector<sf::RectangleShape> v_RopeBoxes;
 
 	float m_fHeight = 0.1f; 
 	float m_fWidth = 0.5f; 
 
-	float m_fRopeX;
-	float m_fRopeY;
 
 	// Member Functions 
 

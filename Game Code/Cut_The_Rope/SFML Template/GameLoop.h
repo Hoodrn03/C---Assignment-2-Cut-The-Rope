@@ -38,22 +38,25 @@ private:
 	// This will be used to control all of the physics within the game. 
 	b2World * m_World;
 
+	// This will be used to check if the physics should be updated (World step). 
 	float32 m_fTimeStep = 1.0f / 60.0f;
 
+	// The number of velocity interation for the game, (Increase to improve accuracy, but may decrease performance). 
 	int32 m_iVelocityIterations = 7;
+
+	// The number of Position interation for the game, (Increase to improve accuracy, but may decrease performance). 
 	int32 m_iPositionIterations = 5;
 
+	// The current ellapsed time since last physics world step. 
 	float m_fElapsedTime; 
 
+	// The clock for keeping track of the current ellapsed time.
 	sf::Clock m_Clock; 
 
 	// Classes 
 
 	// Class containing all of the render window functionality. 
 	Window m_Window; 
-
-	// This will be the the player's object, the player's aim will be to get the ball to an end point on the level. 
-	Ball m_Ball;
 
 	// The level object will hold all of the level pieces for the game. 
 	Level m_Level;

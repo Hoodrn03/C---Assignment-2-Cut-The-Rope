@@ -96,9 +96,11 @@ void Level::m_LevelOne(b2World * world)
 
 	// Locals
 
-	Platform *temp; 
+	Platform *tempPlatform; 
 
 	Rope *tempRope; 
+
+	Ball *tempBall; 
 
 	//-------------------------------------------------------------\\
 	//							Platforms 
@@ -106,15 +108,35 @@ void Level::m_LevelOne(b2World * world)
 
 	// Suspended Platform
 
-	temp = new Platform();
+	tempPlatform = new Platform();
 
-	temp->m_SetStartAngle(0);
+	tempPlatform->m_SetStartAngle(0);
 
-	temp->m_CreateBoxObject(3.f, 0.5f, true, world, 1.f, 2.f);
+	tempPlatform->m_SetProperties(2.f, 0.5f, 0.0f);
 
-	temp->m_CreatePlatform(3.f, 0.5f);
+	tempPlatform->m_CreateBoxObject(3.f, 0.5f, true, world, 5.f, 4.f);
 
-	v_Platforms.push_back(*temp);
+	tempPlatform->m_CreatePlatform(3.f, 0.5f);
+
+	tempPlatform->m_SetColour(255, 0, 0);
+
+	v_Platforms.push_back(*tempPlatform);
+
+	//-------------------------------------------------------------\\
+	//							Balls 
+	//-------------------------------------------------------------\\
+
+	// First Ball 
+
+	tempBall = new Ball();
+
+	tempBall->m_SetProperties(0.5f, 0.3f, 0.5f);
+
+	tempBall->m_CreateBallObject(0.5f, true, world, 1.f, 1.f);
+
+	tempBall->m_SetBallRadius(0.25f);
+
+	v_Balls.push_back(*tempBall);
 
 	//-------------------------------------------------------------\\
 	//							Ropes 
@@ -124,7 +146,7 @@ void Level::m_LevelOne(b2World * world)
 
 	tempRope = new Rope(); 
 
-	tempRope->m_CreateRope(v_Platforms.at(1).m_GetBody(), 3, v_Platforms.at(4).m_GetBody(), world, b2Vec2(-1.5f, 0.25f), b2Vec2(-1.f, 0));
+	tempRope->m_CreateRope(v_Platforms.at(1).m_GetBody(), 5, v_Platforms.at(4).m_GetBody(), world, b2Vec2(-1.5f, 0.25f), b2Vec2(-1.f, 0));
 
 	v_Ropes.push_back(*tempRope);
 
@@ -132,7 +154,15 @@ void Level::m_LevelOne(b2World * world)
 
 	tempRope = new Rope();
 
-	tempRope->m_CreateRope(v_Platforms.at(1).m_GetBody(), 3, v_Platforms.at(4).m_GetBody(), world, b2Vec2(1.5f, 0.25f), b2Vec2(1.f, 0));
+	tempRope->m_CreateRope(v_Platforms.at(1).m_GetBody(), 5, v_Platforms.at(4).m_GetBody(), world, b2Vec2(1.5f, 0.25f), b2Vec2(1.f, 0));
+
+	v_Ropes.push_back(*tempRope);
+
+	// Third Rope
+
+	tempRope = new Rope();
+
+	tempRope->m_CreateRope(v_Platforms.at(1).m_GetBody(), 3, v_Balls.at(0).m_GetBody(), world, b2Vec2(-3.5f, 0.25f), b2Vec2(0, 0));
 
 	v_Ropes.push_back(*tempRope);
 
@@ -140,8 +170,9 @@ void Level::m_LevelOne(b2World * world)
 
 	// Delete Pointers
 
-	delete temp;
+	delete tempPlatform;
 	delete tempRope;
+	delete tempBall;
 
 }
 
@@ -169,6 +200,16 @@ void Level::m_DrawLevel(sf::RenderWindow &window)
 		for (unsigned int i = 0; i < v_Platforms.size(); i++)
 		{
 			v_Platforms.at(i).m_DrawPlatform(window);
+		}
+	}
+
+	// Draw Balls
+
+	if (v_Balls.size() > 0)
+	{
+		for (unsigned int i = 0; i < v_Balls.size(); i++)
+		{
+			v_Balls.at(i).m_DrawBall(window);
 		}
 	}
 }
@@ -201,4 +242,14 @@ void Level::m_UpdateLevel()
 		}
 	}
 	
+	// Update Balls
+
+	if (v_Balls.size() > 0)
+	{
+		for (unsigned int i = 0; i < v_Balls.size(); i++)
+		{
+			v_Balls.at(i).m_UpdateBall();
+		}
+	}
+
 }

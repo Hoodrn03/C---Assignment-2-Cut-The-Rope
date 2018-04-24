@@ -37,16 +37,20 @@ Rope::~Rope()
 void Rope::m_CreateRope(b2Body * firstBody, int iNumberOfSegments, b2Body * finalBody, b2World * world, b2Vec2 initialAnchor, b2Vec2 finalAnchor)
 {
 	
+	// If either if the bodies are null then the rest of the joining process is canceled. 
+
 	if (firstBody == nullptr || finalBody == nullptr)
 	{
 		std::cout << "Error Code 0001 : Problem Joining Two Bodies" << std::endl; 
 	}
 
+	// Joining Process 
+
 	else
 	{
 		// Create bases for the rope segments. 
 
-			// Create Body Def for the segments. 
+		// Create Body Def for the segments. 
 		b2BodyDef bodyDef;
 
 		bodyDef.type = b2_dynamicBody;
@@ -65,6 +69,7 @@ void Rope::m_CreateRope(b2Body * firstBody, int iNumberOfSegments, b2Body * fina
 
 		polygonShape.m_radius = 0.f;
 
+		// Assign a shape to the fixture
 		fixtureDef.shape = &polygonShape;
 
 		// Assign body to be the first body (A static object in the level). 
@@ -131,6 +136,11 @@ void Rope::m_CreateRope(b2Body * firstBody, int iNumberOfSegments, b2Body * fina
 	}
 }
 
+//-------------------------------------------------------------
+
+/*! Draw Rope : This will be used to draw the rope segments into the window. 
+\Param One - RenderWindow : this will be the window the item will be drawn onto. 
+*/
 void Rope::m_DrawRope(sf::RenderWindow & window)
 {
 	for (unsigned int i = 0; i < v_RopeBoxes.size(); i++)
@@ -139,14 +149,19 @@ void Rope::m_DrawRope(sf::RenderWindow & window)
 	}
 }
 
+//-------------------------------------------------------------
+
+/*! Update Rope : This will be used to update the position of the rope segments. 
+\
+*/
 void Rope::m_UpdateRope()
 {
 	for (unsigned int i = 0; i < v_RopeBoxes.size(); i++)
 	{
-
+		// Set box position. 
 		v_RopeBoxes.at(i).setPosition(sf::Vector2f(v_RopeSegments.at(i)->GetPosition().x, v_RopeSegments.at(i)->GetPosition().y));
 
+		// Set box rotation.  
 		v_RopeBoxes.at(i).setRotation(v_RopeSegments.at(i)->GetAngle() * RADTODEG);
-
 	}
 }

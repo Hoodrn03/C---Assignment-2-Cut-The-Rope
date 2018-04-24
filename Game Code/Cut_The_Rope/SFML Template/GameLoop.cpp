@@ -40,9 +40,7 @@ int GameLoop::m_MainGameLoop()
 
 	m_World = new b2World(m_Gravity);
 
-	m_Ball.m_CreateBallObject(0.25f, true, m_World, 1.5f, 2.f); 
-
-	m_Level.m_SetLevelBounds(8, 6, m_World);
+	m_Level.m_SetLevelBounds(10, 8, m_World);
 
 	m_Level.m_LevelOne(m_World); 
 
@@ -61,8 +59,6 @@ int GameLoop::m_MainGameLoop()
 			m_World->Step(m_fTimeStep, m_iVelocityIterations, m_iPositionIterations);
 		
 			// Update Positions.
-
-			m_Ball.m_UpdatePosition();
 
 			m_Level.m_UpdateLevel();
 
@@ -85,8 +81,6 @@ int GameLoop::m_MainGameLoop()
 		// Draw Items : Backgound items first. 
 
 		m_Level.m_DrawLevel(m_Window.m_GetWindow());
-
-		m_Ball.m_DrawBall(m_Window.m_GetWindow());
 
 		m_Window.m_GetWindow().display();
 

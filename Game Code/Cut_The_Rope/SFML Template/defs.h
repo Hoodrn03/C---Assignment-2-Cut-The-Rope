@@ -3,6 +3,9 @@
 * This file will contain all of the includes which will be used throughout the 
 * project. 
 *
+* This will also contain all of the definitions for the game, some items which will be used 
+* throughout the project. Items like the a simple def for PI. 
+*
 */
 
 #pragma once
@@ -15,11 +18,6 @@
 
 // Game Physics.
 #include <Box2D\Box2D.h>
-
-#ifndef SCALE_FACTOR
-// This will allow for items to be scaled easily. 
-#define SCALE_FACTOR 20.0f
-#endif
 
 #ifndef HALF
 // This will enable something to easily halfed (multiplyed by 0.5).

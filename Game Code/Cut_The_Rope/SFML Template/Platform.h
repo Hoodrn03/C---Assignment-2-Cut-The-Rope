@@ -30,16 +30,23 @@ public:
 
 private:
 
+	//The temp shape used for displaying the platform without the use of a texture or sprite. 
 	sf::RectangleShape m_TempPlatform; 
 
 	// Member Functions
 
 public:
 
+	// This will be used to draw the platform onto the window. 
 	void m_DrawPlatform(sf::RenderWindow &window);
 
+	// This will be used to create a platform ready to be displayed. 
 	void m_CreatePlatform(float width, float height);
 
+	// This will update the platforms current position. 
 	void m_UpdatePlatform(); 
+
+	// This will allow for the platform to be coloured. 
+	void m_SetColour(float r, float g, float b); 
 
 };

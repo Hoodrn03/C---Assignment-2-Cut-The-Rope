@@ -13,6 +13,7 @@
 
 #include "Platform.h"
 #include "Rope.h"
+#include "Ball.h"
 
 class Level
 {
@@ -38,8 +39,12 @@ private:
 	// This will be used to hold all of the platfoms in this current level. 
 	std::vector<Platform> v_Platforms;
 
+	// This will hold all of the ropes within the current level.
 	std::vector<Rope> v_Ropes;
 	
+	// This should hold all of the balls created for the level.
+	std::vector<Ball> v_Balls; 
+
 	// Member Functions
 
 public:

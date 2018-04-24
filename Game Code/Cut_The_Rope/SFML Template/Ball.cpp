@@ -21,8 +21,6 @@ Ball::Ball()
 	m_TempBall.setFillColor(sf::Color::Blue);
 	m_TempBall.setOutlineColor(sf::Color::Magenta);
 
-	// Set the values of friction, density and bouncyness. 
-	m_SetProperties(1.f, 0.3f, 0.5f);
 }
 
 //-------------------------------------------------------------
@@ -33,6 +31,17 @@ Ball::Ball()
 Ball::~Ball()
 {
 	
+}
+
+//-------------------------------------------------------------
+
+/*! Set Ball Radius : This will be used to set the balls in game radius. 
+\Param One - float : The new radius for the ball. 
+*/
+void Ball::m_SetBallRadius(float radius)
+{
+	m_TempBall.setRadius(radius);
+
 }
 
 //-------------------------------------------------------------
@@ -50,11 +59,11 @@ void Ball::m_DrawBall(sf::RenderWindow &window)
 /*! Update Position : This will be used to set the object's sfml sprites position to be equal to that of its b2Body.
 \
 */
-void Ball::m_UpdatePosition()
+void Ball::m_UpdateBall()
 {
 	// Update Position. 
 
-	m_TempBall.setPosition(m_Body->GetPosition().x, m_Body->GetPosition().y);
+	m_TempBall.setPosition(m_Body->GetPosition().x - (m_TempBall.getGlobalBounds().width * HALF), m_Body->GetPosition().y + (m_TempBall.getGlobalBounds().height * HALF));
 
 	// Update Rotation.
 

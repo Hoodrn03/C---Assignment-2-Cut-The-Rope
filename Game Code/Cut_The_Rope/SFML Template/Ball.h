@@ -6,6 +6,9 @@
 *
 * This class will hold all of the functionality for the ball, as well as the sprite and texture 
 * associated with the ball. 
+*
+* This class Inherits from Physics Object to gain access to the creation of a box 2d body and allows
+* for the ball to interact with other items in the 'physics world'. 
 * 
 */
 
@@ -32,20 +35,23 @@ public:
 
 private:
 
+	// This is the temp object used for displaying the ball without the need of a texture or sprite (It is a block colour). 
 	sf::CircleShape m_TempBall;
 
-	float m_fDensity = 1.0f; 
-	float m_fFriction = 0.3f;
-	float m_fBouncyness = 0.5f;
-
+	// This is the base size for the ball. 
 	float m_fBallSize = {0.25f};
 
 	// Member functions 
 
 public:
 
+	// This will be used to set the radius for the ball. 
+	void m_SetBallRadius(float radius);
+
+	// This will be used to draw the ball. 
 	void m_DrawBall(sf::RenderWindow &window); 
 
-	void m_UpdatePosition();
+	// This will be used to update the ball.
+	void m_UpdateBall();
 
 };
