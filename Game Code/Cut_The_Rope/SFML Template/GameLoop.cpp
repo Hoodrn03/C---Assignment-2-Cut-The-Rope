@@ -69,19 +69,26 @@ int GameLoop::m_MainGameLoop()
 
 		// Update Logic.
 
+		m_MouseTool.m_GetMousePos(m_Window.m_GetWindow());
 
+		m_MouseTool.m_UpdateMouse();
+
+		m_MouseTool.m_Cut(m_Window.m_GetWindow());
 
 		// Handle Events. 
 
 		m_EventHandler.m_HandleEvents(m_Window.m_GetWindow());
 
-
+		// Clear
 		m_Window.m_GetWindow().clear();
 
 		// Draw Items : Backgound items first. 
 
 		m_Level.m_DrawLevel(m_Window.m_GetWindow());
 
+		m_MouseTool.m_DrawMouseMarker(m_Window.m_GetWindow());
+
+		// Display 
 		m_Window.m_GetWindow().display();
 
 

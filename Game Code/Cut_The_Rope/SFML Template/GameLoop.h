@@ -13,6 +13,7 @@
 #include "Ball.h"
 #include "Level.h"
 #include "EventHandler.h"
+#include "MouseTool.h"
 
 class GameLoop
 {
@@ -63,6 +64,8 @@ private:
 
 	// This will be used to handle all of the events that occur within the game. 
 	EventHandler m_EventHandler; 
+
+	MouseTool m_MouseTool; 
 
 	// Member Functions 
 
