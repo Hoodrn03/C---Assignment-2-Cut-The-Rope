@@ -30,20 +30,23 @@ public:
 
 	// Data Members 
 
-private:
+
+public:
 
 	// This will be used to create the rope by connecting a bundle of bodies. 
 	std::vector<b2Body*> v_RopeSegments;
 
+	std::vector<sf::RectangleShape> v_RopeBoxes;
+
+private:
+
 	// This will be used to hold all of the joints connecting all of the bodies. 
 	std::vector<b2RevoluteJoint*> v_RopeConnections;
-	
-	// This 
-	std::vector<sf::RectangleShape> v_RopeBoxes;
 
 	float m_fHeight = 0.1f; 
 	float m_fWidth = 0.5f; 
 
+	bool m_BMarkedForDeleteion = false; 
 
 	// Member Functions 
 
@@ -57,4 +60,6 @@ public:
 
 	// This will be used to update the position of the rope segments.
 	void m_UpdateRope(); 
+
+	std::vector<b2Body*> &m_GetRopeSegments(); 
 };

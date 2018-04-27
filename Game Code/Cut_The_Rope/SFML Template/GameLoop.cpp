@@ -44,7 +44,6 @@ int GameLoop::m_MainGameLoop()
 
 	m_Level.m_LevelOne(m_World); 
 
-
 	// Start Game Loop. 
 
 	while (m_Window.m_GetWindow().isOpen())
@@ -75,6 +74,8 @@ int GameLoop::m_MainGameLoop()
 
 		m_MouseTool.m_Cut(m_Window.m_GetWindow());
 
+		
+
 		// Handle Events. 
 
 		m_EventHandler.m_HandleEvents(m_Window.m_GetWindow());
@@ -91,10 +92,22 @@ int GameLoop::m_MainGameLoop()
 		// Display 
 		m_Window.m_GetWindow().display();
 
-
 		// Delete Objects at End of Frame. 
+		m_Level.m_CheckForDeleteion(m_World);
 
 
+		// Check to see if the line intersects with any of the ropes. 
+
+		for (int j = 0; j < m_Level.NumberOfRopes; j++)
+		{
+			for (int i = 1; i < m_Level.v_Ropes.at(j).v_RopeSegments.size(); i++)
+			{
+				if (m_MouseTool.m_LineIntersect(sf::Vector2f(m_Level.m_CheckRope(j, i).x, m_Level.m_CheckRope(j, i).y - 0.5f), sf::Vector2f(m_Level.m_CheckRope(j, i).x, m_Level.m_CheckRope(j, i).y + 0.5f)))
+				{
+					m_Level.m_DeleteSegemnt(j, i, m_World);
+				}
+			}
+		}
 
 	}
 

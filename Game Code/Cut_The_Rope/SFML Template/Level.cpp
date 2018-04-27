@@ -150,6 +150,8 @@ void Level::m_LevelOne(b2World * world)
 
 	v_Ropes.push_back(*tempRope);
 
+	NumberOfRopes += 1;
+
 	// Second Rope.
 
 	tempRope = new Rope();
@@ -158,6 +160,8 @@ void Level::m_LevelOne(b2World * world)
 
 	v_Ropes.push_back(*tempRope);
 
+	NumberOfRopes += 1;
+
 	// Third Rope
 
 	tempRope = new Rope();
@@ -165,6 +169,8 @@ void Level::m_LevelOne(b2World * world)
 	tempRope->m_CreateRope(v_Platforms.at(1).m_GetBody(), 3, v_Balls.at(0).m_GetBody(), world, b2Vec2(-3.5f, 0.25f), b2Vec2(0, 0));
 
 	v_Ropes.push_back(*tempRope);
+
+	NumberOfRopes += 1;
 
 	//-------------------------------------------------------------\\
 
@@ -253,3 +259,34 @@ void Level::m_UpdateLevel()
 	}
 
 }
+
+void Level::m_CheckForDeleteion(b2World *world)
+{
+	if (v_Platforms.size() > 0)
+	{
+		for (unsigned int i = 0; i < v_Platforms.size(); i++)
+		{
+			v_Platforms.at(i).m_CheckForDeletion(world);
+		}
+	}
+}
+
+sf::Vector2f Level::m_CheckRope(int index, int segment)
+{
+	return sf::Vector2f(v_Ropes.at(index).m_GetRopeSegments().at(segment)->GetPosition().x, v_Ropes.at(index).m_GetRopeSegments().at(segment)->GetPosition().y);
+}
+
+void Level::m_DeleteSegemnt(int index, int segment, b2World *world)
+{
+	
+	world->DestroyBody(v_Ropes.at(index).v_RopeSegments.at(segment));
+
+	v_Ropes.at(index).v_RopeSegments.erase(v_Ropes.at(index).v_RopeSegments.begin() + segment); 
+
+	v_Ropes.at(index).v_RopeSegments.shrink_to_fit();
+
+	v_Ropes.at(index).v_RopeBoxes.pop_back();
+
+}
+
+

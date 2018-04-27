@@ -31,6 +31,10 @@ public:
 
 	// Data Members 
 
+public:
+
+	int NumberOfRopes = 0;
+
 private:
 
 
@@ -39,11 +43,13 @@ private:
 	// This will be used to hold all of the platfoms in this current level. 
 	std::vector<Platform> v_Platforms;
 
+	// This should hold all of the balls created for the level.
+	std::vector<Ball> v_Balls;
+
+public:
+
 	// This will hold all of the ropes within the current level.
 	std::vector<Rope> v_Ropes;
-	
-	// This should hold all of the balls created for the level.
-	std::vector<Ball> v_Balls; 
 
 	// Member Functions
 
@@ -60,5 +66,10 @@ public:
 
 	// This will be used to update all items in the level. 
 	void m_UpdateLevel();
+	
+	void m_CheckForDeleteion(b2World *world);
 
+	sf::Vector2f m_CheckRope(int index, int segment);
+
+	void m_DeleteSegemnt(int index, int segment, b2World *world);
 };

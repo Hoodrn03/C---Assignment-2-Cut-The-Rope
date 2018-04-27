@@ -85,6 +85,8 @@ protected:
 	// Initial Coordinates for the object. 
 	float m_fX, m_fY; 
 
+	bool m_MarkedForDeleteion = false; 
+
 	// Member Functions 
 
 public: 
@@ -106,4 +108,10 @@ public:
 
 	// This will allow for easy access to the objects values, (Height, Width, Radius, X and Y). 
 	values m_Get();
+
+	// This will be used to determine whether the object needs to be deleted. 
+	void m_MarkForDeletion(); 
+
+	// This will be used to check if any items need to be deteled at the end of the frame. 
+	bool m_CheckForDeletion(b2World * world);
 };

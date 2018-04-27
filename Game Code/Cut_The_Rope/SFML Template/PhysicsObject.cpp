@@ -176,4 +176,31 @@ values PhysicsObject::m_Get()
 	return v;
 }
 
+//-------------------------------------------------------------
+
+/*! Mark For Deletion : This will be used set a body to be deleted at the end of the frame. 
+\
+*/
+void PhysicsObject::m_MarkForDeletion()
+{
+	m_MarkedForDeleteion = true; 
+}
+
+//-------------------------------------------------------------
+
+/*! check For Deletion : This will be used to remove the body from the world. 
+\Param One - b2World : The world the body was apart of. 
+*/
+bool PhysicsObject::m_CheckForDeletion(b2World * world)
+{
+	if (m_MarkedForDeleteion)
+	{
+		world->DestroyBody(m_GetBody());
+
+		return true;
+	}
+
+	return false; 
+}
+
 

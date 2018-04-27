@@ -41,7 +41,7 @@ void Rope::m_CreateRope(b2Body * firstBody, int iNumberOfSegments, b2Body * fina
 
 	if (firstBody == nullptr || finalBody == nullptr)
 	{
-		std::cout << "Error Code 0001 : Problem Joining Two Bodies" << std::endl; 
+		std::cout << "Error Code 0001 : Problem Joining Two Bodies" << std::endl;
 	}
 
 	// Joining Process 
@@ -60,7 +60,9 @@ void Rope::m_CreateRope(b2Body * firstBody, int iNumberOfSegments, b2Body * fina
 		// Create a Fixture Def for the segments. 
 		b2FixtureDef fixtureDef;
 
-		fixtureDef.density = 1;
+		fixtureDef.density = 0.2;
+		fixtureDef.friction = 0.3; 
+		fixtureDef.restitution = 0.25f;
 
 		// Create the shape for the rope. 
 		b2PolygonShape polygonShape;
@@ -95,7 +97,6 @@ void Rope::m_CreateRope(b2Body * firstBody, int iNumberOfSegments, b2Body * fina
 		box.setOrigin(0.5f, 0.15f);
 
 		box.setFillColor(sf::Color::Magenta);
-
 
 		// Create n number of rope segments.
 		for (int i = 0; i <= iNumberOfSegments; i++)
@@ -156,7 +157,7 @@ void Rope::m_DrawRope(sf::RenderWindow & window)
 */
 void Rope::m_UpdateRope()
 {
-	for (unsigned int i = 0; i < v_RopeBoxes.size(); i++)
+	for (unsigned int i = 0; i < v_RopeSegments.size() - 1; i++)
 	{
 		// Set box position. 
 		v_RopeBoxes.at(i).setPosition(sf::Vector2f(v_RopeSegments.at(i)->GetPosition().x, v_RopeSegments.at(i)->GetPosition().y));
@@ -164,4 +165,17 @@ void Rope::m_UpdateRope()
 		// Set box rotation.  
 		v_RopeBoxes.at(i).setRotation(v_RopeSegments.at(i)->GetAngle() * RADTODEG);
 	}
+
+	if (v_RopeSegments.size() != v_RopeBoxes.size() + 1)
+	{
+		v_RopeBoxes.pop_back(); 
+	}
+
 }
+
+std::vector<b2Body*> &Rope::m_GetRopeSegments()
+{
+	return v_RopeSegments;
+}
+
+

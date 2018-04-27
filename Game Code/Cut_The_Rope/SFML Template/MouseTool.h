@@ -42,6 +42,8 @@ private:
 	// This will display the line the player made. 
 	sf::VertexArray m_Line; 
 
+	float m_LineDist; 
+
 	// Member Functions 
 
 public:
@@ -60,5 +62,9 @@ public:
 
 	// This will be used to create a line between the two player defined points. 
 	void m_CreateLine();
+
+	bool m_LineIntersect(sf::Vector2f p2, sf::Vector2f p3);
+
+	void m_DrawLineIntersect(sf::Vector2f p0, sf::Vector2f p1, sf::Vector2f p2, sf::Vector2f p3, sf::RenderWindow &window);
 
 };
