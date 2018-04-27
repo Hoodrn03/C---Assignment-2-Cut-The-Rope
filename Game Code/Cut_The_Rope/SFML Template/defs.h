@@ -39,4 +39,5 @@
 #define DEGTORAD PI / 180
 #endif 
 
-
+// This will allow for items to be tagged.
+enum tag {ball, platform, rope, endPoint};

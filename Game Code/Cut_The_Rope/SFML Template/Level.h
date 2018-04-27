@@ -33,6 +33,7 @@ public:
 
 public:
 
+	// This will be used to keep track of how many ropes are in the level. 
 	int NumberOfRopes = 0;
 
 private:
@@ -67,9 +68,12 @@ public:
 	// This will be used to update all items in the level. 
 	void m_UpdateLevel();
 	
+	// This will check all of the items for ones that need deleting. 
 	void m_CheckForDeleteion(b2World *world);
 
+	// This will be used to check the ropes for intersections. 
 	sf::Vector2f m_CheckRope(int index, int segment);
 
+	// This will be used to remove rope segements from the game. 
 	void m_DeleteSegemnt(int index, int segment, b2World *world);
 };

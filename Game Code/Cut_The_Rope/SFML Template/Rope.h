@@ -48,6 +48,8 @@ private:
 
 	bool m_BMarkedForDeleteion = false; 
 
+	tag m_Tag = { rope }; 
+
 	// Member Functions 
 
 public:
@@ -60,6 +62,4 @@ public:
 
 	// This will be used to update the position of the rope segments.
 	void m_UpdateRope(); 
-
-	std::vector<b2Body*> &m_GetRopeSegments(); 
 };

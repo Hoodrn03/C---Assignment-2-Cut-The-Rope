@@ -260,6 +260,11 @@ void Level::m_UpdateLevel()
 
 }
 
+//-------------------------------------------------------------
+
+/*! Check For Deleteion : THis will be used to check if any items need to be removed from the game world
+\Param One - b2World : The world the items were a part of. 
+*/
 void Level::m_CheckForDeleteion(b2World *world)
 {
 	if (v_Platforms.size() > 0)
@@ -271,11 +276,24 @@ void Level::m_CheckForDeleteion(b2World *world)
 	}
 }
 
+//-------------------------------------------------------------
+
+/*! Check Rope : This will be used to check if any ropes are intersecting with a player defined line. 
+\Param One - int : The index for which group of rope segements. 
+\Param Two - int : Which segment of rope to check. 
+*/
 sf::Vector2f Level::m_CheckRope(int index, int segment)
 {
-	return sf::Vector2f(v_Ropes.at(index).m_GetRopeSegments().at(segment)->GetPosition().x, v_Ropes.at(index).m_GetRopeSegments().at(segment)->GetPosition().y);
+	return sf::Vector2f(v_Ropes.at(index).v_RopeSegments.at(segment)->GetPosition().x, v_Ropes.at(index).v_RopeSegments.at(segment)->GetPosition().y);
 }
 
+//-------------------------------------------------------------
+
+/*! Delete Segement : THis will b eused t remove a specific segment from the vector of ropes. 
+\Param One - int : The index for which group of rope segements.
+\Param Two - int : Which segment of rope to check.
+\Param Three - b2World : The world allowong for the destruction of the body. 
+*/
 void Level::m_DeleteSegemnt(int index, int segment, b2World *world)
 {
 	

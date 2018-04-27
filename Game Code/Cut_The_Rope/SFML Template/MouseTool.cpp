@@ -168,11 +168,15 @@ bool MouseTool::m_LineIntersect(sf::Vector2f p2, sf::Vector2f p3)
 		float l_rx1 = (l_IntersectionPoint.x - p2.x) / (p3.x - p2.x);
 		float l_ry1 = (l_IntersectionPoint.y - p2.y) / (p3.y - p2.y);
 
+		// Segments either intersect or they don't. 
+
 		if (((l_rx0 >= 0 && l_rx0 <= 1) || (l_ry0 >= 0 && l_ry0 <= 1)) &&
 			((l_rx1 >= 0 && l_rx1 <= 1) || (l_ry1 >= 0 && l_ry1 <= 1)))
 		{
 
 			std::cout << "Segment Intersect : True" << std::endl;
+
+			m_Line.clear();
 
 			return true;
 		}
@@ -180,8 +184,6 @@ bool MouseTool::m_LineIntersect(sf::Vector2f p2, sf::Vector2f p3)
 		else
 		{
 			std::cout << "Segment Intersect : False" << std::endl;
-
-			return false;
 		}
 	}
 

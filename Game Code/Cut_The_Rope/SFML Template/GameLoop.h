@@ -54,7 +54,9 @@ private:
 	// The clock for keeping track of the current ellapsed time.
 	sf::Clock m_Clock; 
 
+	//-------------------------------------------------------------\\
 	// Classes 
+	//-------------------------------------------------------------//
 
 	// Class containing all of the render window functionality. 
 	Window m_Window; 
@@ -65,6 +67,7 @@ private:
 	// This will be used to handle all of the events that occur within the game. 
 	EventHandler m_EventHandler; 
 
+	// This will be used to handle all of the mouse functionality, (mainly cutting the ropes). 
 	MouseTool m_MouseTool; 
 
 	// Member Functions 
@@ -73,8 +76,5 @@ public:
 
 	// Main Game loop for the project. 
 	int m_MainGameLoop();
-
-
-
 
 };

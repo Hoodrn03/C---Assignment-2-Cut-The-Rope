@@ -60,8 +60,8 @@ void Rope::m_CreateRope(b2Body * firstBody, int iNumberOfSegments, b2Body * fina
 		// Create a Fixture Def for the segments. 
 		b2FixtureDef fixtureDef;
 
-		fixtureDef.density = 0.2;
-		fixtureDef.friction = 0.3; 
+		fixtureDef.density = 0.2f;
+		fixtureDef.friction = 0.3f; 
 		fixtureDef.restitution = 0.25f;
 
 		// Create the shape for the rope. 
@@ -173,9 +173,5 @@ void Rope::m_UpdateRope()
 
 }
 
-std::vector<b2Body*> &Rope::m_GetRopeSegments()
-{
-	return v_RopeSegments;
-}
 
 
