@@ -14,6 +14,7 @@
 #include "Platform.h"
 #include "Rope.h"
 #include "Ball.h"
+#include "EndPoint.h"
 
 class Level
 {
@@ -46,6 +47,8 @@ private:
 
 	// This should hold all of the balls created for the level.
 	std::vector<Ball> v_Balls;
+
+	std::vector<EndPoint> v_EndPoints; 
 
 public:
 

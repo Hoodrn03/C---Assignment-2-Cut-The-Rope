@@ -33,8 +33,6 @@ private:
 	//The temp shape used for displaying the platform without the use of a texture or sprite. 
 	sf::RectangleShape m_TempPlatform; 
 
-	tag m_Tag = { platform }; 
-
 	// Member Functions
 
 public:

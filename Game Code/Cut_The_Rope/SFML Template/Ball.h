@@ -41,9 +41,6 @@ private:
 	// This is the base size for the ball. 
 	float m_fBallSize = {0.25f};
 
-	// This will tag the ball. Used for sensor checking. 
-	tag m_Tag = { ball };
-
 	// Member functions 
 
 public:

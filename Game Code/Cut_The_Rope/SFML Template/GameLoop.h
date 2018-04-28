@@ -14,6 +14,7 @@
 #include "Level.h"
 #include "EventHandler.h"
 #include "MouseTool.h"
+#include "ContactListner.h"
 
 class GameLoop
 {
@@ -66,6 +67,8 @@ private:
 
 	// This will be used to handle all of the events that occur within the game. 
 	EventHandler m_EventHandler; 
+
+	ContactListner m_ContactListner;
 
 	// This will be used to handle all of the mouse functionality, (mainly cutting the ropes). 
 	MouseTool m_MouseTool; 

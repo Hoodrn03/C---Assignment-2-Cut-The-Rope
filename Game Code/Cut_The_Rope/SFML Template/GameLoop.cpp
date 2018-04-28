@@ -40,6 +40,8 @@ int GameLoop::m_MainGameLoop()
 
 	m_World = new b2World(m_Gravity);
 
+	m_World->SetContactListener(&m_ContactListner);
+
 	m_Level.m_SetLevelBounds(10, 8, m_World);
 
 	m_Level.m_LevelOne(m_World); 
@@ -98,7 +100,7 @@ int GameLoop::m_MainGameLoop()
 
 		// Check to see if the line intersects with any of the ropes and delete them. 
 
-		for (unsigned int j = 0; j < m_Level.NumberOfRopes; j++)
+		for (int j = 0; j < m_Level.NumberOfRopes; j++)
 		{
 			for (unsigned int i = 1; i < m_Level.v_Ropes.at(j).v_RopeSegments.size(); i++)
 			{

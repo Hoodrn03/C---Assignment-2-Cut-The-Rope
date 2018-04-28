@@ -28,7 +28,24 @@ PhysicsObject::~PhysicsObject()
 
 //-------------------------------------------------------------
 
-/*! Set Start Pos : This will set the starting position for the physics object. 
+/*! Set Tag : This will be used to set the tag for the physics object. 
+\Param One - tag : This is an enum with a variety of different tags which can be used. 
+*/
+void PhysicsObject::m_SetTag(tag newTag)
+{
+	m_Tag = newTag;
+
+	std::cout << newTag << std::endl;
+}
+
+tag PhysicsObject::m_GetTag()
+{
+	return m_Tag;
+}
+
+//-------------------------------------------------------------
+
+/*! Set Start Pos : This will set the starting position for the physics object.
 \Param One - float : the new x coordinate.
 \Param Two - float : the new y coordinate.
 \Param Three - float : the angle for the object. 
@@ -67,7 +84,6 @@ void PhysicsObject::m_CreateBallObject(float radius, bool dynamic, b2World *worl
 
 	m_Body = world->CreateBody(&m_BodyDef);
 	m_Body->CreateFixture(&m_FixtureDef);
-
 }
 
 //-------------------------------------------------------------
@@ -111,7 +127,6 @@ void PhysicsObject::m_CreateBoxObject(float width, float height, bool dynamic, b
 
 	m_Body = world->CreateBody(&m_BodyDef);
 	m_Body->CreateFixture(&m_FixtureDef);
-
 }
 
 //-------------------------------------------------------------
@@ -157,7 +172,7 @@ values PhysicsObject::m_Get()
 			{ m_fWidth },					// Width 
 			{ m_fRadius },					// Radius
 			{ m_Body->GetPosition().x },	// X 
-			{ m_Body->GetPosition().y }		// Y
+			{ m_Body->GetPosition().y },	// Y
 		};
 	}
 	else
@@ -168,7 +183,7 @@ values PhysicsObject::m_Get()
 			{ NULL },	// Width 
 			{ NULL },	// Radius
 			{ NULL },	// X 
-			{ NULL }	// Y
+			{ NULL },	// Y
 		};
 	}
 
@@ -184,11 +199,13 @@ values PhysicsObject::m_Get()
 void PhysicsObject::m_MarkForDeletion()
 {
 	m_MarkedForDeleteion = true; 
+
+	std::cout << "Mark Of Death" << std::endl;
 }
 
 //-------------------------------------------------------------
 
-/*! check For Deletion : This will be used to remove the body from the world. 
+/*! Check For Deletion : This will be used to remove the body from the world. 
 \Param One - b2World : The world the body was apart of. 
 */
 bool PhysicsObject::m_CheckForDeletion(b2World * world)
@@ -201,6 +218,31 @@ bool PhysicsObject::m_CheckForDeletion(b2World * world)
 	}
 
 	return false; 
+}
+
+//-------------------------------------------------------------
+
+/*! Add Sensor : This will be used to add a sensor to a body. 
+\Param One - b2CircleShape : This is the size of the circular radius sensor. 
+*/
+void PhysicsObject::m_AddSensor(b2CircleShape newShape)
+{
+	b2FixtureDef newSensor; 
+
+	newSensor.shape = &newShape; 
+
+	newSensor.isSensor = true; 
+
+	newSensor.filter.categoryBits = SENSOR_ENTITY; 
+
+	newSensor.filter.maskBits = BALL_ENTITY; 
+
+	m_Body->CreateFixture(&newSensor); 
+}
+
+void PhysicsObject::m_SetData(void* data)
+{
+	m_Body->SetUserData(data);
 }
 
 

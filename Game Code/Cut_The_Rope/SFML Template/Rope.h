@@ -48,8 +48,6 @@ private:
 
 	bool m_BMarkedForDeleteion = false; 
 
-	tag m_Tag = { rope }; 
-
 	// Member Functions 
 
 public:

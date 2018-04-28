@@ -40,47 +40,97 @@ void Level::m_SetLevelBounds(float viewSizeX, float viewSizeY, b2World *world)
 	// Get Base Values 
 	float fBaseWidth = 0.5f, fBaseHeight = 0.5f;
 
-	Platform temp; 
+	Platform *temp; 
+
+	Ball *tempBall;
 
 	// Bottom Platform
 
-	temp.m_SetStartAngle(0);
+	temp = new Platform();
 
-	temp.m_CreateBoxObject(viewSizeX, fBaseHeight, false, world, (viewSizeX * HALF), viewSizeY - (fBaseHeight * HALF));
+	temp->m_SetTag(NULL_VALUE);
 
-	temp.m_CreatePlatform(viewSizeX, fBaseHeight); 
+	temp->m_SetStartAngle(0);
 
-	v_Platforms.push_back(temp);
+	temp->m_CreateBoxObject(viewSizeX, fBaseHeight, false, world, (viewSizeX * HALF), viewSizeY - (fBaseHeight * HALF));
+
+	temp->m_CreatePlatform(viewSizeX, fBaseHeight); 
+
+	temp->m_SetData(temp);
+
+	v_Platforms.push_back(*temp);
 
 	// Top Platform
 
-	temp.m_SetStartAngle(0);
+	temp = new Platform();
 
-	temp.m_CreateBoxObject(viewSizeX, fBaseHeight, false, world, (viewSizeX * HALF), 0 - (fBaseHeight * HALF));
+	temp->m_SetTag(NULL_VALUE);
 
-	temp.m_CreatePlatform(viewSizeX, fBaseHeight);
+	temp->m_SetStartAngle(0);
 
-	v_Platforms.push_back(temp);
+	temp->m_CreateBoxObject(viewSizeX, fBaseHeight, false, world, (viewSizeX * HALF), 0 - (fBaseHeight * HALF));
+
+	temp->m_CreatePlatform(viewSizeX, fBaseHeight);
+
+	temp->m_SetData(temp);
+
+	v_Platforms.push_back(*temp);
 
 	// Left Platform
 
-	temp.m_SetStartAngle(90);
+	temp = new Platform();
 
-	temp.m_CreateBoxObject(viewSizeY, fBaseWidth, false, world, (fBaseWidth * HALF), (viewSizeY * HALF));
+	temp->m_SetTag(NULL_VALUE);
 
-	temp.m_CreatePlatform(viewSizeY, fBaseWidth);
+	temp->m_SetStartAngle(90);
 
-	v_Platforms.push_back(temp);
+	temp->m_CreateBoxObject(viewSizeY, fBaseWidth, false, world, (fBaseWidth * HALF), (viewSizeY * HALF));
+
+	temp->m_CreatePlatform(viewSizeY, fBaseWidth);
+
+	temp->m_SetData(temp);
+
+	v_Platforms.push_back(*temp);
 
 	// Right Platform
 
-	temp.m_SetStartAngle(90);
+	temp = new Platform();
 
-	temp.m_CreateBoxObject(viewSizeY, fBaseWidth, false, world, viewSizeX - (fBaseWidth * HALF), 0 + (viewSizeY * HALF));
+	temp->m_SetTag(NULL_VALUE);
 
-	temp.m_CreatePlatform(viewSizeY, fBaseWidth);
+	temp->m_SetStartAngle(90);
 
-	v_Platforms.push_back(temp);
+	temp->m_CreateBoxObject(viewSizeY, fBaseWidth, false, world, viewSizeX - (fBaseWidth * HALF), 0 + (viewSizeY * HALF));
+
+	temp->m_CreatePlatform(viewSizeY, fBaseWidth);
+
+	temp->m_SetData(temp);
+
+	v_Platforms.push_back(*temp);
+
+	// Ball 
+
+	tempBall = new Ball();
+
+	tempBall->name = "Boop"; 
+
+	tempBall->m_SetProperties(0.5f, 0.3f, 0.75f);
+
+	tempBall->m_SetTag(BALL_ENTITY);
+
+	tempBall->m_CreateBallObject(0.5f, true, world, 1.f, 1.f);
+
+	tempBall->m_SetBallRadius(0.25f);
+
+	tempBall->m_SetData(tempBall);
+
+	v_Balls.push_back(*tempBall);
+
+	// Delete Pointers. 
+
+	delete tempBall;
+
+	delete temp;
 
 
 }
@@ -100,7 +150,7 @@ void Level::m_LevelOne(b2World * world)
 
 	Rope *tempRope; 
 
-	Ball *tempBall; 
+	EndPoint *tempEndPoint; 
 
 	//-------------------------------------------------------------\\
 	//							Platforms 
@@ -109,6 +159,12 @@ void Level::m_LevelOne(b2World * world)
 	// Suspended Platform
 
 	tempPlatform = new Platform();
+
+	/*
+
+	tempPlatform->name = "Platform"; 
+
+	tempPlatform->m_SetTag(NULL_VALUE); 
 
 	tempPlatform->m_SetStartAngle(0);
 
@@ -120,23 +176,43 @@ void Level::m_LevelOne(b2World * world)
 
 	tempPlatform->m_SetColour(255, 0, 0);
 
+	tempPlatform->m_SetData(&tempPlatform);
+
 	v_Platforms.push_back(*tempPlatform);
 
+	*/
+
 	//-------------------------------------------------------------\\
-	//							Balls 
+	//						EndPoint 
 	//-------------------------------------------------------------\\
 
-	// First Ball 
+	// End Point. 
 
-	tempBall = new Ball();
+	tempEndPoint = new EndPoint;
 
-	tempBall->m_SetProperties(0.5f, 0.3f, 0.5f);
+	tempEndPoint->name = "EndPoint";
 
-	tempBall->m_CreateBallObject(0.5f, true, world, 1.f, 1.f);
+	tempEndPoint->m_SetTag(SENSOR_ENTITY);
 
-	tempBall->m_SetBallRadius(0.25f);
+	tempEndPoint->m_SetStartAngle(0);
 
-	v_Balls.push_back(*tempBall);
+	tempEndPoint->m_SetProperties(0.5f, 0.3f, 0.f); 
+
+	tempEndPoint->m_CreateBoxObject(1.f, 1.f, true, world, 6.f, 6.f); 
+
+	tempEndPoint->m_CreateEndPoint(1.f, 1.f);
+
+	tempEndPoint->m_SetColour(0, 255, 0);
+
+	b2CircleShape cShape; 
+
+	cShape.m_radius = 2.f;
+
+	tempEndPoint->m_AddSensor(cShape);
+
+	tempEndPoint->m_SetData(tempEndPoint);
+
+	v_EndPoints.push_back(*tempEndPoint);
 
 	//-------------------------------------------------------------\\
 	//							Ropes 
@@ -144,13 +220,15 @@ void Level::m_LevelOne(b2World * world)
 
 	// First Rope.
 
-	tempRope = new Rope(); 
+	tempRope = new Rope();
 
-	tempRope->m_CreateRope(v_Platforms.at(1).m_GetBody(), 5, v_Platforms.at(4).m_GetBody(), world, b2Vec2(-1.5f, 0.25f), b2Vec2(-1.f, 0));
+	tempRope->m_CreateRope(v_Platforms.at(1).m_GetBody(), 3, v_Balls.at(0).m_GetBody(), world, b2Vec2(3.5f, 0.25f), b2Vec2(0, 0));
 
 	v_Ropes.push_back(*tempRope);
 
 	NumberOfRopes += 1;
+
+	/*
 
 	// Second Rope.
 
@@ -166,11 +244,13 @@ void Level::m_LevelOne(b2World * world)
 
 	tempRope = new Rope();
 
-	tempRope->m_CreateRope(v_Platforms.at(1).m_GetBody(), 3, v_Balls.at(0).m_GetBody(), world, b2Vec2(-3.5f, 0.25f), b2Vec2(0, 0));
+	tempRope->m_CreateRope(v_Platforms.at(1).m_GetBody(), 5, v_Platforms.at(4).m_GetBody(), world, b2Vec2(-1.5f, 0.25f), b2Vec2(-1.f, 0));
 
 	v_Ropes.push_back(*tempRope);
 
 	NumberOfRopes += 1;
+
+	*/
 
 	//-------------------------------------------------------------\\
 
@@ -178,7 +258,7 @@ void Level::m_LevelOne(b2World * world)
 
 	delete tempPlatform;
 	delete tempRope;
-	delete tempBall;
+	delete tempEndPoint;
 
 }
 
@@ -209,6 +289,16 @@ void Level::m_DrawLevel(sf::RenderWindow &window)
 		}
 	}
 
+	// Draw End Points. 
+
+	if (v_EndPoints.size() > 0)
+	{
+		for (unsigned int i = 0; i < v_EndPoints.size(); i++)
+		{
+			v_EndPoints.at(i).m_DrawEndPoint(window);
+		}
+	}
+
 	// Draw Balls
 
 	if (v_Balls.size() > 0)
@@ -235,6 +325,16 @@ void Level::m_UpdateLevel()
 		for (unsigned int i = 0; i < v_Platforms.size(); i++)
 		{
 			v_Platforms.at(i).m_UpdatePlatform();
+		}
+	}
+
+	// Draw End Points. 
+
+	if (v_EndPoints.size() > 0)
+	{
+		for (unsigned int i = 0; i < v_EndPoints.size(); i++)
+		{
+			v_EndPoints.at(i).m_UpdateEndPoint();
 		}
 	}
 
@@ -271,7 +371,23 @@ void Level::m_CheckForDeleteion(b2World *world)
 	{
 		for (unsigned int i = 0; i < v_Platforms.size(); i++)
 		{
-			v_Platforms.at(i).m_CheckForDeletion(world);
+			if (v_Platforms.at(i).m_CheckForDeletion(world))
+			{
+				std::cout << "Destroyed" << std::endl;
+
+				v_Platforms.erase(v_Platforms.begin() + i);
+			}
+		}
+	}
+
+	if (v_Balls.size() > 0)
+	{
+		for (unsigned int i = 0; i < v_Balls.size(); i++)
+		{
+			if (v_Balls.at(i).m_CheckForDeletion(world))
+			{
+				v_Balls.erase(v_Balls.begin() + i);
+			}
 		}
 	}
 }

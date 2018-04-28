@@ -40,4 +40,9 @@
 #endif 
 
 // This will allow for items to be tagged.
-enum tag {ball, platform, rope, endPoint};
+enum tag {
+
+	NULL_VALUE =		0x0001,
+	BALL_ENTITY =		0x0011,
+	SENSOR_ENTITY =		0x0075
+};

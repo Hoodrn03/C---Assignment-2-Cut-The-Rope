@@ -9,7 +9,6 @@
 
 #include "defs.h"
 
-
 //! Values : This will be used to get the values accociated with the physics object. 
 struct values
 {
@@ -46,6 +45,12 @@ public:
 	~PhysicsObject();
 
 	// Data Members 
+
+public:
+
+	tag m_Tag = NULL_VALUE;
+
+	std::string name = ""; 
 
 protected:
 
@@ -91,6 +96,10 @@ protected:
 
 public: 
 
+	void m_SetTag(tag newTag);
+
+	tag m_GetTag();
+
 	// This will be used to set the start pos for the object. 
 	void m_SetStartAngle(float angle);
 
@@ -114,4 +123,9 @@ public:
 
 	// This will be used to check if any items need to be deteled at the end of the frame. 
 	bool m_CheckForDeletion(b2World * world);
+
+	// This will allow for the easy addition of a sensor to an existing body. 
+	void m_AddSensor(b2CircleShape newShape); 
+
+	void m_SetData(void* data);
 };

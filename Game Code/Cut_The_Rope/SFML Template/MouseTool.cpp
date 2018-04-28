@@ -153,7 +153,7 @@ bool MouseTool::m_LineIntersect(sf::Vector2f p2, sf::Vector2f p3)
 
 		if (l_fDenominator == 0)
 		{
-			std::cout << "Segment Intersect : False" << std::endl;
+			// std::cout << "Segment Intersect : False" << std::endl;
 
 			return false;
 		}
@@ -174,7 +174,7 @@ bool MouseTool::m_LineIntersect(sf::Vector2f p2, sf::Vector2f p3)
 			((l_rx1 >= 0 && l_rx1 <= 1) || (l_ry1 >= 0 && l_ry1 <= 1)))
 		{
 
-			std::cout << "Segment Intersect : True" << std::endl;
+			// std::cout << "Segment Intersect : True" << std::endl;
 
 			m_Line.clear();
 
@@ -183,7 +183,7 @@ bool MouseTool::m_LineIntersect(sf::Vector2f p2, sf::Vector2f p3)
 
 		else
 		{
-			std::cout << "Segment Intersect : False" << std::endl;
+			// std::cout << "Segment Intersect : False" << std::endl;
 		}
 	}
 

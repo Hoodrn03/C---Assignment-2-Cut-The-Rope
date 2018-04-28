@@ -152,6 +152,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Ball.cpp" />
+    <ClCompile Include="ContactListner.cpp" />
     <ClCompile Include="EndPoint.cpp" />
     <ClCompile Include="EventHandler.cpp" />
     <ClCompile Include="GameLoop.cpp" />
@@ -165,6 +166,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ball.h" />
+    <ClInclude Include="ContactListner.h" />
     <ClInclude Include="defs.h" />
     <ClInclude Include="EndPoint.h" />
     <ClInclude Include="EventHandler.h" />
