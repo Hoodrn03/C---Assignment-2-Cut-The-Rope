@@ -28,6 +28,8 @@ public:
 
 private:
 
+	bool m_bBallReachedZone = false; 
+
 	// Member Functions 
 
 public:
@@ -37,4 +39,6 @@ public:
 	void EndContact(b2Contact* contact); 
 
 	bool m_GetBallAndEndPoint(b2Contact* contact, PhysicsObject*& ballEntity, PhysicsObject*& EndPointEntity);
+
+	bool m_GameEnd(); 
 };

@@ -34,12 +34,16 @@ PhysicsObject::~PhysicsObject()
 void PhysicsObject::m_SetTag(tag newTag)
 {
 	m_Tag = newTag;
-
-	std::cout << newTag << std::endl;
 }
 
+//-------------------------------------------------------------
+
+/*! Get Tag : This will be used to get the tag accociated with this object. 
+\
+*/
 tag PhysicsObject::m_GetTag()
 {
+
 	return m_Tag;
 }
 
@@ -173,6 +177,7 @@ values PhysicsObject::m_Get()
 			{ m_fRadius },					// Radius
 			{ m_Body->GetPosition().x },	// X 
 			{ m_Body->GetPosition().y },	// Y
+			{ m_Tag }						// The tag for the object. 
 		};
 	}
 	else
@@ -184,6 +189,7 @@ values PhysicsObject::m_Get()
 			{ NULL },	// Radius
 			{ NULL },	// X 
 			{ NULL },	// Y
+			{ NULL_VALUE }
 		};
 	}
 
@@ -199,8 +205,6 @@ values PhysicsObject::m_Get()
 void PhysicsObject::m_MarkForDeletion()
 {
 	m_MarkedForDeleteion = true; 
-
-	std::cout << "Mark Of Death" << std::endl;
 }
 
 //-------------------------------------------------------------

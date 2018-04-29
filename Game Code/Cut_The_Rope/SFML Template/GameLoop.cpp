@@ -76,7 +76,10 @@ int GameLoop::m_MainGameLoop()
 
 		m_MouseTool.m_Cut(m_Window.m_GetWindow());
 
-		
+		if (m_ContactListner.m_GameEnd())
+		{
+			this->m_MainMenu();
+		}
 
 		// Handle Events. 
 
@@ -110,6 +113,31 @@ int GameLoop::m_MainGameLoop()
 				}
 			}
 		}
+
+	}
+
+	return 0;
+}
+
+int GameLoop::m_MainMenu()
+{
+	// Pre Game Logic
+
+	while (m_Window.m_GetWindow().isOpen())
+	{
+		// Update Logic
+
+		// Handle Events. 
+
+		m_EventHandler.m_HandleEvents(m_Window.m_GetWindow());
+
+		// Clear
+		m_Window.m_GetWindow().clear();
+
+		// Draw Items : Backgound items first. 
+
+		// Display 
+		m_Window.m_GetWindow().display();
 
 	}
 

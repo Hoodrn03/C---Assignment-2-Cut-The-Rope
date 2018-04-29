@@ -26,6 +26,9 @@ struct values
 
 	// Y coordinate.
 	float y;
+
+	// This tag for the object.
+	tag thisTag; 
 };
 
 
@@ -50,7 +53,7 @@ public:
 
 	tag m_Tag = NULL_VALUE;
 
-	std::string name = ""; 
+	std::string m_sName = "";
 
 protected:
 

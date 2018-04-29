@@ -112,7 +112,7 @@ void Level::m_SetLevelBounds(float viewSizeX, float viewSizeY, b2World *world)
 
 	tempBall = new Ball();
 
-	tempBall->name = "Boop"; 
+	tempBall->m_sName = "Ball";
 
 	tempBall->m_SetProperties(0.5f, 0.3f, 0.75f);
 
@@ -160,9 +160,7 @@ void Level::m_LevelOne(b2World * world)
 
 	tempPlatform = new Platform();
 
-	/*
-
-	tempPlatform->name = "Platform"; 
+	tempPlatform->m_sName = "Platform";
 
 	tempPlatform->m_SetTag(NULL_VALUE); 
 
@@ -176,11 +174,9 @@ void Level::m_LevelOne(b2World * world)
 
 	tempPlatform->m_SetColour(255, 0, 0);
 
-	tempPlatform->m_SetData(&tempPlatform);
+	tempPlatform->m_SetData(tempPlatform);
 
 	v_Platforms.push_back(*tempPlatform);
-
-	*/
 
 	//-------------------------------------------------------------\\
 	//						EndPoint 
@@ -190,13 +186,13 @@ void Level::m_LevelOne(b2World * world)
 
 	tempEndPoint = new EndPoint;
 
-	tempEndPoint->name = "EndPoint";
+	tempEndPoint->m_sName = "EndPoint";
 
 	tempEndPoint->m_SetTag(SENSOR_ENTITY);
 
 	tempEndPoint->m_SetStartAngle(0);
 
-	tempEndPoint->m_SetProperties(0.5f, 0.3f, 0.f); 
+	tempEndPoint->m_SetProperties(1.5f, 5.0f, 0.f); 
 
 	tempEndPoint->m_CreateBoxObject(1.f, 1.f, true, world, 6.f, 6.f); 
 
@@ -206,7 +202,7 @@ void Level::m_LevelOne(b2World * world)
 
 	b2CircleShape cShape; 
 
-	cShape.m_radius = 2.f;
+	cShape.m_radius = 1.f;
 
 	tempEndPoint->m_AddSensor(cShape);
 
@@ -228,8 +224,6 @@ void Level::m_LevelOne(b2World * world)
 
 	NumberOfRopes += 1;
 
-	/*
-
 	// Second Rope.
 
 	tempRope = new Rope();
@@ -249,8 +243,6 @@ void Level::m_LevelOne(b2World * world)
 	v_Ropes.push_back(*tempRope);
 
 	NumberOfRopes += 1;
-
-	*/
 
 	//-------------------------------------------------------------\\
 
@@ -373,8 +365,6 @@ void Level::m_CheckForDeleteion(b2World *world)
 		{
 			if (v_Platforms.at(i).m_CheckForDeletion(world))
 			{
-				std::cout << "Destroyed" << std::endl;
-
 				v_Platforms.erase(v_Platforms.begin() + i);
 			}
 		}

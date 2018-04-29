@@ -21,6 +21,8 @@ Ball::Ball()
 	m_TempBall.setFillColor(sf::Color::Blue);
 	m_TempBall.setOutlineColor(sf::Color::Magenta);
 
+	m_Tag = BALL_ENTITY; 
+
 }
 
 //-------------------------------------------------------------

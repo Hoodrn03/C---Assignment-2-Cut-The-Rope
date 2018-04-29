@@ -80,4 +80,6 @@ public:
 	// Main Game loop for the project. 
 	int m_MainGameLoop();
 
+	int m_MainMenu(); 
+
 };

@@ -30,17 +30,15 @@ void ContactListner::BeginContact(b2Contact * contact)
 	PhysicsObject * l_BallEntity; 
 
 	if (m_GetBallAndEndPoint(contact, l_BallEntity, l_EndPointEntity))
-	{		
-		std::cout << "Curret Tag : " << l_BallEntity->m_GetTag() << std::endl;
-
-		std::cout << "EndPoint Tag : " << l_EndPointEntity->m_GetTag() << std::endl;
-
-		std::cout << "BALL ENTITY : " << BALL_ENTITY << std::endl;
-
+	{
 		if (l_BallEntity->m_GetTag() == BALL_ENTITY)
 		{
-			std::cout << "Ball Collided" << std::endl;
+
+			m_bBallReachedZone = true; 
 		}
+
+		l_BallEntity->m_SetTag(BALL_ENTITY);
+
 	}
 }
 
@@ -79,7 +77,7 @@ bool ContactListner::m_GetBallAndEndPoint(b2Contact * contact, PhysicsObject*& b
 
 	if (l_BodyUserData)
 	{
-		l_EntityA = static_cast<PhysicsObject*>(l_BodyUserData);
+		l_EntityA = (PhysicsObject*)l_BodyUserData;
 	}
 	else
 	{
@@ -90,7 +88,7 @@ bool ContactListner::m_GetBallAndEndPoint(b2Contact * contact, PhysicsObject*& b
 
 	if (l_BodyUserData)
 	{
-		l_EntityB = static_cast<PhysicsObject*>(l_BodyUserData);
+		l_EntityB = (PhysicsObject*)l_BodyUserData;
 	}
 	else
 	{
@@ -114,4 +112,15 @@ bool ContactListner::m_GetBallAndEndPoint(b2Contact * contact, PhysicsObject*& b
 	}
 
 	return true;
+}
+
+bool ContactListner::m_GameEnd()
+{
+
+	if (m_bBallReachedZone)
+	{
+		return true; 
+	}
+
+	return false;
 }
