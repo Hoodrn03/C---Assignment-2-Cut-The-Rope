@@ -76,3 +76,13 @@ void EndPoint::m_SetColour(float r, float g, float b)
 
 	m_TempEndPoint.setFillColor(newColour);
 }
+
+//-------------------------------------------------------------
+
+/*! Assign Texture : This will assign a texture to the object's shape.
+\Param One - Texture : This will be the new texture for the shape.
+*/
+void EndPoint::m_AssignTexture(sf::Texture &texture)
+{
+	m_TempEndPoint.setTexture(&texture);
+}

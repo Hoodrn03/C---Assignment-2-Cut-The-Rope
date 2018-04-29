@@ -36,6 +36,7 @@ public:
 	// This will be used to create the rope by connecting a bundle of bodies. 
 	std::vector<b2Body*> v_RopeSegments;
 
+	// This will hold all of the rope boxes for all of the rope segemnts. 
 	std::vector<sf::RectangleShape> v_RopeBoxes;
 
 private:
@@ -43,9 +44,13 @@ private:
 	// This will be used to hold all of the joints connecting all of the bodies. 
 	std::vector<b2RevoluteJoint*> v_RopeConnections;
 
+	// The base height for a rope segment. 
 	float m_fHeight = 0.1f; 
+
+	// The base width for a rope segment. 
 	float m_fWidth = 0.5f; 
 
+	// This will be used to check if the rope needs to be deleted. 
 	bool m_BMarkedForDeleteion = false; 
 
 	// Member Functions 
@@ -60,4 +65,7 @@ public:
 
 	// This will be used to update the position of the rope segments.
 	void m_UpdateRope(); 
+
+	// This will be used to assign a texture to the Ropes rope segmnets. 
+	void m_AssignTexture(sf::Texture &texture);
 };

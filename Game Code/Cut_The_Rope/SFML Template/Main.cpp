@@ -13,6 +13,7 @@
 
 #include "GameLoop.h"
 
+//! Main : Entry point for the application. 
 int main()
 {
 	

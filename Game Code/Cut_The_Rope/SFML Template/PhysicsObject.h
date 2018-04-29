@@ -51,9 +51,8 @@ public:
 
 public:
 
+	// The tag accociated with the object. 
 	tag m_Tag = NULL_VALUE;
-
-	std::string m_sName = "";
 
 protected:
 
@@ -93,14 +92,17 @@ protected:
 	// Initial Coordinates for the object. 
 	float m_fX, m_fY; 
 
+	// This will check to see if the object needs to be deleted. 
 	bool m_MarkedForDeleteion = false; 
 
 	// Member Functions 
 
 public: 
 
+	// This will be used to allow for the assignment of a new tag. 
 	void m_SetTag(tag newTag);
 
+	// This will allow access to the objects current tag. 
 	tag m_GetTag();
 
 	// This will be used to set the start pos for the object. 
@@ -130,5 +132,6 @@ public:
 	// This will allow for the easy addition of a sensor to an existing body. 
 	void m_AddSensor(b2CircleShape newShape); 
 
+	// This will allow for the user data to be assigned to the b2Body. 
 	void m_SetData(void* data);
 };

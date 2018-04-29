@@ -31,6 +31,7 @@ public:
 
 private:
 
+	// The temporary shape for the end point. 
 	sf::RectangleShape m_TempEndPoint; 
 
 
@@ -38,11 +39,19 @@ private:
 
 public:
 
+	// This will be used to draw the end point. 
 	void m_DrawEndPoint(sf::RenderWindow & window);
 
+	// This will be used to create the end point. 
 	void m_CreateEndPoint(float width, float height);
 
+	// This will be used to update the position of the end point. 
 	void m_UpdateEndPoint();
 
+	// This will be used to set the colour of the end point. 
 	void m_SetColour(float r, float g, float b);
+
+	// This will be used to assign a texture to the EndPoints Rectangle shape. 
+	void m_AssignTexture(sf::Texture &texture);
+
 };

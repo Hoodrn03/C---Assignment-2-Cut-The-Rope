@@ -90,6 +90,8 @@ int GameLoop::m_MainGameLoop()
 
 		// Draw Items : Backgound items first. 
 
+		m_Level.m_DrawBackground(m_Window.m_GetWindow());
+
 		m_Level.m_DrawLevel(m_Window.m_GetWindow());
 
 		m_MouseTool.m_DrawMouseMarker(m_Window.m_GetWindow());
@@ -119,6 +121,11 @@ int GameLoop::m_MainGameLoop()
 	return 0;
 }
 
+//-------------------------------------------------------------
+
+/*! Main Menu : The entry point for the game allowing for basic navigation into levels. 
+\
+*/
 int GameLoop::m_MainMenu()
 {
 	// Pre Game Logic

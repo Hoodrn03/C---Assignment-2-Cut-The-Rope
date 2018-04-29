@@ -244,6 +244,11 @@ void PhysicsObject::m_AddSensor(b2CircleShape newShape)
 	m_Body->CreateFixture(&newSensor); 
 }
 
+//-------------------------------------------------------------
+
+/*! Set Data : This will be used to assign the user data into the b2Body. 
+\Param One - Void* : This will allow for any data to be passed into the function, thus any data can be saved into the b2Body.  
+*/
 void PhysicsObject::m_SetData(void* data)
 {
 	m_Body->SetUserData(data);

@@ -96,8 +96,6 @@ void Rope::m_CreateRope(b2Body * firstBody, int iNumberOfSegments, b2Body * fina
 
 		box.setOrigin(0.5f, 0.15f);
 
-		box.setFillColor(sf::Color::Magenta);
-
 		// Create n number of rope segments.
 		for (int i = 0; i <= iNumberOfSegments; i++)
 		{
@@ -173,5 +171,16 @@ void Rope::m_UpdateRope()
 
 }
 
+//-------------------------------------------------------------
 
+/*! Assign Texture : This will assign a texture to the object's shape.
+\Param One - Texture : This will be the new texture for the shape.
+*/
+void Rope::m_AssignTexture(sf::Texture &texture)
+{
+	for (unsigned int i = 0; i < v_RopeBoxes.size(); i++)
+	{
+		v_RopeBoxes.at(i).setTexture(&texture);
+	}
+}
 

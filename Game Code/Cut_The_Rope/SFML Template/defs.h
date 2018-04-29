@@ -42,7 +42,7 @@
 // This will allow for items to be tagged.
 enum tag {
 
-	NULL_VALUE =		0x0001,
-	BALL_ENTITY =		0x0011,
-	SENSOR_ENTITY =		0x0075
+	NULL_VALUE =		0x0001,		// Base Value. 
+	BALL_ENTITY =		0x0011,		// Ball Tag.
+	SENSOR_ENTITY =		0x0075		// Sensor Tag. 
 };

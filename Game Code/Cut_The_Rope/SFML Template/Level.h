@@ -16,6 +16,8 @@
 #include "Ball.h"
 #include "EndPoint.h"
 
+#include "TextureLoader.h"
+
 class Level
 {
 	// Constructor 
@@ -39,12 +41,17 @@ public:
 
 private:
 
+	sf::RectangleShape m_Background; 
 
 	// Classes 
 	
+	// This will hold all of the textures in the game.
+	TextureLoader m_TextureLoader; 
+
 	// This will be used to hold all of the platfoms in this current level. 
 	std::vector<Platform> v_Platforms;
 
+	// This will hold all of the endpoints within the level. 
 	std::vector<EndPoint> v_EndPoints; 
 
 public:
@@ -67,6 +74,8 @@ public:
 
 	// This will be used to draw all elements of the level. 
 	void m_DrawLevel(sf::RenderWindow &window);
+
+	void m_DrawBackground(sf::RenderWindow &window);
 
 	// This will be used to update all items in the level. 
 	void m_UpdateLevel();

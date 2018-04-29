@@ -54,4 +54,7 @@ public:
 	// This will be used to update the ball.
 	void m_UpdateBall();
 
+	// This will be used to assign a texture to the balls circle shape. 
+	void m_AssignTexture(sf::Texture &texture); 
+
 };

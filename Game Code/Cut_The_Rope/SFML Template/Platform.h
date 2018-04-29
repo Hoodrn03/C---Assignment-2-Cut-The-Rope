@@ -49,4 +49,7 @@ public:
 	// This will allow for the platform to be coloured. 
 	void m_SetColour(float r, float g, float b); 
 
+	// This will be used to assign a texture to the Platforms Rectangle shape. 
+	void m_AssignTexture(sf::Texture &texture);
+
 };

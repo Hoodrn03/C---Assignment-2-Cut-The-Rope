@@ -14,6 +14,20 @@
 Level::Level()
 {
 
+	// Object Textures 
+	m_TextureLoader.m_LoadTextureToMap("res/Sprites/Ball.png", "Ball"); 
+	m_TextureLoader.m_LoadTextureToMap("res/Sprites/EndPoint.png", "EndPoint");
+	m_TextureLoader.m_LoadTextureToMap("res/Sprites/Platform.png", "Platform");
+	m_TextureLoader.m_LoadTextureToMap("res/Sprites/Rope.png", "Rope");
+
+	// Background Textures
+	m_TextureLoader.m_LoadTextureToMap("res/Backgrounds/Background.png", "Background");
+
+	// Background Load Background. 
+
+	m_Background.setSize(sf::Vector2f(10, 8));
+
+	m_Background.setTexture(m_TextureLoader.m_GetTextureFromMap("Background"));
 }
 
 //-------------------------------------------------------------
@@ -40,87 +54,95 @@ void Level::m_SetLevelBounds(float viewSizeX, float viewSizeY, b2World *world)
 	// Get Base Values 
 	float fBaseWidth = 0.5f, fBaseHeight = 0.5f;
 
-	Platform *temp; 
+	Platform *tempPlatform; 
 
 	Ball *tempBall;
 
 	// Bottom Platform
 
-	temp = new Platform();
+	tempPlatform = new Platform();
 
-	temp->m_SetTag(NULL_VALUE);
+	tempPlatform->m_SetTag(NULL_VALUE);
 
-	temp->m_SetStartAngle(0);
+	tempPlatform->m_SetStartAngle(0);
 
-	temp->m_CreateBoxObject(viewSizeX, fBaseHeight, false, world, (viewSizeX * HALF), viewSizeY - (fBaseHeight * HALF));
+	tempPlatform->m_CreateBoxObject(viewSizeX, fBaseHeight, false, world, (viewSizeX * HALF), viewSizeY - (fBaseHeight * HALF));
 
-	temp->m_CreatePlatform(viewSizeX, fBaseHeight); 
+	tempPlatform->m_CreatePlatform(viewSizeX, fBaseHeight);
 
-	temp->m_SetData(temp);
+	tempPlatform->m_AssignTexture(*m_TextureLoader.m_GetTextureFromMap("Platform"));
 
-	v_Platforms.push_back(*temp);
+	tempPlatform->m_SetData(tempPlatform);
+
+	v_Platforms.push_back(*tempPlatform);
 
 	// Top Platform
 
-	temp = new Platform();
+	tempPlatform = new Platform();
 
-	temp->m_SetTag(NULL_VALUE);
+	tempPlatform->m_SetTag(NULL_VALUE);
 
-	temp->m_SetStartAngle(0);
+	tempPlatform->m_SetStartAngle(0);
 
-	temp->m_CreateBoxObject(viewSizeX, fBaseHeight, false, world, (viewSizeX * HALF), 0 - (fBaseHeight * HALF));
+	tempPlatform->m_CreateBoxObject(viewSizeX, fBaseHeight, false, world, (viewSizeX * HALF), 0 - (fBaseHeight * HALF));
 
-	temp->m_CreatePlatform(viewSizeX, fBaseHeight);
+	tempPlatform->m_CreatePlatform(viewSizeX, fBaseHeight);
 
-	temp->m_SetData(temp);
+	tempPlatform->m_AssignTexture(*m_TextureLoader.m_GetTextureFromMap("Platform"));
 
-	v_Platforms.push_back(*temp);
+	tempPlatform->m_SetData(tempPlatform);
+
+	v_Platforms.push_back(*tempPlatform);
 
 	// Left Platform
 
-	temp = new Platform();
+	tempPlatform = new Platform();
 
-	temp->m_SetTag(NULL_VALUE);
+	tempPlatform->m_SetTag(NULL_VALUE);
 
-	temp->m_SetStartAngle(90);
+	tempPlatform->m_SetStartAngle(90);
 
-	temp->m_CreateBoxObject(viewSizeY, fBaseWidth, false, world, (fBaseWidth * HALF), (viewSizeY * HALF));
+	tempPlatform->m_CreateBoxObject(viewSizeY, fBaseWidth, false, world, (fBaseWidth * HALF), (viewSizeY * HALF));
 
-	temp->m_CreatePlatform(viewSizeY, fBaseWidth);
+	tempPlatform->m_CreatePlatform(viewSizeY, fBaseWidth);
 
-	temp->m_SetData(temp);
+	tempPlatform->m_AssignTexture(*m_TextureLoader.m_GetTextureFromMap("Platform"));
 
-	v_Platforms.push_back(*temp);
+	tempPlatform->m_SetData(tempPlatform);
+
+	v_Platforms.push_back(*tempPlatform);
 
 	// Right Platform
 
-	temp = new Platform();
+	tempPlatform = new Platform();
 
-	temp->m_SetTag(NULL_VALUE);
+	tempPlatform->m_SetTag(NULL_VALUE);
 
-	temp->m_SetStartAngle(90);
+	tempPlatform->m_SetStartAngle(90);
 
-	temp->m_CreateBoxObject(viewSizeY, fBaseWidth, false, world, viewSizeX - (fBaseWidth * HALF), 0 + (viewSizeY * HALF));
+	tempPlatform->m_CreateBoxObject(viewSizeY, fBaseWidth, false, world, viewSizeX - (fBaseWidth * HALF), 0 + (viewSizeY * HALF));
 
-	temp->m_CreatePlatform(viewSizeY, fBaseWidth);
+	tempPlatform->m_CreatePlatform(viewSizeY, fBaseWidth);
 
-	temp->m_SetData(temp);
+	tempPlatform->m_AssignTexture(*m_TextureLoader.m_GetTextureFromMap("Platform"));
 
-	v_Platforms.push_back(*temp);
+	tempPlatform->m_SetData(tempPlatform);
+
+	v_Platforms.push_back(*tempPlatform);
 
 	// Ball 
 
 	tempBall = new Ball();
 
-	tempBall->m_sName = "Ball";
-
-	tempBall->m_SetProperties(0.5f, 0.3f, 0.75f);
+	tempBall->m_SetProperties(0.5f, 0.3f, 1.f);
 
 	tempBall->m_SetTag(BALL_ENTITY);
 
-	tempBall->m_CreateBallObject(0.5f, true, world, 1.f, 1.f);
+	tempBall->m_CreateBallObject(0.5f, true, world, 4.f, 1.f);
 
 	tempBall->m_SetBallRadius(0.25f);
+
+	tempBall->m_AssignTexture(*m_TextureLoader.m_GetTextureFromMap("Ball"));
 
 	tempBall->m_SetData(tempBall);
 
@@ -130,7 +152,7 @@ void Level::m_SetLevelBounds(float viewSizeX, float viewSizeY, b2World *world)
 
 	delete tempBall;
 
-	delete temp;
+	delete tempPlatform;
 
 
 }
@@ -160,8 +182,6 @@ void Level::m_LevelOne(b2World * world)
 
 	tempPlatform = new Platform();
 
-	tempPlatform->m_sName = "Platform";
-
 	tempPlatform->m_SetTag(NULL_VALUE); 
 
 	tempPlatform->m_SetStartAngle(0);
@@ -172,7 +192,7 @@ void Level::m_LevelOne(b2World * world)
 
 	tempPlatform->m_CreatePlatform(3.f, 0.5f);
 
-	tempPlatform->m_SetColour(255, 0, 0);
+	tempPlatform->m_AssignTexture(*m_TextureLoader.m_GetTextureFromMap("Platform"));
 
 	tempPlatform->m_SetData(tempPlatform);
 
@@ -186,25 +206,23 @@ void Level::m_LevelOne(b2World * world)
 
 	tempEndPoint = new EndPoint;
 
-	tempEndPoint->m_sName = "EndPoint";
-
 	tempEndPoint->m_SetTag(SENSOR_ENTITY);
 
 	tempEndPoint->m_SetStartAngle(0);
 
 	tempEndPoint->m_SetProperties(1.5f, 5.0f, 0.f); 
 
-	tempEndPoint->m_CreateBoxObject(1.f, 1.f, true, world, 6.f, 6.f); 
+	tempEndPoint->m_CreateBoxObject(1.f, 1.f, true, world, 8.f, 6.f); 
 
 	tempEndPoint->m_CreateEndPoint(1.f, 1.f);
 
-	tempEndPoint->m_SetColour(0, 255, 0);
-
 	b2CircleShape cShape; 
 
-	cShape.m_radius = 1.f;
+	cShape.m_radius = 0.75f;
 
 	tempEndPoint->m_AddSensor(cShape);
+
+	tempEndPoint->m_AssignTexture(*m_TextureLoader.m_GetTextureFromMap("EndPoint"));
 
 	tempEndPoint->m_SetData(tempEndPoint);
 
@@ -218,7 +236,9 @@ void Level::m_LevelOne(b2World * world)
 
 	tempRope = new Rope();
 
-	tempRope->m_CreateRope(v_Platforms.at(1).m_GetBody(), 3, v_Balls.at(0).m_GetBody(), world, b2Vec2(3.5f, 0.25f), b2Vec2(0, 0));
+	tempRope->m_CreateRope(v_Platforms.at(1).m_GetBody(), 3, v_Balls.at(0).m_GetBody(), world, b2Vec2(0.f, 0.25f), b2Vec2(0, 0));
+
+	tempRope->m_AssignTexture(*m_TextureLoader.m_GetTextureFromMap("Rope"));
 
 	v_Ropes.push_back(*tempRope);
 
@@ -230,6 +250,8 @@ void Level::m_LevelOne(b2World * world)
 
 	tempRope->m_CreateRope(v_Platforms.at(1).m_GetBody(), 5, v_Platforms.at(4).m_GetBody(), world, b2Vec2(1.5f, 0.25f), b2Vec2(1.f, 0));
 
+	tempRope->m_AssignTexture(*m_TextureLoader.m_GetTextureFromMap("Rope"));
+
 	v_Ropes.push_back(*tempRope);
 
 	NumberOfRopes += 1;
@@ -239,6 +261,8 @@ void Level::m_LevelOne(b2World * world)
 	tempRope = new Rope();
 
 	tempRope->m_CreateRope(v_Platforms.at(1).m_GetBody(), 5, v_Platforms.at(4).m_GetBody(), world, b2Vec2(-1.5f, 0.25f), b2Vec2(-1.f, 0));
+
+	tempRope->m_AssignTexture(*m_TextureLoader.m_GetTextureFromMap("Rope"));
 
 	v_Ropes.push_back(*tempRope);
 
@@ -300,6 +324,16 @@ void Level::m_DrawLevel(sf::RenderWindow &window)
 			v_Balls.at(i).m_DrawBall(window);
 		}
 	}
+}
+
+//-------------------------------------------------------------
+
+/*! Draw Background : This will be used to draw the background into the game. 
+\Param One - Render Window : This will be the main game window for the game, allowing for the sprite to be drawn.
+*/
+void Level::m_DrawBackground(sf::RenderWindow & window)
+{
+	window.draw(m_Background); 
 }
 
 //-------------------------------------------------------------

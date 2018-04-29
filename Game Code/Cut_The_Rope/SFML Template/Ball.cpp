@@ -17,10 +17,7 @@ Ball::Ball()
 	// Ball Size
 	m_TempBall.setRadius(m_fBallSize);
 
-	// Ball Appearance 
-	m_TempBall.setFillColor(sf::Color::Blue);
-	m_TempBall.setOutlineColor(sf::Color::Magenta);
-
+	// Ball Tag
 	m_Tag = BALL_ENTITY; 
 
 }
@@ -82,4 +79,14 @@ void Ball::m_UpdateBall()
 
 	m_TempBall.setRotation(angle);
 
+}
+
+//-------------------------------------------------------------
+
+/*! Assign Texture : This will assign a texture to the object's shape. 
+\Param One - Texture : This will be the new texture for the shape. 
+*/
+void Ball::m_AssignTexture(sf::Texture &texture)
+{
+	m_TempBall.setTexture(&texture); 
 }

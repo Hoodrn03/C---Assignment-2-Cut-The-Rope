@@ -24,6 +24,11 @@ ContactListner::~ContactListner()
 {
 }
 
+//-------------------------------------------------------------
+
+/*! Begin Contact : This will be called when an item gets within the sensors range. Psedo collision. 
+\Param One - b2Contact : This will be automatically passed in from the b2World. 
+*/
 void ContactListner::BeginContact(b2Contact * contact)
 {
 	PhysicsObject * l_EndPointEntity; 
@@ -42,11 +47,23 @@ void ContactListner::BeginContact(b2Contact * contact)
 	}
 }
 
+//-------------------------------------------------------------
+
+/*! End Contact : This will be called when an item gets within the sensors range. Psedo collision.
+\Param One - b2Contact : This will be automatically passed in from the b2World.
+*/
 void ContactListner::EndContact(b2Contact * contact)
 {
 
 }
 
+//-------------------------------------------------------------
+
+/*! Get Ball And EndPoint : This will be used to evaluate the collision between the two collided bodies.  
+\Param One - b2Collision : This will hold the information for both of the bodies involved with the collision. 
+\Param Two - PhysicsObject : This is a pointer reference to a temporary object which will allow for evaluation outside of this method if both bodies are correct. 
+\Param Three - PhysicsObject : This is a pointer reference to a temporary object which will allow for evaluation outside of this method if both bodies are correct. 
+*/
 bool ContactListner::m_GetBallAndEndPoint(b2Contact * contact, PhysicsObject*& ballEntity, PhysicsObject*& EndPointEntity)
 {
 	//--------------------------------------------------------
@@ -114,6 +131,11 @@ bool ContactListner::m_GetBallAndEndPoint(b2Contact * contact, PhysicsObject*& b
 	return true;
 }
 
+//-------------------------------------------------------------
+
+/*! Game End : This will be used to check the value of ballReachedZone to determine if the game should end.
+\
+*/
 bool ContactListner::m_GameEnd()
 {
 
