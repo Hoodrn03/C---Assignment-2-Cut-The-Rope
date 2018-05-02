@@ -43,6 +43,8 @@ private:
 
 	sf::RectangleShape m_Background; 
 
+	sf::RectangleShape m_MenuBackground;
+
 	// Classes 
 	
 	// This will hold all of the textures in the game.
@@ -76,6 +78,8 @@ public:
 	void m_DrawLevel(sf::RenderWindow &window);
 
 	void m_DrawBackground(sf::RenderWindow &window);
+
+	void m_DrawMenuBackground(sf::RenderWindow &window);
 
 	// This will be used to update all items in the level. 
 	void m_UpdateLevel();

@@ -143,6 +143,8 @@ int GameLoop::m_MainMenu()
 
 		// Draw Items : Backgound items first. 
 
+		m_Level.m_DrawMenuBackground(m_Window.m_GetWindow());
+
 		// Display 
 		m_Window.m_GetWindow().display();
 

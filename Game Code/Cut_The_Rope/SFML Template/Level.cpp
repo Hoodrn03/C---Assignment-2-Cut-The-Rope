@@ -13,7 +13,6 @@
 */
 Level::Level()
 {
-
 	// Object Textures 
 	m_TextureLoader.m_LoadTextureToMap("res/Sprites/Ball.png", "Ball"); 
 	m_TextureLoader.m_LoadTextureToMap("res/Sprites/EndPoint.png", "EndPoint");
@@ -23,11 +22,16 @@ Level::Level()
 	// Background Textures
 	m_TextureLoader.m_LoadTextureToMap("res/Backgrounds/Background.png", "Background");
 
+	m_TextureLoader.m_LoadTextureToMap("res/Backgrounds/Main_Background.png", "Main_Background");
+
 	// Background Load Background. 
 
 	m_Background.setSize(sf::Vector2f(10, 8));
 
-	m_Background.setTexture(m_TextureLoader.m_GetTextureFromMap("Background"));
+	m_MenuBackground.setSize(sf::Vector2f(10, 8));
+
+	m_MenuBackground.setTexture(m_TextureLoader.m_GetTextureFromMap("Main_Background"));
+
 }
 
 //-------------------------------------------------------------
@@ -57,6 +61,10 @@ void Level::m_SetLevelBounds(float viewSizeX, float viewSizeY, b2World *world)
 	Platform *tempPlatform; 
 
 	Ball *tempBall;
+
+	// Set Level Background 
+
+	m_Background.setTexture(m_TextureLoader.m_GetTextureFromMap("Background"));
 
 	// Bottom Platform
 
@@ -334,6 +342,11 @@ void Level::m_DrawLevel(sf::RenderWindow &window)
 void Level::m_DrawBackground(sf::RenderWindow & window)
 {
 	window.draw(m_Background); 
+}
+
+void Level::m_DrawMenuBackground(sf::RenderWindow & window)
+{
+	window.draw(m_MenuBackground);
 }
 
 //-------------------------------------------------------------

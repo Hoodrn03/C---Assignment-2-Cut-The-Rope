@@ -20,8 +20,7 @@ int main()
 	GameLoop m_GameLoop;
 
 	// Begin the game. 
-	m_GameLoop.m_MainGameLoop();
-
+	m_GameLoop.m_MainMenu();
 
 	return 0;
 }

@@ -29,6 +29,8 @@ private:
 
 	std::map<std::string, sf::Texture> m_TextureMap; 
 
+	std::map<std::string, sf::Font> m_FontMap; 
+
 	// Member Functions
 
 public:
@@ -36,5 +38,9 @@ public:
 	void m_LoadTextureToMap(std::string filePath, std::string index);
 
 	sf::Texture *m_GetTextureFromMap(std::string mapIndex); 
+
+	void m_LoadFontToMap(std::string filePath, std::string index);
+
+	sf::Font *m_GetFontFromMap(std::string mapIndex);
 
 };
