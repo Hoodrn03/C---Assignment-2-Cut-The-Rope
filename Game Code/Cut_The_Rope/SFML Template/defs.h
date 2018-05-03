@@ -13,6 +13,9 @@
 // Printing to the Console.
 #include <iostream>
 
+// Passing functions as perameters. 
+#include <functional>
+
 // Game Window/Graphics.
 #include <SFML\Graphics.hpp>
 

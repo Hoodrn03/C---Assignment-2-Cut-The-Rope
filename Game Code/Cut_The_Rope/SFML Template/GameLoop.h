@@ -12,6 +12,7 @@
 #include "Window.h"
 #include "Ball.h"
 #include "Level.h"
+#include "UserInterface.h"
 #include "EventHandler.h"
 #include "MouseTool.h"
 #include "ContactListner.h"
@@ -38,7 +39,7 @@ private:
 	const b2Vec2 m_Gravity{ 0.0f, 10.0f };
 
 	// This will be used to control all of the physics within the game. 
-	b2World * m_World;
+	b2World * m_World = nullptr;
 
 	// This will be used to check if the physics should be updated (World step). 
 	float32 m_fTimeStep = 1.0f / 60.0f;
@@ -65,6 +66,8 @@ private:
 	// The level object will hold all of the level pieces for the game. 
 	Level m_Level;
 
+	UserInterface m_UserInterface;
+
 	// This will be used to handle all of the events that occur within the game. 
 	EventHandler m_EventHandler; 
 
@@ -82,5 +85,7 @@ public:
 
 	// Main Menu, will be the entry point for the game. 
 	int m_MainMenu(); 
+
+	int m_Exit(); 
 
 };

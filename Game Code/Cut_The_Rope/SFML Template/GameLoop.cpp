@@ -25,7 +25,10 @@ GameLoop::GameLoop()
 */
 GameLoop::~GameLoop()
 {
-	delete m_World;
+	if (m_World != nullptr)
+	{
+		delete m_World;
+	}
 }
 
 
@@ -130,9 +133,34 @@ int GameLoop::m_MainMenu()
 {
 	// Pre Game Logic
 
+	m_UserInterface.m_AddButton((m_Window.m_GetView().getSize().x * HALF) - 2, (m_Window.m_GetView().getSize().y * HALF) - 2, 4, 1, "Start");
+
+	m_UserInterface.m_AddButton((m_Window.m_GetView().getSize().x * HALF) - 2, (m_Window.m_GetView().getSize().y * HALF), 4, 1, "End");
+
 	while (m_Window.m_GetWindow().isOpen())
 	{
 		// Update Logic
+
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+		{
+			std::string result = m_UserInterface.m_CheckButtons(m_MouseTool.m_GetMousePos(m_Window.m_GetWindow()).x, m_MouseTool.m_GetMousePos(m_Window.m_GetWindow()).y);
+
+			std::cout << result << std::endl; 
+
+			if (result == "Nope")
+			{
+
+			}
+			else if (result == "Start")
+			{
+				this->m_MainGameLoop();
+			}
+			else if (result == "End")
+			{
+				this->m_Exit();
+			}
+
+		}
 
 		// Handle Events. 
 
@@ -145,11 +173,20 @@ int GameLoop::m_MainMenu()
 
 		m_Level.m_DrawMenuBackground(m_Window.m_GetWindow());
 
+		m_UserInterface.m_DrawButtons(m_Window.m_GetWindow());
+
 		// Display 
 		m_Window.m_GetWindow().display();
 
 	}
 
+	return 0;
+}
+
+int GameLoop::m_Exit()
+{
+	m_Window.m_GetWindow().close();
+	
 	return 0;
 }
 

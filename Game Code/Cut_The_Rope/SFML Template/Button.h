@@ -16,7 +16,7 @@ public:
 
 	Button();
 
-	Button(float width, float height, float xPos, float yPos, std::string text, sf::Font font);
+	Button(float width, float height, float xPos, float yPos, std::string text, sf::Font *font);
 
 	// Deconstructor 
 
@@ -30,12 +30,17 @@ private:
 
 	sf::RectangleShape m_buttonBody; 
 
-	sf::Text m_ButtonText
+	sf::Text m_ButtonText; 
+
 
 	// Member Functions
 
 public:
 
 	void m_DrawButton(sf::RenderWindow &window); 
+
+	bool m_CheckButton(float mouseX, float mouseY);
+
+	std::string m_GetButonName();
 
 };

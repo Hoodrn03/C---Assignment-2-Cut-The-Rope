@@ -42,6 +42,10 @@ public:
 
 	void m_GameInterface();
 
+	void m_AddButton(float newX, float newY, float width, float height, std::string text);
 
+	void m_DrawButtons(sf::RenderWindow &window);
+
+	std::string m_CheckButtons(float mouseX, float mouseY);
 
 };
